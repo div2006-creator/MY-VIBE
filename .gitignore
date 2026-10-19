@@ -2,9 +2,7 @@
 node_modules/
 */node_modules/
 
-# Production builds
-dist/
-*/dist/
+# Temporary files
 dist-ssr/
 *.local
 

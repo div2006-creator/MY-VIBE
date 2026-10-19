@@ -13,7 +13,7 @@
     "postinstall": "npm run install:all",
     "build:server": "npm --prefix server run build",
     "build:client": "npm --prefix client run build",
-    "build": "npm run build:server && npm run build:client",
+    "build": "npm run build:server && npm run build:client && node -e \"import('fs').then(fs => fs.cpSync('client/dist', '.', { recursive: true }))\"",
     "start": "node index.js",
     "seed": "npm --prefix server run seed"
   },
