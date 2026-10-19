@@ -428,5 +428,665 @@
     "coverUrl": "https://c.saavncdn.com/001/Intentions-English-2020-20200207034907-500x500.jpg",
     "audioUrl": "https://aac.saavncdn.com/001/bc27a1cbb19ad766b194fb8fa9c629fe_320.mp4",
     "genre": "Pop / R&B"
+  },
+  {
+    "title": "Boom Shaka",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Boom Shaka",
+    "durationSec": 218,
+    "coverUrl": "https://c.saavncdn.com/307/Boom-Shaka-Hindi-2026-20260428064906-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/307/ccb54f2680dcf02b3a76509d4e25787d_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Do Numbari (From “Mirzapur The Movie”)",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Vaaroon Forever (From “Mirzapur The Movie”)",
+    "durationSec": 163,
+    "coverUrl": "https://c.saavncdn.com/381/Vaaroon-Forever-From-Mirzapur-The-Movie-Hindi-2026-20260817160523-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/381/7dc5a390aea490a2da1bc728390b57fc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Not Guilty",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Not Guilty",
+    "durationSec": 175,
+    "coverUrl": "https://c.saavncdn.com/533/Not-Guilty-Hindi-2026-20260106053129-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/533/f63c7326a73194bddee6bc38c31a321c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Maruti",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Maruti",
+    "durationSec": 213,
+    "coverUrl": "https://c.saavncdn.com/817/Maruti-Hindi-2025-20250831053557-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/817/7e195c6ab6663c03da973e94d95283ba_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Kath Lagda",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Bipolar",
+    "durationSec": 312,
+    "coverUrl": "https://c.saavncdn.com/970/Bipolar-Punjabi-2026-20260617142627-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/970/ca0b97c3e4ef1d4f07426fb00d92d904_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Knife Brows",
+    "artist": "Dhanda Nyoliwala",
+    "album": "DNW Vol. 1",
+    "durationSec": 175,
+    "coverUrl": "https://c.saavncdn.com/511/DNW-Vol-1-Hindi-2024-20241017154112-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/511/e7d19d1cd37e58cb9f6bfe08e66e1973_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "BLACK RIDE",
+    "artist": "Dhanda Nyoliwala",
+    "album": "BLACK RIDE",
+    "durationSec": 169,
+    "coverUrl": "https://c.saavncdn.com/383/BLACK-RIDE-Hindi-2025-20251001145034-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/383/90e7a87b40b7fd3565e293866a00d493_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Tension",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Tension",
+    "durationSec": 143,
+    "coverUrl": "https://c.saavncdn.com/050/Tension-Hindi-2025-20250828203842-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/050/ebfa590f38046aeca77d45bb5f4f86a3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Zigane",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Zigane",
+    "durationSec": 192,
+    "coverUrl": "https://c.saavncdn.com/120/Zigane-Hindi-2026-20260630053050-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/120/f72055d35b2f9c350dc46f25462efd42_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Big Plans",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Big Plans",
+    "durationSec": 146,
+    "coverUrl": "https://c.saavncdn.com/403/Big-Plans-Hindi-2026-20260714053729-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/403/cf8f86f6d4c644ce75c8ee911f132895_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Dil De Baithi",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Dil De Baithi",
+    "durationSec": 221,
+    "coverUrl": "https://c.saavncdn.com/397/Dil-De-Baithi-Hindi-2026-20260707053613-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/397/90547c5b926a78878a7360534bf633ae_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Ishq Bawla | Coke Studio Bharat",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Ishq Bawla | Coke Studio Bharat",
+    "durationSec": 272,
+    "coverUrl": "https://c.saavncdn.com/717/Ishq-Bawla-Coke-Studio-Bharat-Hindi-2025-20250616053440-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/717/5328366e2db5d68dc162095888b938bf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "La La La",
+    "artist": "Dhanda Nyoliwala",
+    "album": "La La La",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/044/La-La-La-Hindi-2024-20241210053517-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/044/5fc813bd4faa3f1302ea4d7036d9ece4_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Up To U",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Up To U",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/550/Up-To-U-Hindi-2024-20240321160618-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/550/22e2015af1db7f3ed1068bad878ec8b6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Panamera",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Panamera",
+    "durationSec": 149,
+    "coverUrl": "https://c.saavncdn.com/410/Panamera-Hindi-2026-20260810154037-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/410/87d78bee5064492dddd105a91bd56bb7_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "No Fluke",
+    "artist": "Dhanda Nyoliwala",
+    "album": "No Fluke",
+    "durationSec": 208,
+    "coverUrl": "https://c.saavncdn.com/611/No-Fluke-Hindi-2025-20250730054000-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/611/37ffc57f745ee05a3a1b3c07e9290b5d_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Russian Bandana",
+    "artist": "Dhanda Nyoliwala",
+    "album": "i'm at the club",
+    "durationSec": 197,
+    "coverUrl": "https://c.saavncdn.com/902/i-m-at-the-club-Korean-2026-20260916153016-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/902/97f0f6399f54555eae2beecacbc082fa_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Rubicon",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Rubicon",
+    "durationSec": 175,
+    "coverUrl": "https://c.saavncdn.com/370/Rubicon-Hindi-2024-20240815053119-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/370/01822111eb1bdc3c2d96077fffe71142_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "No Mercy",
+    "artist": "Dhanda Nyoliwala",
+    "album": "No Mercy",
+    "durationSec": 185,
+    "coverUrl": "https://c.saavncdn.com/158/No-Mercy-Haryanvi-2023-20230214141434-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/158/c00de06e78359c8c26f030d6ab0478cc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2023
+  },
+  {
+    "title": "Paradox",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Paradox",
+    "durationSec": 187,
+    "coverUrl": "https://c.saavncdn.com/494/Paradox-Hindi-2026-20260217053125-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/494/acc38874af6396fd493997c20c38c33a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Mia Cara",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Mia Cara",
+    "durationSec": 232,
+    "coverUrl": "https://c.saavncdn.com/843/Mia-Cara-Hindi-2024-20240626053306-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/843/ddfd25ae8a62d5178670aae8bbe011d9_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Jat Clan",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Jat Clan",
+    "durationSec": 206,
+    "coverUrl": "https://c.saavncdn.com/365/Jat-Clan-Hindi-2024-20240321160615-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/365/000e1c9875bf3a2a7ed6e63cd4acee65_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Forever",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Forever",
+    "durationSec": 156,
+    "coverUrl": "https://c.saavncdn.com/376/Forever-Hindi-2025-20251119060615-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/376/9e39ca6840f2b95a820ee7c99a46c92e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Underground",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Underground",
+    "durationSec": 205,
+    "coverUrl": "https://c.saavncdn.com/523/Underground-Hindi-2025-20250915053823-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/523/2e34629daae224feb75d1b44cce25ade_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Block",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Block",
+    "durationSec": 204,
+    "coverUrl": "https://c.saavncdn.com/115/Block-Hindi-2024-20240316053532-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/115/0dc11a3e0e58707b6214392104c70539_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Nobody Came",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Nobody Came",
+    "durationSec": 251,
+    "coverUrl": "https://c.saavncdn.com/341/Nobody-Came-Hindi-2025-20251108053152-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/341/ddb007af89ec23a678d4c4b87d4f53cd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Ego Killer",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Ego Killer",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/254/Ego-Killer-Hindi-2024-20240507053256-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/254/86679c720dbb5e316895688dc730b6e5_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Death Row",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Death Row",
+    "durationSec": 221,
+    "coverUrl": "https://c.saavncdn.com/746/Death-Row-Hindi-2024-20240321161127-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/746/811dbd9c19f0e10b36787e3d220a282a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Bonjour",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Bonjour",
+    "durationSec": 173,
+    "coverUrl": "https://c.saavncdn.com/037/Bonjour-Hindi-2024-20240321160621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/037/4b8a7fc4c8650639713ae73f339b8be2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Spellbound",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Spellbound",
+    "durationSec": 205,
+    "coverUrl": "https://c.saavncdn.com/149/Spellbound-Hindi-2024-20240321161039-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/149/3bd3e8b5df67c26b80d700e7221d0ae3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Run This Town",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Run This Town",
+    "durationSec": 171,
+    "coverUrl": "https://c.saavncdn.com/913/Run-This-Town-Hindi-2024-20240321160621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/913/fd25c6c63653366b6c526571347e2409_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Lost In Wave",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Lost In Wave",
+    "durationSec": 209,
+    "coverUrl": "https://c.saavncdn.com/241/Lost-In-Wave-Hindi-2024-20240321161048-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/241/d8045f2d787adacdb17533acacd8b298_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Deadly Zone",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Deadly Zone",
+    "durationSec": 168,
+    "coverUrl": "https://c.saavncdn.com/311/Deadly-Zone-Hindi-2026-20260128053303-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/311/36746e3948ac69d84ea5e977fb960a49_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Unstoppable",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Unstoppable",
+    "durationSec": 199,
+    "coverUrl": "https://c.saavncdn.com/685/Unstoppable-Hindi-2024-20240321161042-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/685/10ab095871edf5db7de13af2644b23cd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Surrey BC",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Surrey BC",
+    "durationSec": 227,
+    "coverUrl": "https://c.saavncdn.com/796/Surrey-BC-Hindi-2025-20250316053550-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/796/2a8481e76f58796fb8e3dcbd55306b1f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Gaddafi",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Big Plans",
+    "durationSec": 167,
+    "coverUrl": "https://c.saavncdn.com/693/Big-Plans-Hindi-2026-20260825053049-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/693/cf79a9c388d4a0e9d8bf915bf46cb62c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Jeelo Jeelo",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Jeelo Jeelo",
+    "durationSec": 201,
+    "coverUrl": "https://c.saavncdn.com/740/Jeelo-Jeelo-Hindi-2025-20250413053559-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/740/1dd1528ab005c02fa1f071f34cf2c235_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Bitch",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Bitch",
+    "durationSec": 178,
+    "coverUrl": "https://c.saavncdn.com/749/Bitch-Hindi-2024-20241205043354-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/749/7a1ca7d4ae385f37fdb97ee7a5eca864_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Ha Ha Ha",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Ha Ha Ha",
+    "durationSec": 190,
+    "coverUrl": "https://c.saavncdn.com/302/Ha-Ha-Ha-Hindi-2024-20240413053220-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/302/7686e49e839a37082f250ca5366aedfc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "4 Days",
+    "artist": "Dhanda Nyoliwala",
+    "album": "4 Days",
+    "durationSec": 182,
+    "coverUrl": "https://c.saavncdn.com/979/4-Days-Hindi-2023-20230302205243-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/979/817715fd4840115152dcae87a0265265_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2023
+  },
+  {
+    "title": "Foxy",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Foxy",
+    "durationSec": 223,
+    "coverUrl": "https://c.saavncdn.com/071/Foxy-Hindi-2024-20240321161121-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/071/f69dce10d6bc5b8a1152bad586645ed7_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Vomit On Paper",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Vomit On Paper",
+    "durationSec": 221,
+    "coverUrl": "https://c.saavncdn.com/442/Vomit-On-Paper-Hindi-2025-20251216093549-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/442/38928df4612743a6dfcd034706057db1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Balkan Girl",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Kohram",
+    "durationSec": 206,
+    "coverUrl": "https://c.saavncdn.com/710/Kohram-Hindi-2026-20260416162456-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/710/a9d33d3200e1a96da30f051b65a561cf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Chora Baba Ka",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Chora Baba Ka",
+    "durationSec": 176,
+    "coverUrl": "https://c.saavncdn.com/643/Chora-Baba-Ka-Hindi-2023-20231016053526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/643/2df6c18cdc09489c54997dd4f500f537_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2023
+  },
+  {
+    "title": "Afgan",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Afgan",
+    "durationSec": 197,
+    "coverUrl": "https://c.saavncdn.com/930/Afgan-Hindi-2024-20240321160615-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/930/c507e879d16e924fbc88ef3ed4b6d765_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Taqdeer",
+    "artist": "Dhanda Nyoliwala",
+    "album": "DNW Vol. 1",
+    "durationSec": 177,
+    "coverUrl": "https://c.saavncdn.com/511/DNW-Vol-1-Hindi-2024-20241017154112-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/511/05834c3474704e98d8eceac376140518_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Backbite",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Backbite",
+    "durationSec": 231,
+    "coverUrl": "https://c.saavncdn.com/796/Backbite-Hindi-2024-20240321160615-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/796/8a98db17c42e1c9ff997f51c785132f1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Charche",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Charche",
+    "durationSec": 185,
+    "coverUrl": "https://c.saavncdn.com/327/Charche-Hindi-2025-20250114053458-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/327/cc4ee83a9d1baa2a6eb009a488110e9e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "True",
+    "artist": "Dhanda Nyoliwala",
+    "album": "True",
+    "durationSec": 245,
+    "coverUrl": "https://c.saavncdn.com/074/True-Hindi-2024-20240321160615-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/074/ee360e206faeca01396e71cca5e50649_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Regret",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Regret",
+    "durationSec": 213,
+    "coverUrl": "https://c.saavncdn.com/734/Regret-Hindi-2024-20240321160618-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/734/adbc84372677a8d3b4e2d913db05a391_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Caution",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Caution",
+    "durationSec": 151,
+    "coverUrl": "https://c.saavncdn.com/703/Caution-Punjabi-2024-20240226195029-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/703/7f9129319c79f92cf19a2732b0ea7c4c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Intro (Kohram)",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Intro (Kohram)",
+    "durationSec": 195,
+    "coverUrl": "https://c.saavncdn.com/184/Intro-Kohram-Hindi-2025-20250729133639-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/184/d3fa860842651820909364e9481874d2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Baby",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Baby",
+    "durationSec": 183,
+    "coverUrl": "https://c.saavncdn.com/166/Baby-Hindi-2024-20240321160621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/166/43f8eda591c6755568260bac423f0a25_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Uno Dos Tres",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Uno Dos Tres",
+    "durationSec": 172,
+    "coverUrl": "https://c.saavncdn.com/696/Uno-Dos-Tres-Hindi-2025-20250425125541-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/696/63d5fae49517de072cf3551ca6abb12e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Khotte Sikke",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Khotte Sikke",
+    "durationSec": 242,
+    "coverUrl": "https://c.saavncdn.com/881/Khotte-Sikke-Haryanvi-2022-20240508135804-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/881/3a81c5aa47fead1712462316884a0caa_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2022
+  },
+  {
+    "title": "Ruffian",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Ruffian",
+    "durationSec": 170,
+    "coverUrl": "https://c.saavncdn.com/019/Ruffian-Hindi-2024-20240321161103-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/019/6474917069f7dbc2f1156ec340847bb6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "KING",
+    "artist": "Dhanda Nyoliwala",
+    "album": "KING",
+    "durationSec": 152,
+    "coverUrl": "https://c.saavncdn.com/102/KING-Hindi-2024-20241030234405-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/102/38c6de98e04cf122fcc62232c5e6608c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Hood",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Hood",
+    "durationSec": 207,
+    "coverUrl": "https://c.saavncdn.com/081/Hood-Hindi-2024-20240321160618-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/081/02d3cb8f4d2ea365060e83c4ca80aa35_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Khesi",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Khesi",
+    "durationSec": 193,
+    "coverUrl": "https://c.saavncdn.com/005/Khesi-Hindi-2024-20240321160621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/005/adde595f91f3d1057fb76be778218876_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Relapse",
+    "artist": "Dhanda Nyoliwala",
+    "album": "DNW Vol. 1",
+    "durationSec": 194,
+    "coverUrl": "https://c.saavncdn.com/511/DNW-Vol-1-Hindi-2024-20241017154112-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/511/a3c1d1c94dbd94668e3922e5ed58586b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "First Haryanvi Drill",
+    "artist": "Dhanda Nyoliwala",
+    "album": "First Haryanvi Drill",
+    "durationSec": 181,
+    "coverUrl": "https://c.saavncdn.com/517/First-Haryanvi-Drill-Hindi-2024-20240321160618-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/517/eb0bf38f4072a085bd8cbf5c96fa1ed6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Revenge of a Warrior",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Revenge of a Warrior",
+    "durationSec": 46,
+    "coverUrl": "https://c.saavncdn.com/610/Revenge-of-a-Warrior-Hindi-2026-20260311054303-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/610/d242ac63af38ce55b4dd5923416f304a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2026
+  },
+  {
+    "title": "Whispers & Wounds",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Whispers & Wounds",
+    "durationSec": 82,
+    "coverUrl": "https://c.saavncdn.com/988/Whispers-Wounds-Hindi-2025-20251027174640-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/988/74f5f1fef6473be18b77111ac9d5cf48_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2025
+  },
+  {
+    "title": "Yamaha",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Yamaha",
+    "durationSec": 184,
+    "coverUrl": "https://c.saavncdn.com/036/Yamaha-Hindi-2024-20240321160621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/036/93c651380794fd2481b71f1a56e01fff_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2024
+  },
+  {
+    "title": "Badnam (Original Version)",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Badnam (Original Version)",
+    "durationSec": 203,
+    "coverUrl": "https://c.saavncdn.com/217/Badnam-Orignal-Version-Punjabi-2017-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/217/7d3d8e8bd1e9ff486954c3466becb080_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2017
+  },
+  {
+    "title": "Daku (feat. Inderpal Moga)",
+    "artist": "Dhanda Nyoliwala",
+    "album": "Daku (feat. Inderpal Moga)",
+    "durationSec": 131,
+    "coverUrl": "https://c.saavncdn.com/533/Daku-feat-Inderpal-Moga-English-2021-20230309091928-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/533/58885ac43f8e1185c3cd29b81743a26c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Drill",
+    "year": 2021
   }
 ]
