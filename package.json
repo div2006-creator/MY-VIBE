@@ -1,14 +1,23 @@
 {
-  "name": "vibe-workspace",
+  "name": "vibe",
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "main": "index.js",
   "description": "VIBE - Music & Memory Soundtrack Platform",
   "scripts": {
     "dev": "node dev.js",
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
-    "build": "npm --prefix server run build && npm --prefix client run build",
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "postinstall": "npm run install:all",
+    "build:server": "npm --prefix server run build",
+    "build:client": "npm --prefix client run build",
+    "build": "npm run build:server && npm run build:client",
+    "start": "node index.js",
     "seed": "npm --prefix server run seed"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0"
   }
 }

@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.js';
 import vibeRoutes from './routes/vibes.js';
 import songRoutes from './routes/songs.js';
@@ -10,13 +13,17 @@ import artistRoutes from './routes/artists.js';
 import albumRoutes from './routes/albums.js';
 import analyticsRoutes from './routes/analytics.js';
 import externalRoutes from './routes/external.js';
+import './supabase.js';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS for Vite dev server & local frontend
+// Enable CORS for API
 app.use(cors({
   origin: '*',
   credentials: true
@@ -40,7 +47,33 @@ app.use('/api/albums', albumRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/external', externalRoutes);
 
-app.listen(PORT, () => {
-  console.log(`✨ VIBE API Server running on http://localhost:${PORT}`);
-});
+// Serve frontend static build in production
+const possibleClientDistPaths = [
+  path.resolve(__dirname, '../../client/dist'),
+  path.resolve(__dirname, '../client/dist'),
+  path.resolve(process.cwd(), 'client/dist'),
+  path.resolve(process.cwd(), 'dist')
+];
 
+const clientDist = possibleClientDistPaths.find((p) => fs.existsSync(p));
+
+if (clientDist) {
+  console.log(`📦 Serving frontend static build from: ${clientDist}`);
+  app.use(express.static(clientDist));
+
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    const indexPath = path.join(clientDist, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      next();
+    }
+  });
+}
+
+app.listen(PORT, () => {
+  console.log(`✨ VIBE API Server running on port ${PORT}`);
+});
