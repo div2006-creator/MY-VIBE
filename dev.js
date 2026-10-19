@@ -14,14 +14,12 @@ console.log('🚀 Starting VIBE Platform (Server + Client)...\n');
 const server = spawn(npmCmd, ['run', 'dev'], {
   cwd: path.join(__dirname, 'server'),
   stdio: 'inherit',
-  shell: true,
 });
 
 // Start Vite Frontend Client on port 5173
 const client = spawn(npmCmd, ['run', 'dev'], {
   cwd: path.join(__dirname, 'client'),
   stdio: 'inherit',
-  shell: true,
 });
 
 function cleanup() {
