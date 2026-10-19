@@ -1,0 +1,114 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String             @id @default(uuid())
+  email            String             @unique
+  password         String
+  name             String
+  avatarUrl        String?
+  bio              String?
+  favoriteMood     String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  vibes            Vibe[]
+  likedSongs       LikedSong[]
+  listeningHistory ListeningHistory[]
+}
+
+model Artist {
+  id        String   @id @default(uuid())
+  name      String
+  avatarUrl String?
+  bio       String?
+  genre     String?
+  createdAt DateTime @default(now())
+  albums    Album[]
+  songs     Song[]
+}
+
+model Album {
+  id          String   @id @default(uuid())
+  title       String
+  coverUrl    String
+  releaseYear Int?
+  artistId    String
+  artist      Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  songs       Song[]
+  createdAt   DateTime @default(now())
+}
+
+model Song {
+  id               String             @id @default(uuid())
+  title            String
+  durationSec      Int
+  audioUrl         String
+  coverUrl         String
+  genre            String?
+  artistId         String
+  artist           Artist             @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumId          String?
+  album            Album?             @relation(fields: [albumId], references: [id], onDelete: SetNull)
+  vibeSongs        VibeSong[]
+  likedBy          LikedSong[]
+  listeningHistory ListeningHistory[]
+  createdAt        DateTime           @default(now())
+}
+
+model Vibe {
+  id               String             @id @default(uuid())
+  title            String
+  date             String
+  location         String
+  mood             String
+  story            String
+  coverUrl         String
+  isPublic         Boolean            @default(true)
+  userId           String
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vibeSongs        VibeSong[]
+  listeningHistory ListeningHistory[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model VibeSong {
+  vibeId     String
+  songId     String
+  orderIndex Int      @default(0)
+  addedAt    DateTime @default(now())
+
+  vibe Vibe @relation(fields: [vibeId], references: [id], onDelete: Cascade)
+  song Song @relation(fields: [songId], references: [id], onDelete: Cascade)
+
+  @@id([vibeId, songId])
+}
+
+model LikedSong {
+  userId  String
+  songId  String
+  likedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  song Song @relation(fields: [songId], references: [id], onDelete: Cascade)
+
+  @@id([userId, songId])
+}
+
+model ListeningHistory {
+  id       String   @id @default(uuid())
+  userId   String
+  songId   String
+  vibeId   String?
+  playedAt DateTime @default(now())
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  song Song  @relation(fields: [songId], references: [id], onDelete: Cascade)
+  vibe Vibe? @relation(fields: [vibeId], references: [id], onDelete: SetNull)
+}
