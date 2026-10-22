@@ -92,9 +92,9 @@ export const Player: React.FC = () => {
       <SleepTimerModal isOpen={isSleepOpen} onClose={() => setIsSleepOpen(false)} />
 
       {/* ============================================================== */}
-      {/* 📱 MOBILE VIEW: FLOATING OPAQUE PLAYER (EXACT USER WIREFRAME) */}
+      {/* 📱 MOBILE VIEW: FLOATING TRANSLUCENT PLAYER                     */}
       {/* ============================================================== */}
-      <div className="md:hidden fixed bottom-3 left-3 right-3 z-50 bg-[#161311] border border-[#554339]/80 rounded-2xl p-3.5 shadow-[0_12px_36px_rgba(0,0,0,0.92)] select-none">
+      <div className="md:hidden fixed bottom-3 left-3 right-3 z-50 bg-[#161311]/75 backdrop-blur-2xl border border-[#ffb68c]/25 rounded-2xl p-3.5 shadow-[0_12px_36px_rgba(0,0,0,0.7)] select-none">
         
         {/* Top Row: Circular Vinyl Cover, Audio Waveforms, Track Info, Controls */}
         <div className="flex items-center justify-between gap-3">
@@ -102,7 +102,7 @@ export const Player: React.FC = () => {
           {/* Circular Vinyl Album Art (Drawn as a circle in sketch) */}
           <div
             onClick={togglePlay}
-            className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-[#ecc15a]/60 shadow-lg bg-[#110e0c] cursor-pointer"
+            className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-[#ecc15a]/60 shadow-lg bg-[#110e0c]/80 cursor-pointer"
           >
             <img
               src={currentSong.coverUrl}
@@ -196,15 +196,15 @@ export const Player: React.FC = () => {
       </div>
 
       {/* ============================================================== */}
-      {/* 💻 DESKTOP VIEW: FULL STITCH AUDIO SANCTUM TURNTABLE DECK       */}
+      {/* 💻 DESKTOP VIEW: TRANSLUCENT STITCH AUDIO TURNTABLE DECK       */}
       {/* ============================================================== */}
-      <div className="hidden md:block fixed bottom-0 left-0 right-0 z-50 bg-[#110e0c]/95 backdrop-blur-xl border-t border-[#554339]/50 px-6 py-2.5 shadow-2xl select-none">
+      <div className="hidden md:block fixed bottom-0 left-0 right-0 z-50 bg-[#161311]/75 backdrop-blur-2xl border-t border-[#ffb68c]/20 px-6 py-2.5 shadow-[0_-12px_40px_rgba(0,0,0,0.7)] select-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           
           {/* Left: Spinning Vinyl Platter, Micro-Grooves & Track Monograph */}
           <div className="flex items-center gap-3.5 w-1/4 min-w-0">
             <div className="relative group flex-shrink-0 cursor-pointer" onClick={togglePlay}>
-              <div className="w-13 h-13 rounded bg-[#1e1b19] border border-[#554339]/60 p-0.5 shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-13 h-13 rounded bg-[#1e1b19]/70 backdrop-blur-sm border border-[#554339]/60 p-0.5 shadow-lg flex items-center justify-center overflow-hidden">
                 <img
                   src={currentSong.coverUrl}
                   alt={currentSong.title}
@@ -342,8 +342,8 @@ export const Player: React.FC = () => {
               onClick={() => setTubeActive(!tubeActive)}
               className={`px-2 py-0.5 rounded border font-mono-spec text-[9px] uppercase tracking-wider flex items-center gap-1 transition-all ${
                 tubeActive
-                  ? 'border-[#ecc15a]/60 bg-[#1e1b19] text-[#ecc15a] shadow-[0_0_8px_rgba(236,193,90,0.25)]'
-                  : 'border-[#554339]/40 text-[#a38c80]'
+                  ? 'border-[#ecc15a]/60 bg-[#1e1b19]/60 backdrop-blur-sm text-[#ecc15a] shadow-[0_0_8px_rgba(236,193,90,0.25)]'
+                  : 'border-[#554339]/40 text-[#a38c80] bg-[#1e1b19]/30'
               }`}
               title="Class-A Valve Output Stage"
             >
@@ -387,7 +387,7 @@ export const Player: React.FC = () => {
             <button
               onClick={() => setIsQueueOpen(!isQueueOpen)}
               className={`p-1.5 rounded transition-colors ${
-                isQueueOpen ? 'text-[#ecc15a] bg-[#1e1b19]' : 'text-[#a38c80] hover:text-[#e9e1dd]'
+                isQueueOpen ? 'text-[#ecc15a] bg-[#1e1b19]/70 backdrop-blur-sm' : 'text-[#a38c80] hover:text-[#e9e1dd]'
               }`}
               title="Vinyl Crate Queue"
             >
@@ -397,7 +397,7 @@ export const Player: React.FC = () => {
             {/* Relive Vibe Button */}
             <button
               onClick={() => openReliveModal(activeVibe || undefined)}
-              className="flex items-center gap-1 px-2.5 py-1 rounded bg-[#1e1b19] border border-[#ecc15a]/40 text-[#ecc15a] font-mono-spec text-[10px] font-bold hover:bg-[#282422] transition-all"
+              className="flex items-center gap-1 px-2.5 py-1 rounded bg-[#1e1b19]/60 backdrop-blur-sm border border-[#ecc15a]/40 text-[#ecc15a] font-mono-spec text-[10px] font-bold hover:bg-[#282422]/80 transition-all"
               title="Relive Sonic Memory"
             >
               <Sparkles className="w-3 h-3 text-[#ecc15a] animate-pulse" />
