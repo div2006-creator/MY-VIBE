@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Disc, Compass, Clock, Heart, Search, PlusCircle, LogIn, Menu, X, Radio, BarChart3, ListMusic, Users, Mic2 } from 'lucide-react';
+import { Disc, Compass, Clock, Heart, Search, PlusCircle, LogIn, LogOut, Menu, X, Radio, BarChart3, ListMusic, Users, Mic2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
@@ -97,6 +97,16 @@ export const Navbar: React.FC = () => {
                   {user.name.split(' ')[0]}
                 </span>
               </Link>
+              <button
+                onClick={() => {
+                  logout();
+                  navigate('/auth');
+                }}
+                className="p-2 rounded-full text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                title="Log Out (Lock Dashboard)"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
             </div>
           ) : (
             <Link
