@@ -17,6 +17,16 @@ export const GenresRadioPage: React.FC = () => {
 
   const radioStations: RadioStation[] = [
     {
+      id: 'haryanvi-drill',
+      name: 'Haryanvi Drill & Desi Hip Hop Radio',
+      mood: '🔥 Heavy 808s, Raw Drill & Street Anthems',
+      description: 'Raw basslines, unapologetic street flow, and heavy drill rhythms by Dhanda Nyoliwala and the desi underground.',
+      coverUrl: allSongs.find((s) => s.artist.includes('Dhanda'))?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+      gradient: 'from-amber-600/40 via-red-600/30 to-black',
+      tag: 'Haryanvi Drill',
+      songs: allSongs.filter((s) => s.genre?.includes('Haryanvi') || s.genre?.includes('Drill') || s.artist.includes('Dhanda')),
+    },
+    {
       id: 'punjabi-heat',
       name: 'Punjabi Beats & Swagger Radio',
       mood: '🔥 Heavy Bass & Desi Swagger',

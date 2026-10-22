@@ -23,7 +23,7 @@ export const ArtistsPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const genres = ['all', 'Punjabi', 'Bollywood', 'Pop', 'Hip Hop', 'Indie'];
+  const genres = ['all', 'Haryanvi', 'Drill', 'Punjabi', 'Bollywood', 'Pop', 'Hip Hop', 'Indie'];
 
   const filteredArtists = artists.filter((art) => {
     const matchesSearch = art.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -44,7 +44,7 @@ export const ArtistsPage: React.FC = () => {
     playSong(playlist[0], undefined, playlist);
   };
 
-  const featuredArtist = artists[0]; // Yo Yo Honey Singh with 16 songs
+  const featuredArtist = artists[0]; // Top artist by song count (Dhanda Nyoliwala with 66 songs)
 
   return (
     <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 pb-32 px-4 lg:px-8 pt-8">
@@ -61,7 +61,7 @@ export const ArtistsPage: React.FC = () => {
               Browse by Singer
             </h1>
             <p className="text-neutral-400 text-sm mt-1 max-w-xl">
-              Songs assembled strictly by their legendary singers. Explore complete discographies of Honey Singh, Sidhu Moose Wala, Diljit, Arijit, Justin Bieber, and more.
+              Songs assembled strictly by their legendary singers. Explore complete discographies of Dhanda Nyoliwala, Honey Singh, Sidhu Moose Wala, Diljit, Arijit, Justin Bieber, and more.
             </p>
           </div>
 

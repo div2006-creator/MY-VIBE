@@ -42,6 +42,7 @@ export const SearchPage: React.FC = () => {
 
   // Quick preset pills
   const presets = [
+    { label: '🔥 Dhanda Nyoliwala', q: 'Dhanda Nyoliwala' },
     { label: '🌾 Sidhu Moose Wala', q: 'Sidhu Moose Wala' },
     { label: '✨ Diljit Dosanjh', q: 'Diljit Dosanjh' },
     { label: '🔥 Karan Aujla', q: 'Karan Aujla' },
