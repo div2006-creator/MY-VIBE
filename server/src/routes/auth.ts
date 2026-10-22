@@ -7,68 +7,68 @@ import { AuthRequest, JWT_SECRET, authenticate } from '../middleware/auth.js';
 const router = Router();
 const prisma = new PrismaClient();
 
-// POST /api/auth/register
-router.post('/register', async (req: AuthRequest, res: Response) => {
-  try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'Name, email, and password are required' });
-    }
+// Dedicated Single-User Platform Credentials
+export const MASTER_ID = 'Vibe2006';
+export const MASTER_PASSWORD = 'Vibe@#77889';
 
-    const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) {
-      return res.status(400).json({ message: 'User with this email already exists' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}`,
-        bio: 'Creating soundtracks for my life moments ✨',
-        favoriteMood: '😎 Chill & Adventurous',
-      },
-    });
-
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
-    return res.json({
-      token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        avatarUrl: user.avatarUrl,
-        bio: user.bio,
-        favoriteMood: user.favoriteMood,
-      },
-    });
-  } catch (err: any) {
-    console.error('Register error:', err);
-    return res.status(500).json({ message: err.message || 'Server error' });
-  }
+// POST /api/auth/register (Disabled for single-user system)
+router.post('/register', async (_req: AuthRequest, res: Response) => {
+  return res.status(403).json({
+    message: 'Public registration is disabled. Please log in with the authorized master account credentials (ID: Vibe2006).',
+  });
 });
 
-// POST /api/auth/login
+// POST /api/auth/login - Strictly validates against single master ID and Password
 router.post('/login', async (req: AuthRequest, res: Response) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' });
+    const rawId = req.body.id || req.body.email || '';
+    const rawPassword = req.body.password || '';
+
+    const id = String(rawId).trim();
+    const password = String(rawPassword).trim();
+
+    if (!id || !password) {
+      return res.status(400).json({ message: 'Both ID and password are required' });
     }
 
-    const user = await prisma.user.findUnique({ where: { email } });
+    // Strict single master credentials check
+    const isIdValid = id.toLowerCase() === MASTER_ID.toLowerCase();
+    const isPasswordValid = password === MASTER_PASSWORD;
+
+    if (!isIdValid || !isPasswordValid) {
+      return res.status(401).json({
+        message: 'Invalid ID or Password. Only the authorized platform credentials (ID: Vibe2006) are permitted.',
+      });
+    }
+
+    // Find or create the master user in database
+    let user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: MASTER_ID },
+          { email: 'Vibe2006' },
+          { email: 'vibe2006@vibe.com' },
+          { name: 'Vibe2006' },
+        ],
+      },
+    });
+
     if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      const hashedPassword = await bcrypt.hash(MASTER_PASSWORD, 10);
+      user = await prisma.user.create({
+        data: {
+          name: 'Vibe2006',
+          email: 'Vibe2006',
+          password: hashedPassword,
+          avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+          bio: 'Official VIBE Account ✨',
+          favoriteMood: '🔥 High Energy & Romance',
+        },
+      });
+      console.log('✅ Created master user record for Vibe2006');
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
     return res.json({
       token,
       user: {
@@ -78,6 +78,7 @@ router.post('/login', async (req: AuthRequest, res: Response) => {
         avatarUrl: user.avatarUrl,
         bio: user.bio,
         favoriteMood: user.favoriteMood,
+        isMaster: true,
       },
     });
   } catch (err: any) {
@@ -90,20 +91,7 @@ router.post('/login', async (req: AuthRequest, res: Response) => {
 router.get('/me', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
-      // Return default guest demo user if not logged in
-      const defaultUser = await prisma.user.findFirst();
-      if (!defaultUser) return res.status(401).json({ message: 'Not logged in' });
-      return res.json({
-        user: {
-          id: defaultUser.id,
-          name: defaultUser.name,
-          email: defaultUser.email,
-          avatarUrl: defaultUser.avatarUrl,
-          bio: defaultUser.bio,
-          favoriteMood: defaultUser.favoriteMood,
-          isGuest: true,
-        },
-      });
+      return res.status(401).json({ message: 'Not logged in' });
     }
 
     const user = await prisma.user.findUnique({ where: { id: req.user.id } });
@@ -117,7 +105,7 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response) => {
         avatarUrl: user.avatarUrl,
         bio: user.bio,
         favoriteMood: user.favoriteMood,
-        isGuest: false,
+        isMaster: user.email === MASTER_ID || user.name === MASTER_ID,
       },
     });
   } catch (err: any) {

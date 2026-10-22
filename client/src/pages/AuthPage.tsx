@@ -1,167 +1,181 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogIn, UserPlus, Zap } from 'lucide-react';
+import { LogIn, Lock, KeyRound, ShieldCheck, Eye, EyeOff, Zap, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const AuthPage: React.FC = () => {
   const navigate = useNavigate();
-  const { login, register } = useAuth();
+  const { login } = useAuth();
 
-  const [isRegister, setIsRegister] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
+    setSuccessMsg('');
     setLoading(true);
 
     try {
-      if (isRegister) {
-        if (!name) throw new Error('Please enter your name');
-        await register(name, email, password);
-      } else {
-        await login(email, password);
+      if (!loginId.trim() || !password) {
+        throw new Error('Please enter both ID and password');
       }
-      navigate('/home');
+
+      await login(loginId.trim(), password);
+      setSuccessMsg('Authentication successful! Welcome to VIBE.');
+      setTimeout(() => {
+        navigate('/home');
+      }, 500);
     } catch (err: any) {
-      setErrorMsg(err.message || 'Authentication error');
+      setErrorMsg(err.message || 'Authentication error. Please check your ID and Password.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDemoSignIn = async () => {
+  const handleFillCredentials = () => {
+    setLoginId('Vibe2006');
+    setPassword('Vibe@#77889');
     setErrorMsg('');
-    setLoading(true);
-    try {
-      await login('alex@vibe.com', 'password123');
-      navigate('/home');
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Demo login failed');
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 flex items-center justify-center p-4 relative overflow-hidden">
       
-      <div className="w-full max-w-md glass-card p-8 rounded-3xl border border-white/10 space-y-6 shadow-2xl relative overflow-hidden">
-        
-        {/* Glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Glows */}
+      <div className="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-rose-500/10 rounded-full blur-[140px] pointer-events-none" />
 
+      <div className="w-full max-w-md glass-card p-8 rounded-3xl border border-white/10 space-y-6 shadow-2xl relative z-10 backdrop-blur-xl">
+        
         {/* Header */}
-        <div className="text-center space-y-2">
-          <img
-            src="/vibe-logo.png"
-            alt="VIBE Logo"
-            className="h-16 w-auto mx-auto rounded-2xl shadow-2xl border border-amber-500/30 object-contain"
-          />
+        <div className="text-center space-y-3">
+          <div className="relative inline-block">
+            <img
+              src="/vibe-logo.png"
+              alt="VIBE Logo"
+              className="h-16 w-auto mx-auto rounded-2xl shadow-2xl border border-amber-500/40 object-contain"
+            />
+            <span className="absolute -bottom-2 -right-2 p-1.5 rounded-full bg-amber-500 text-neutral-950 shadow-md">
+              <ShieldCheck className="w-3.5 h-3.5" />
+            </span>
+          </div>
           
-          <h1 className="text-3xl font-extrabold font-serif text-white tracking-wider">
-            VIBE
-          </h1>
-          <p className="text-xs text-neutral-400">
-            {isRegister ? 'Create your personal memory soundtrack account' : 'Sign in to access your Vibe journal'}
-          </p>
+          <div>
+            <h1 className="text-3xl font-extrabold font-serif text-white tracking-wider">
+              VIBE Access
+            </h1>
+            <p className="text-xs text-neutral-400 mt-1">
+              Single-User Master Portal. Enter your authorized credentials below.
+            </p>
+          </div>
         </div>
 
+        {/* Credentials Info Badge */}
+        <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs space-y-1.5">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] uppercase tracking-wider text-amber-300 font-bold flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 text-amber-400" />
+              Authorized Credentials:
+            </span>
+            <button
+              type="button"
+              onClick={handleFillCredentials}
+              className="text-[11px] font-bold text-amber-400 hover:text-amber-300 underline flex items-center gap-1"
+            >
+              <Zap className="w-3 h-3 fill-current" />
+              <span>Auto-Fill</span>
+            </button>
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-[11px] font-mono bg-black/40 p-2 rounded-xl border border-white/5">
+            <div>
+              <span className="text-neutral-400 block text-[10px]">ID:</span>
+              <span className="text-amber-300 font-bold select-all">Vibe2006</span>
+            </div>
+            <div>
+              <span className="text-neutral-400 block text-[10px]">Password:</span>
+              <span className="text-amber-300 font-bold select-all">Vibe@#77889</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Error / Success Feedback */}
         {errorMsg && (
           <div className="p-3 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs text-center">
             {errorMsg}
           </div>
         )}
 
-        {/* Quick Demo Sign In Button */}
-        <button
-          type="button"
-          onClick={handleDemoSignIn}
-          disabled={loading}
-          className="w-full py-3 px-4 rounded-xl font-bold text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 flex items-center justify-center gap-2 shadow transition-all"
-        >
-          <Zap className="w-4 h-4 fill-current text-amber-400" />
-          <span>⚡ Instant Demo Login (Alex Rivera)</span>
-        </button>
-
-        <div className="flex items-center gap-3 text-xs text-neutral-500">
-          <div className="h-px flex-1 bg-white/10" />
-          <span>or fill details</span>
-          <div className="h-px flex-1 bg-white/10" />
-        </div>
+        {successMsg && (
+          <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs text-center flex items-center justify-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <span>{successMsg}</span>
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           
-          {isRegister && (
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-neutral-300">Name</label>
-              <input
-                type="text"
-                placeholder="Alex Rivera"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400"
-                required={isRegister}
-              />
-            </div>
-          )}
-
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-neutral-300">Email Address</label>
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-neutral-300 flex items-center gap-1.5">
+              <KeyRound className="w-3.5 h-3.5 text-amber-400" />
+              <span>Authorized ID</span>
+            </label>
             <input
-              type="email"
-              placeholder="alex@vibe.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400"
+              type="text"
+              placeholder="Vibe2006"
+              value={loginId}
+              onChange={(e) => setLoginId(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400 focus:bg-white/10 transition-all font-mono"
               required
             />
           </div>
 
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-neutral-300">Password</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400"
-              required
-            />
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-neutral-300 flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 text-rose-400" />
+              <span>Password</span>
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Vibe@#77889"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-4 pr-11 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-rose-400 focus:bg-white/10 transition-all font-mono"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3.5 text-neutral-400 hover:text-white"
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 hover:from-amber-400 hover:to-rose-400 text-neutral-950 shadow-lg hover:shadow-amber-500/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {isRegister ? <UserPlus className="w-4 h-4" /> : <LogIn className="w-4 h-4" />}
-            <span>{loading ? 'Processing...' : isRegister ? 'Create Account' : 'Sign In'}</span>
+            <LogIn className="w-4 h-4 fill-current" />
+            <span>{loading ? 'Verifying Credentials...' : 'Sign In'}</span>
           </button>
         </form>
 
-        <div className="text-center text-xs text-neutral-400 pt-2">
-          {isRegister ? (
-            <p>
-              Already have an account?{' '}
-              <button onClick={() => setIsRegister(false)} className="text-amber-400 font-bold hover:underline">
-                Sign In
-              </button>
-            </p>
-          ) : (
-            <p>
-              Don't have an account?{' '}
-              <button onClick={() => setIsRegister(true)} className="text-amber-400 font-bold hover:underline">
-                Register
-              </button>
-            </p>
-          )}
+        <div className="pt-2 border-t border-white/10 text-center text-[11px] text-neutral-400 space-y-1">
+          <p className="flex items-center justify-center gap-1 text-neutral-500">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+            <span>Protected single-user platform access</span>
+          </p>
         </div>
 
       </div>
