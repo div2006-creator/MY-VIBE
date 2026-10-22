@@ -81,6 +81,22 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     audioRef.current = audio;
 
+    // Pre-seed first song into standby needle dock (so floating player appears docked as in wireframe)
+    fetch('/api/songs')
+      .then((r) => r.json())
+      .then((songs: Song[]) => {
+        if (Array.isArray(songs) && songs.length > 0) {
+          setCurrentSong((prev) => {
+            if (prev) return prev;
+            const bieber = songs.find((s) => s.artist.includes('Bieber'));
+            const initial = bieber || songs[0];
+            audio.src = initial.audioUrl;
+            return initial;
+          });
+        }
+      })
+      .catch(() => {});
+
     return () => {
       audio.pause();
       audio.src = '';

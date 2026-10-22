@@ -17,6 +17,11 @@ export const HomePage: React.FC = () => {
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
 
+  // Mobile Wireframe State (Category, Recent Played 4 items, Playlists, Catalog search)
+  const [recentPlayed, setRecentPlayed] = useState<Song[]>([]);
+  const [mobileCategory, setMobileCategory] = useState<string>('pop');
+  const [mobileSearch, setMobileSearch] = useState<string>('');
+
   useEffect(() => {
     Promise.all([
       fetch('/api/artists').then((r) => r.json()),
@@ -109,9 +114,360 @@ export const HomePage: React.FC = () => {
   const dhandaSongs = allSongs.filter((s) => s.artist.includes('Dhanda') || s.genre?.includes('Haryanvi'));
   const dhandaDisplayList = showAllDhanda ? dhandaSongs : dhandaSongs.slice(0, 12);
 
+  // Sync Recent Played (4 items matching wireframe layout)
+  useEffect(() => {
+    if (allSongs.length > 0) {
+      try {
+        const saved = localStorage.getItem('vibe_recent_played');
+        if (saved) {
+          const ids: string[] = JSON.parse(saved);
+          const found = ids.map((id) => allSongs.find((s) => s.id === id)).filter(Boolean) as Song[];
+          if (found.length >= 4) {
+            setRecentPlayed(found.slice(0, 4));
+            return;
+          }
+        }
+      } catch {
+        // ignore
+      }
+
+      // Default 4 tracks for initial display (Bieber, Arijit, Dhanda, Honey Singh)
+      const bieber = allSongs.find((s) => s.artist.includes('Bieber'));
+      const arijit = allSongs.find((s) => s.artist.includes('Arijit'));
+      const dhanda = allSongs.find((s) => s.artist.includes('Dhanda'));
+      const honey = allSongs.find((s) => s.artist.includes('Honey Singh')) || allSongs[0];
+
+      const defaults = [bieber, arijit, dhanda, honey].filter(Boolean) as Song[];
+      setRecentPlayed(defaults.slice(0, 4));
+    }
+  }, [allSongs]);
+
+  // Keep recentPlayed updated when currentSong changes
+  useEffect(() => {
+    if (currentSong && allSongs.length > 0) {
+      setRecentPlayed((prev) => {
+        const filtered = prev.filter((s) => s.id !== currentSong.id);
+        const updated = [currentSong, ...filtered].slice(0, 4);
+        try {
+          localStorage.setItem('vibe_recent_played', JSON.stringify(updated.map((s) => s.id)));
+        } catch {
+          // ignore
+        }
+        return updated;
+      });
+    }
+  }, [currentSong, allSongs]);
+
+  // Mobile Wireframe Playlists (4 Elevated Square Cards with Underneath Depth Shadows)
+  const mobilePlaylists = [
+    {
+      id: 'pl-romance',
+      title: 'Late Night Dusk',
+      badge: 'ROMANCE',
+      cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80',
+      songs: arijitSongs.length > 0 ? arijitSongs : allSongs.filter((s) => s.genre?.includes('Romance')),
+    },
+    {
+      id: 'pl-pop',
+      title: 'Global Pop Fever',
+      badge: 'POP-UP',
+      cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80',
+      songs: bieberSongs.length > 0 ? bieberSongs : allSongs.filter((s) => s.genre?.includes('Pop')),
+    },
+    {
+      id: 'pl-drill',
+      title: 'Desi Drill Heat',
+      badge: 'DRILL',
+      cover: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80',
+      songs: dhandaSongs.length > 0 ? dhandaSongs : allSongs.filter((s) => s.genre?.includes('Drill')),
+    },
+    {
+      id: 'pl-rock',
+      title: 'Heavy Metal & Rock',
+      badge: 'ROCK/METAL',
+      cover: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?auto=format&fit=crop&w=500&q=80',
+      songs: allSongs.filter((s) => (s.genre?.includes('Rock') ?? false) || (s.genre?.includes('Alternative') ?? false) || (s.genre?.includes('Electronic') ?? false) || s.title.toLowerCase().includes('rock')),
+    },
+  ];
+
+  // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
+  const mobileCategories = [
+    { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
+    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
+    { id: 'metal', label: 'metal', sub: 'Heavy Beat' },
+    { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
+    { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
+    { id: 'all', label: 'All Cuts', sub: `${allSongs.length} Tracks` },
+  ];
+
+  // Filtered mobile songs based on category and search
+  const mobileCategorySongs = allSongs.filter((s) => {
+    const matchesSearch = !mobileSearch.trim() ||
+      s.title.toLowerCase().includes(mobileSearch.toLowerCase()) ||
+      s.artist.toLowerCase().includes(mobileSearch.toLowerCase()) ||
+      (s.album && s.album.toLowerCase().includes(mobileSearch.toLowerCase()));
+
+    let matchesCat = true;
+    if (mobileCategory === 'pop') {
+      matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
+    } else if (mobileCategory === 'rock') {
+      matchesCat = (s.genre?.includes('Rock') ?? false) || (s.genre?.includes('Alternative') ?? false) || s.artist.includes('Coldplay');
+    } else if (mobileCategory === 'metal') {
+      matchesCat = (s.genre?.includes('Metal') ?? false) || (s.genre?.includes('Electronic') ?? false) || (s.genre?.includes('Rock') ?? false) || (s.genre?.includes('Drill') ?? false);
+    } else if (mobileCategory === 'romance') {
+      matchesCat = s.artist.includes('Arijit') || (s.genre?.includes('Romance') ?? false) || (s.genre?.includes('Romantic') ?? false) || (s.genre?.includes('Acoustic') ?? false);
+    } else if (mobileCategory === 'drill') {
+      matchesCat = s.artist.includes('Dhanda') || (s.genre?.includes('Drill') ?? false) || (s.genre?.includes('Haryanvi') ?? false) || (s.genre?.includes('Punjabi') ?? false);
+    }
+
+    return matchesSearch && matchesCat;
+  });
+
   return (
-    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 md:px-8 pt-6 select-none font-editorial">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 md:px-8 pt-4 md:pt-6 select-none font-editorial">
+      <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
+        
+        {/* ============================================================== */}
+        {/* 📱 MOBILE VIEW: PRECISE WIREFRAME FROM NOTEBOOK SKETCH        */}
+        {/* ============================================================== */}
+        <div className="block md:hidden space-y-6">
+
+          {/* 1. CATEGORY CARD CONTAINER (Labeled 'category' with rounded cards: Pop-up, Rock, metal, etc.) */}
+          <section className="bg-[#1e1b19] rounded-2xl p-4 border border-[#554339]/50 shadow-xl space-y-3">
+            <div className="flex items-center justify-between border-b border-[#554339]/30 pb-2">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#ecc15a]" />
+                <h2 className="font-serif text-sm font-bold tracking-wider text-[#ffb68c] uppercase">
+                  category
+                </h2>
+              </div>
+              <span className="font-mono-spec text-[9px] text-[#a38c80] uppercase tracking-widest">
+                WARM ANALOG SELECTOR
+              </span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2.5">
+              {mobileCategories.map((cat) => {
+                const isSelected = mobileCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setMobileCategory(cat.id)}
+                    className={`flex flex-col items-center justify-center py-2.5 px-1.5 rounded-xl text-center transition-all border ${
+                      isSelected
+                        ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c] shadow-md scale-[1.02]'
+                        : 'bg-[#221f1d] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
+                    }`}
+                  >
+                    <span className="font-serif text-xs font-bold leading-tight">
+                      {cat.label}
+                    </span>
+                    <span className={`font-mono-spec text-[8px] mt-0.5 leading-tight ${isSelected ? 'text-[#221f1d]/80' : 'text-[#a38c80]'}`}>
+                      {cat.sub}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 2. RECENT PLAYED (4 items in 2x2 grid: Circle Artwork + Rectangle Pill) */}
+          <section className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#ffb68c]" />
+                <h2 className="font-serif text-sm font-bold tracking-wider text-[#e9e1dd] uppercase">
+                  Recent played
+                </h2>
+              </div>
+              <span className="font-mono-spec text-[9px] text-[#ecc15a] uppercase tracking-wider">
+                NEEDLE LOG (4)
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5">
+              {recentPlayed.map((song) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    onClick={() => playSong(song, undefined, recentPlayed)}
+                    className="flex items-center gap-2 p-1.5 bg-[#1e1b19] hover:bg-[#282422] rounded-full border border-[#554339]/50 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer active:scale-95 transition-all group"
+                  >
+                    {/* Circular Vinyl / Album Cover (Drawn as a circle in sketch) */}
+                    <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0 border border-[#ecc15a]/50 bg-[#110e0c] shadow-inner">
+                      <img
+                        src={song.coverUrl}
+                        alt=""
+                        className={`w-full h-full object-cover ${isCurrent ? 'animate-spin' : ''}`}
+                        style={{ animationDuration: '6s' }}
+                      />
+                      <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-[#110e0c] border border-[#ecc15a]/40" />
+                    </div>
+
+                    {/* Rounded Rectangle Pill for Track Details */}
+                    <div className="flex-1 min-w-0 pr-1">
+                      <h4 className={`font-serif text-[11px] font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                        {song.title}
+                      </h4>
+                      <p className="font-editorial text-[9px] text-[#a38c80] truncate">
+                        {song.artist}
+                      </p>
+                    </div>
+
+                    {/* Mini Play / Active Indicator */}
+                    <div className="pr-1.5 text-[#ecc15a] flex-shrink-0">
+                      {isCurrent ? (
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#ffb68c] animate-ping" />
+                      ) : (
+                        <Play className="w-3 h-3 fill-current opacity-70 group-hover:opacity-100" />
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 3. PLAYLIST (Row of 4 Elevated Square Cards with Underneath Depth Shadows) */}
+          <section className="space-y-2.5">
+            <div className="flex items-center justify-between border-b border-[#554339]/30 pb-1.5">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#ecc15a]" />
+                <h2 className="font-serif text-sm font-bold tracking-wider text-[#e9e1dd] uppercase">
+                  Playlist
+                </h2>
+              </div>
+              <span className="font-mono-spec text-[9px] text-[#a38c80] uppercase tracking-wider">
+                ELEVATED REELS (4)
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {mobilePlaylists.map((pl) => (
+                <div
+                  key={pl.id}
+                  onClick={() => handlePlaySongList(pl.songs, 0, false)}
+                  className="group relative flex flex-col cursor-pointer active:scale-95 transition-all"
+                >
+                  {/* Main Elevated Square Card */}
+                  <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#221f1d] border border-[#554339]/60 shadow-[0_8px_18px_rgba(0,0,0,0.8)]">
+                    <img
+                      src={pl.cover}
+                      alt={pl.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-90" />
+                    
+                    <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-[#110e0c]/85 text-[#ecc15a] font-mono-spec text-[8px] font-bold border border-[#ecc15a]/30">
+                      {pl.badge}
+                    </span>
+
+                    <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-serif text-xs font-bold text-[#e9e1dd] truncate group-hover:text-[#ffb68c]">
+                          {pl.title}
+                        </h4>
+                        <p className="font-mono-spec text-[8px] text-[#a38c80] truncate">
+                          {pl.songs.length} Tracks
+                        </p>
+                      </div>
+                      <div className="w-6 h-6 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center shadow-md flex-shrink-0 ml-1">
+                        <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 3D Drop Shadow Base (Exact hatch line styling as in wireframe sketch) */}
+                  <div className="h-1.5 mx-2 rounded-b-md bg-[#0a0807] border-x border-b border-[#3a2820]/80 opacity-90 -mt-0.5 shadow-md" />
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 4. MASTER CATALOG BROWSE & SEARCH (Mobile Access to All 386 Cuts) */}
+          <section className="bg-[#1e1b19] rounded-2xl p-4 border border-[#554339]/40 space-y-3 shadow-xl">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-serif text-sm font-bold text-[#e9e1dd]">
+                  Master Cuts ({mobileCategorySongs.length})
+                </h3>
+                <p className="font-editorial text-[10px] text-[#a38c80]">
+                  {mobileCategory.toUpperCase()} CHANNEL • TAP TO PLAY
+                </p>
+              </div>
+              <button
+                onClick={() => handlePlaySongList(mobileCategorySongs, 0, true)}
+                className="px-2.5 py-1 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-sm"
+              >
+                <Play className="w-2.5 h-2.5 fill-current" />
+                <span>Shuffle</span>
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#a38c80]" />
+              <input
+                type="text"
+                placeholder="Search 386 songs, artists, albums..."
+                value={mobileSearch}
+                onChange={(e) => setMobileSearch(e.target.value)}
+                className="w-full bg-[#110e0c] border border-[#554339]/60 rounded-xl pl-9 pr-3 py-2 text-xs text-[#e9e1dd] placeholder-[#a38c80]/70 focus:outline-none focus:border-[#ecc15a]"
+              />
+            </div>
+
+            {/* Scrollable Song List */}
+            <div className="space-y-1.5 max-h-[420px] overflow-y-auto pr-0.5 scrollbar-thin">
+              {mobileCategorySongs.length === 0 ? (
+                <div className="text-center py-6 text-xs text-[#a38c80]">
+                  No cuts found in this channel.
+                </div>
+              ) : (
+                mobileCategorySongs.slice(0, 40).map((song, i) => {
+                  const isCurrent = currentSong?.id === song.id;
+                  return (
+                    <div
+                      key={song.id}
+                      onClick={() => playSong(song, undefined, mobileCategorySongs)}
+                      className="flex items-center justify-between p-2 rounded-xl bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 active:scale-[0.99] transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                        <span className="font-mono-spec text-[9px] text-[#a38c80] w-4 text-right">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <img src={song.coverUrl} alt="" className="w-8 h-8 rounded object-cover flex-shrink-0" />
+                        <div className="min-w-0 flex-1">
+                          <h5 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd]'}`}>
+                            {song.title}
+                          </h5>
+                          <p className="font-editorial text-[10px] text-[#a38c80] truncate">
+                            {song.artist}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 ml-2">
+                        <span className="font-mono-spec text-[9px] text-[#a38c80]">
+                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                        </span>
+                        <button className="w-6 h-6 rounded-full bg-[#110e0c] text-[#ffb68c] flex items-center justify-center">
+                          <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </section>
+
+        </div>
+
+        {/* ============================================================== */}
+        {/* 💻 DESKTOP & TABLET VIEW: STITCH 5-CHAMBER EDITORIAL LAYOUT    */}
+        {/* ============================================================== */}
+        <div className="hidden md:block space-y-12">
         
         {/* TOP ATMOSPHERIC BANNER & EDITORIAL STATEMENT (STITCH WARM ANALOG RADIAL GROOVE) */}
         <section className="relative w-full py-10 px-6 sm:px-10 rounded-xl bg-[#1e1b19] border border-[#554339]/40 overflow-hidden shadow-2xl">
@@ -1220,7 +1576,9 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
+        </div>
       </div>
     </div>
   );
 };
+

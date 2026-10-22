@@ -35,19 +35,30 @@ export const Player: React.FC = () => {
   const [isSleepOpen, setIsSleepOpen] = useState(false);
   const [tubeActive, setTubeActive] = useState(true);
 
-  // Simulated VU meter levels when playing
+  // Simulated VU meter & Waveform levels when playing
   const [vuL, setVuL] = useState(65);
   const [vuR, setVuR] = useState(72);
+  const [waveHeights, setWaveHeights] = useState<number[]>([12, 24, 18, 32, 16, 28, 14]);
 
   useEffect(() => {
     if (!isPlaying) {
       setVuL(12);
       setVuR(12);
+      setWaveHeights([8, 8, 8, 8, 8, 8, 8]);
       return;
     }
     const interval = setInterval(() => {
       setVuL(Math.floor(50 + Math.random() * 45));
       setVuR(Math.floor(48 + Math.random() * 47));
+      setWaveHeights([
+        Math.floor(10 + Math.random() * 22),
+        Math.floor(16 + Math.random() * 26),
+        Math.floor(12 + Math.random() * 24),
+        Math.floor(20 + Math.random() * 28),
+        Math.floor(14 + Math.random() * 25),
+        Math.floor(18 + Math.random() * 26),
+        Math.floor(10 + Math.random() * 20),
+      ]);
     }, 180);
     return () => clearInterval(interval);
   }, [isPlaying]);
@@ -80,22 +91,125 @@ export const Player: React.FC = () => {
       <EqualizerModal />
       <SleepTimerModal isOpen={isSleepOpen} onClose={() => setIsSleepOpen(false)} />
 
-      {/* Main Persistent Bottom Player (Stitch Audio Sanctum Turntable Deck) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#110e0c]/95 backdrop-blur-xl border-t border-[#554339]/50 px-4 md:px-6 py-2.5 shadow-2xl select-none">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      {/* ============================================================== */}
+      {/* 📱 MOBILE VIEW: FLOATING OPAQUE PLAYER (EXACT USER WIREFRAME) */}
+      {/* ============================================================== */}
+      <div className="md:hidden fixed bottom-3 left-3 right-3 z-50 bg-[#161311] border border-[#554339]/80 rounded-2xl p-3.5 shadow-[0_12px_36px_rgba(0,0,0,0.92)] select-none">
+        
+        {/* Top Row: Circular Vinyl Cover, Audio Waveforms, Track Info, Controls */}
+        <div className="flex items-center justify-between gap-3">
+          
+          {/* Circular Vinyl Album Art (Drawn as a circle in sketch) */}
+          <div
+            onClick={togglePlay}
+            className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-[#ecc15a]/60 shadow-lg bg-[#110e0c] cursor-pointer"
+          >
+            <img
+              src={currentSong.coverUrl}
+              alt={currentSong.title}
+              className={`w-full h-full object-cover ${isPlaying ? 'animate-spin' : ''}`}
+              style={{ animationDuration: '4s' }}
+            />
+            {/* Center vinyl spindle */}
+            <div className="absolute inset-0 m-auto w-3 h-3 rounded-full bg-[#110e0c] border border-[#ecc15a]/40 flex items-center justify-center">
+              <div className="w-1 h-1 rounded-full bg-[#ffb68c]" />
+            </div>
+          </div>
+
+          {/* Center: Track Details & Animated Audio Waveform (as sketched: waveform lines) */}
+          <div className="flex-1 min-w-0 flex flex-col justify-center">
+            <h4 className="font-serif font-bold text-xs text-[#e9e1dd] truncate leading-tight">
+              {currentSong.title}
+            </h4>
+            <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">
+              {currentSong.artist}
+            </p>
+
+            {/* Audio Waveform Visualizer (Exact element in user's sketch) */}
+            <div className="flex items-center gap-1 h-4 mt-1">
+              {waveHeights.map((h, i) => (
+                <span
+                  key={i}
+                  className="w-1 rounded-full transition-all duration-200"
+                  style={{
+                    height: `${h}px`,
+                    backgroundColor: isPlaying
+                      ? i % 2 === 0 ? '#ecc15a' : '#d97736'
+                      : '#554339',
+                  }}
+                />
+              ))}
+              <span className="font-mono-spec text-[8px] text-[#ecc15a] uppercase tracking-wider ml-1">
+                {isPlaying ? 'ACTIVE' : 'PAUSED'}
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Playback Controls (Prev, Big Play/Pause, Next) */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={prevSong}
+              className="p-1 text-[#dbc1b4] hover:text-[#ffb68c] active:scale-95 transition-all"
+              title="Previous"
+            >
+              <SkipBack className="w-4 h-4 fill-current" />
+            </button>
+
+            {/* Circular Play/Pause Button */}
+            <button
+              onClick={togglePlay}
+              className="w-10 h-10 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center font-bold shadow-[0_0_16px_rgba(217,119,54,0.4)] active:scale-95 transition-all"
+              title={isPlaying ? 'Pause' : 'Play'}
+            >
+              {isPlaying ? (
+                <Pause className="w-4 h-4 fill-current" />
+              ) : (
+                <Play className="w-4 h-4 fill-current ml-0.5" />
+              )}
+            </button>
+
+            <button
+              onClick={nextSong}
+              className="p-1 text-[#dbc1b4] hover:text-[#ffb68c] active:scale-95 transition-all"
+              title="Next"
+            >
+              <SkipForward className="w-4 h-4 fill-current" />
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Row: Full-width Scrubber Slider Bar (as sketched with slider dot) */}
+        <div className="mt-2.5 pt-2 border-t border-[#554339]/30 flex items-center gap-2 font-mono-spec text-[10px] text-[#a38c80]">
+          <span className="w-9 text-right text-[9px]">{formatTime(currentTime)}</span>
+          <div className="relative flex-1 flex items-center">
+            <input
+              type="range"
+              min={0}
+              max={duration || 100}
+              value={currentTime}
+              onChange={(e) => seek(Number(e.target.value))}
+              className="w-full h-1 bg-[#2d2927] rounded appearance-none cursor-pointer accent-[#d97736]"
+            />
+          </div>
+          <span className="w-9 text-[9px]">{formatTime(duration)}</span>
+        </div>
+      </div>
+
+      {/* ============================================================== */}
+      {/* 💻 DESKTOP VIEW: FULL STITCH AUDIO SANCTUM TURNTABLE DECK       */}
+      {/* ============================================================== */}
+      <div className="hidden md:block fixed bottom-0 left-0 right-0 z-50 bg-[#110e0c]/95 backdrop-blur-xl border-t border-[#554339]/50 px-6 py-2.5 shadow-2xl select-none">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           
           {/* Left: Spinning Vinyl Platter, Micro-Grooves & Track Monograph */}
-          <div className="flex items-center gap-3.5 w-full md:w-1/4 min-w-0">
-            {/* Vinyl Disc & Jacket Preview */}
+          <div className="flex items-center gap-3.5 w-1/4 min-w-0">
             <div className="relative group flex-shrink-0 cursor-pointer" onClick={togglePlay}>
-              {/* Outer Platter Rim */}
               <div className="w-13 h-13 rounded bg-[#1e1b19] border border-[#554339]/60 p-0.5 shadow-lg flex items-center justify-center overflow-hidden">
                 <img
                   src={currentSong.coverUrl}
                   alt={currentSong.title}
                   className={`w-full h-full object-cover rounded-sm transition-transform duration-700 ${isPlaying ? 'scale-105' : ''}`}
                 />
-                {/* Vinyl Center Spindle Overlay */}
                 <div className={`absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
                   {isPlaying ? (
                     <Pause className="w-5 h-5 text-[#ffb68c]" />
@@ -104,7 +218,6 @@ export const Player: React.FC = () => {
                   )}
                 </div>
               </div>
-              {/* Spinning Vinyl Needle Badge */}
               {isPlaying && (
                 <div className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#110e0c] border border-[#ecc15a] flex items-center justify-center shadow-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-pulse" />
@@ -137,7 +250,7 @@ export const Player: React.FC = () => {
           </div>
 
           {/* Center: Controls & Precision Space Mono Timeline */}
-          <div className="flex flex-col items-center gap-1.5 w-full md:w-2/4 max-w-xl">
+          <div className="flex flex-col items-center gap-1.5 w-2/4 max-w-xl">
             <div className="flex items-center gap-4">
               <button
                 onClick={toggleShuffle}
@@ -210,7 +323,7 @@ export const Player: React.FC = () => {
           </div>
 
           {/* Right: Dual VU Meter Bars, Tube Saturation Toggle, Lyrics, Equalizer, Relive */}
-          <div className="hidden md:flex items-center justify-end gap-3 w-1/4">
+          <div className="flex items-center justify-end gap-3 w-1/4">
             
             {/* Dual Stereo VU Meter Simulation (L/R) */}
             <div className="flex flex-col items-center pr-3 border-r border-[#554339]/40">

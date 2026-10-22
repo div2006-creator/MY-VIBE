@@ -30,8 +30,28 @@ export const Navbar: React.FC = () => {
     <nav className="sticky top-0 z-40 bg-[#161311]/95 backdrop-blur-xl border-b border-[#554339]/40 px-4 lg:px-8 py-3 transition-all select-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Brand Logo & Chassis Indicator */}
-        <div className="flex items-center gap-5 flex-shrink-0">
+        {/* Mobile View Left: Profile (Circular 'M' / Avatar as drawn in sketch) */}
+        <div className="flex lg:hidden items-center gap-2.5">
+          <Link
+            to="/profile"
+            className="w-8 h-8 rounded-full border border-[#ecc15a]/70 overflow-hidden bg-[#221f1d] flex items-center justify-center shadow-md active:scale-95 transition-transform"
+            title="Profile"
+          >
+            {user?.avatarUrl ? (
+              <img src={user.avatarUrl} alt="Profile" className="w-full h-full object-cover" />
+            ) : (
+              <span className="font-serif font-bold text-xs text-[#ffb68c]">M</span>
+            )}
+          </Link>
+          <Link to="/" className="flex flex-col">
+            <span className="font-serif font-bold text-base tracking-wider text-[#ffb68c]">
+              RESONANCE
+            </span>
+          </Link>
+        </div>
+
+        {/* Desktop Brand Logo & Chassis Indicator */}
+        <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
               <img
