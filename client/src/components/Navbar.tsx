@@ -10,15 +10,15 @@ export const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { path: '/home', label: 'Home', icon: Disc },
-    { path: '/artists', label: 'Singers / Artists', icon: Mic2 },
-    { path: '/explore', label: 'Explore', icon: Compass },
+    { path: '/home', label: 'Mood Sanctuary', icon: Disc },
+    { path: '/artists', label: 'Titans & Singers', icon: Mic2 },
+    { path: '/explore', label: 'Crate Explorer', icon: Compass },
     { path: '/genres', label: 'Radio & Moods', icon: Radio },
-    { path: '/playlists', label: 'Playlists', icon: ListMusic },
-    { path: '/live', label: 'Live Lounge', icon: Users },
-    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+    { path: '/playlists', label: 'Taste Vault', icon: ListMusic },
+    { path: '/live', label: 'Listening Room', icon: Users },
+    { path: '/analytics', label: 'Needle Hours', icon: BarChart3 },
     { path: '/my-vibes', label: 'My Vibes', icon: Clock },
-    { path: '/liked-songs', label: 'Liked', icon: Heart },
+    { path: '/liked-songs', label: 'Liked Pressings', icon: Heart },
   ];
 
   const isActive = (path: string) => {
@@ -27,26 +27,43 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 glass-panel border-b border-white/10 px-4 lg:px-8 py-3.5 transition-all">
+    <nav className="sticky top-0 z-40 bg-[#161311]/95 backdrop-blur-xl border-b border-[#554339]/40 px-4 lg:px-8 py-3 transition-all select-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-          <img
-            src="/vibe-logo.png"
-            alt="VIBE Logo"
-            className="h-10 w-auto rounded-xl shadow-lg border border-amber-500/30 group-hover:scale-105 transition-transform duration-300 object-contain"
-          />
-          <div className="flex flex-col">
-            <span className="font-extrabold text-2xl tracking-wider text-gradient-amber">VIBE</span>
-            <span className="text-[9px] uppercase tracking-widest text-amber-300/70 font-semibold -mt-1">
-              Soundtrack to Memories
-            </span>
-          </div>
-        </Link>
+        {/* Brand Logo & Chassis Indicator */}
+        <div className="flex items-center gap-5 flex-shrink-0">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <img
+                src="/vibe-logo.png"
+                alt="VIBE Resonance"
+                className="h-9 w-auto rounded-lg shadow-md border border-[#ecc15a]/30 group-hover:scale-105 transition-transform duration-300 object-contain bg-[#110e0c]"
+              />
+              <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#ecc15a] border-2 border-[#161311] animate-pulse" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif font-extrabold text-xl tracking-wider text-[#ffb68c]">
+                RESONANCE <span className="text-[#ecc15a] font-normal text-sm">/ VIBE</span>
+              </span>
+              <span className="font-mono-spec text-[9px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
+                Audio Sanctum • 33⅓ RPM • 386 Cuts
+              </span>
+            </div>
+          </Link>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 glass-pill px-3 py-1.5 rounded-full border border-white/10 shadow-inner overflow-x-auto">
+          {/* Analog Calibration Badge (Stitch Style) */}
+          <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded bg-[#1e1b19] border border-[#554339]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-ping" />
+            <span className="font-mono-spec text-[10px] text-[#ecc15a] uppercase tracking-wider">
+              OPTICAL CHASSIS ACTIVE
+            </span>
+            <span className="text-[#554339]">•</span>
+            <span className="font-mono-spec text-[10px] text-[#a38c80]">EST. 1974</span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation Links (Warm Analog Editorial Tabs) */}
+        <div className="hidden lg:flex items-center gap-1 bg-[#1e1b19] px-2.5 py-1.5 rounded-lg border border-[#554339]/40 shadow-inner overflow-x-auto">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.path);
@@ -54,55 +71,58 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium transition-all duration-200 whitespace-nowrap ${
                   active
-                    ? 'bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-amber-500/20 text-amber-300 border border-amber-500/30 shadow-sm'
-                    : 'text-neutral-400 hover:text-neutral-100 hover:bg-white/5'
+                    ? 'bg-[#2d2927] text-[#ffb68c] font-semibold border border-[#ecc15a]/40 shadow-[inset_2px_0_0_0_#ffb68c]'
+                    : 'text-[#dbc1b4] hover:text-[#e9e1dd] hover:bg-[#282422]'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-amber-400' : ''}`} />
+                <Icon className={`w-3.5 h-3.5 ${active ? 'text-[#ffb68c]' : 'text-[#a38c80]'}`} />
                 <span>{link.label}</span>
               </Link>
             );
           })}
         </div>
 
-        {/* Right Actions: Create Vibe CTA, Search, User Auth */}
-        <div className="hidden md:flex items-center gap-2.5">
+        {/* Right Actions: Search, Create Vibe, User Auth */}
+        <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => navigate('/search')}
-            className="p-2.5 rounded-full text-neutral-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
-            title="Search songs, artists, vibes..."
+            className="p-2 rounded bg-[#1e1b19] text-[#a38c80] hover:text-[#ffb68c] border border-[#554339]/40 hover:border-[#ecc15a]/40 transition-colors"
+            title="Search Vinyl, Singer & Memory Catalog..."
           >
             <Search className="w-4 h-4" />
           </button>
 
           <Link
             to="/create-vibe"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-neutral-950 shadow-md hover:shadow-amber-500/20 hover:scale-[1.02] transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(217,119,54,0.3)] hover:brightness-110 active:scale-95 transition-all"
           >
-            <PlusCircle className="w-4 h-4" />
-            <span>Create Vibe</span>
+            <PlusCircle className="w-3.5 h-3.5 fill-current" />
+            <span>Drop Needle</span>
           </Link>
 
           {user ? (
-            <div className="flex items-center gap-2 pl-2 border-l border-white/10">
+            <div className="flex items-center gap-2 pl-2 border-l border-[#554339]/40">
               <Link to="/profile" className="flex items-center gap-2 group">
                 <img
                   src={user.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'}
                   alt={user.name}
-                  className="w-8 h-8 rounded-full border border-amber-500/40 object-cover group-hover:border-amber-400 transition-colors"
+                  className="w-7 h-7 rounded-full border border-[#ecc15a]/50 object-cover group-hover:border-[#ffb68c] transition-colors"
                 />
-                <span className="text-xs font-semibold text-neutral-200 group-hover:text-amber-300 transition-colors hidden xl:inline">
-                  {user.name.split(' ')[0]}
-                </span>
+                <div className="flex flex-col text-left hidden xl:flex">
+                  <span className="font-serif text-xs font-semibold text-[#e9e1dd] leading-tight">
+                    {user.name.split(' ')[0]}
+                  </span>
+                  <span className="font-mono-spec text-[9px] text-[#ecc15a] uppercase">Curator Tier</span>
+                </div>
               </Link>
               <button
                 onClick={() => {
                   logout();
                   navigate('/auth');
                 }}
-                className="p-2 rounded-full text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                className="p-1.5 rounded text-[#a38c80] hover:text-[#ffb4ab] hover:bg-[#93000a]/20 transition-colors"
                 title="Log Out (Lock Dashboard)"
               >
                 <LogOut className="w-4 h-4" />
@@ -111,7 +131,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link
               to="/auth"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-neutral-200 bg-white/5 hover:bg-white/10 border border-white/10 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold text-[#e9e1dd] bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/40 transition-all"
             >
               <LogIn className="w-4 h-4" />
               <span>Sign In</span>
@@ -122,7 +142,7 @@ export const Navbar: React.FC = () => {
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 rounded-lg text-neutral-300 hover:bg-white/10"
+          className="lg:hidden p-2 rounded-lg text-[#dbc1b4] hover:bg-[#221f1d]"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -130,7 +150,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden pt-4 pb-3 border-t border-white/10 mt-3 flex flex-col gap-2">
+        <div className="lg:hidden pt-4 pb-3 border-t border-[#554339]/40 mt-3 flex flex-col gap-2">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.path);
@@ -139,30 +159,30 @@ export const Navbar: React.FC = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium ${
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium ${
                   active
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                    : 'text-neutral-300 hover:bg-white/5'
+                    ? 'bg-[#2d2927] text-[#ffb68c] border border-[#ecc15a]/40 font-semibold'
+                    : 'text-[#dbc1b4] hover:bg-[#1e1b19]'
                 }`}
               >
-                <Icon className="w-4 h-4 text-amber-400" />
+                <Icon className="w-4 h-4 text-[#ecc15a]" />
                 <span>{link.label}</span>
               </Link>
             );
           })}
-          <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
+          <div className="pt-2 border-t border-[#554339]/40 flex flex-col gap-2">
             <Link
               to="/create-vibe"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg font-bold text-xs bg-[#d97736] text-[#221f1d] uppercase tracking-wider"
             >
               <PlusCircle className="w-4 h-4" />
-              <span>Create New Vibe</span>
+              <span>Drop Needle / Create Vibe</span>
             </Link>
             <Link
               to="/search"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-neutral-300 bg-white/5 border border-white/10"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-semibold text-[#dbc1b4] bg-[#1e1b19] border border-[#554339]/40"
             >
               <Search className="w-4 h-4" />
               <span>Search Music & Memories</span>

@@ -47,41 +47,41 @@ export const ArtistsPage: React.FC = () => {
   const featuredArtist = artists[0]; // Top artist by song count (Dhanda Nyoliwala with 66 songs)
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 pb-32 px-4 lg:px-8 pt-8">
+    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 lg:px-8 pt-8 font-editorial select-none">
       <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#554339]/40 pb-6">
           <div>
-            <div className="flex items-center gap-2 text-amber-400 text-xs uppercase font-bold tracking-widest mb-1">
+            <div className="flex items-center gap-2 text-[#ecc15a] font-mono-spec text-xs uppercase font-bold tracking-widest mb-1">
               <Mic2 className="w-4 h-4" />
-              <span>Singers & Discographies</span>
+              <span>SINGERS & ARCHIVAL DISCOGRAPHIES</span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-extrabold font-serif text-white">
-              Browse by Singer
+            <h1 className="text-3xl md:text-5xl font-extrabold font-serif text-[#ffb68c]">
+              Titans & Singers
             </h1>
-            <p className="text-neutral-400 text-sm mt-1 max-w-xl">
-              Songs assembled strictly by their legendary singers. Explore complete discographies of Dhanda Nyoliwala, Honey Singh, Sidhu Moose Wala, Diljit, Arijit, Justin Bieber, and more.
+            <p className="font-editorial text-[#dbc1b4] text-sm mt-1 max-w-xl">
+              Catalog assembled strictly by master singers. Explore complete discographies of Justin Bieber (151), Arijit Singh (120), Dhanda Nyoliwala (66), Yo Yo Honey Singh, Diljit, and more.
             </p>
           </div>
 
           {/* Quick Search */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-amber-400 absolute left-3.5 top-3.5" />
+            <Search className="w-4 h-4 text-[#a38c80] absolute left-3.5 top-3" />
             <input
               type="text"
               placeholder="Filter by singer name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white/5 border border-white/15 focus:border-amber-400 text-sm text-white placeholder-neutral-500 outline-none transition-all"
+              className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#110e0c] border border-[#554339]/60 focus:border-[#ecc15a]/80 font-editorial text-sm text-[#e9e1dd] placeholder:text-[#a38c80]/60 outline-none transition-all shadow-md"
             />
           </div>
         </div>
 
-        {/* Featured Singer Spotlight: Yo Yo Honey Singh */}
+        {/* Featured Singer Spotlight */}
         {featuredArtist && !searchQuery && selectedGenre === 'all' && (
-          <div className="relative rounded-3xl overflow-hidden glass-card border border-amber-500/30 p-6 md:p-10 bg-gradient-to-r from-amber-950/40 via-red-950/30 to-black shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="relative rounded-xl overflow-hidden bg-[#1e1b19] border border-[#554339]/40 p-6 md:p-10 shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#d97736]/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 justify-between">
               <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
@@ -94,18 +94,18 @@ export const ArtistsPage: React.FC = () => {
                         featuredArtist.songs?.[0]?.coverUrl ||
                         'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80';
                     }}
-                    className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-amber-400/60 shadow-[0_0_30px_rgba(245,158,11,0.3)] group-hover:scale-105 transition-transform bg-neutral-900"
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-xl object-cover border-2 border-[#ecc15a]/60 shadow-[0_0_30px_rgba(236,193,90,0.25)] group-hover:scale-105 transition-transform bg-[#110e0c]"
                   />
-                  <div className="absolute -bottom-2 -right-2 px-3 py-1 rounded-full bg-amber-500 text-neutral-950 text-xs font-bold shadow-lg">
-                    👑 Spotlight
+                  <div className="absolute -bottom-2 -right-2 px-3 py-1 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[10px] uppercase font-bold shadow-lg">
+                    👑 Top Titan
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-xs uppercase tracking-widest text-amber-400 font-bold">
-                    Featured Singer Collection
+                  <span className="font-mono-spec text-xs uppercase tracking-widest text-[#ecc15a] font-bold">
+                    Featured Titan Collection
                   </span>
-                  <h2 className="text-3xl md:text-5xl font-extrabold font-serif text-white">
+                  <h2 className="text-3xl md:text-5xl font-extrabold font-serif text-[#ffb68c]">
                     {featuredArtist.name}
                   </h2>
                   <p className="text-neutral-300 text-xs md:text-sm max-w-xl leading-relaxed">

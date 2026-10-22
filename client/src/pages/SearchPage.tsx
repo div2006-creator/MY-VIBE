@@ -116,49 +116,54 @@ export const SearchPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 pb-32 px-4 lg:px-8 pt-8">
+    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 lg:px-8 pt-8 font-editorial select-none">
       <div className="max-w-5xl mx-auto space-y-8">
         
-        {/* Search Header Bar */}
+        {/* Search Header Bar (Stitch Recessed Metal Faceplate Style) */}
         <div className="space-y-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-[#554339]/40 pb-4">
             <div>
-              <h1 className="text-3xl font-extrabold font-serif text-white flex items-center gap-2.5">
-                <SearchIcon className="w-7 h-7 text-amber-400" />
+              <div className="flex items-center gap-2 font-mono-spec text-xs text-[#a38c80] uppercase tracking-widest mb-1">
+                <span>CATALOG EXPLORER</span>
+                <span className="text-[#554339]">/</span>
+                <span>CHASSIS SEARCH</span>
+              </div>
+              <h1 className="text-3xl font-extrabold font-serif text-[#ffb68c] flex items-center gap-2.5">
+                <SearchIcon className="w-7 h-7 text-[#ecc15a]" />
                 <span>Search & Extract Music</span>
               </h1>
-              <p className="text-xs text-neutral-400 mt-0.5">
-                Explore local library or extract famous Punjabi, Hindi & English tracks live from 3rd-party music networks.
+              <p className="text-xs text-[#dbc1b4] mt-0.5">
+                Explore 386 local master vinyl cuts or extract famous hits live from third-party networks.
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+              <span className="px-3 py-1 rounded bg-[#82977f]/20 text-[#b7cdb2] border border-[#82977f]/40 font-mono-spec text-[10px] uppercase font-bold flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5" />
-                <span>3rd-Party Extractor Active</span>
+                <span>Live Extractor Active</span>
               </span>
             </div>
           </div>
 
           <div className="relative">
-            <SearchIcon className="w-6 h-6 text-amber-400 absolute left-4 top-4" />
+            <SearchIcon className="w-5 h-5 text-[#ecc15a] absolute left-4 top-4" />
             <input
               type="text"
               autoFocus
-              placeholder="Search artists, songs (e.g. Sidhu Moose Wala, Lover, Kesariya, Blinding Lights)..."
+              placeholder="Search artists, vinyl pressings, albums (e.g. Justin Bieber, Arijit Singh, Kesariya, Stay)..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-14 pr-6 py-4 rounded-2xl bg-white/5 border border-white/15 focus:border-amber-400 text-lg text-white placeholder-neutral-500 outline-none shadow-2xl transition-all"
+              className="w-full pl-12 pr-6 py-3.5 rounded-lg bg-[#110e0c] border border-[#554339]/60 focus:border-[#ecc15a]/80 text-base font-editorial text-[#e9e1dd] placeholder:text-[#a38c80]/60 outline-none shadow-xl transition-all"
             />
           </div>
 
-          {/* Preset Filter Chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+          {/* Preset Filter Chips (Stitch Style) */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
             {presets.map((p) => (
               <button
                 key={p.label}
                 onClick={() => setQuery(p.q)}
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white/5 hover:bg-white/10 text-neutral-300 border border-white/10 transition-colors"
+                className="px-3 py-1 rounded whitespace-nowrap bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] hover:text-[#ffb68c] border border-[#554339]/40 transition-colors"
               >
                 {p.label}
               </button>
@@ -166,21 +171,21 @@ export const SearchPage: React.FC = () => {
           </div>
 
           {/* Category Tabs */}
-          <div className="flex items-center gap-2 pt-1 border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2 pt-1 border-b border-[#554339]/40 pb-3 font-mono-spec text-xs">
             {[
               { id: 'all', label: 'All Results' },
-              { id: 'extractor', label: `🌐 3rd-Party Extractor (${extractedTracks.length})` },
-              { id: 'songs', label: `🎵 Local Songs (${results.songs.length})` },
-              { id: 'artists', label: `🎤 Artists (${results.artists.length})` },
+              { id: 'extractor', label: `🌐 Extractor (${extractedTracks.length})` },
+              { id: 'songs', label: `🎵 Local Cuts (${results.songs.length})` },
+              { id: 'artists', label: `🎤 Singers (${results.artists.length})` },
               { id: 'vibes', label: `✨ Vibes (${results.vibes.length})` },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded transition-all border ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 font-bold shadow-md'
-                    : 'glass-pill text-neutral-400 hover:text-white'
+                    ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c] shadow-sm'
+                    : 'bg-[#1e1b19] text-[#a38c80] hover:text-[#e9e1dd] border-[#554339]/40'
                 }`}
               >
                 {tab.label}
@@ -191,10 +196,10 @@ export const SearchPage: React.FC = () => {
 
         {/* Results Area */}
         {!query.trim() ? (
-          <div className="glass-card p-12 rounded-3xl text-center border border-white/10 text-neutral-400 space-y-3">
-            <Globe className="w-12 h-12 text-amber-400/60 mx-auto" />
-            <p className="text-base text-neutral-200 font-semibold">Search for any song, artist, or memory above.</p>
-            <p className="text-xs text-neutral-400 max-w-md mx-auto">
+          <div className="bg-[#1e1b19] p-12 rounded-xl text-center border border-[#554339]/40 text-[#a38c80] space-y-3 shadow-xl">
+            <Globe className="w-12 h-12 text-[#ecc15a]/60 mx-auto" />
+            <p className="font-serif text-lg text-[#e9e1dd] font-bold">Search for any vinyl cut, artist, or memory above.</p>
+            <p className="font-editorial text-xs text-[#dbc1b4] max-w-md mx-auto">
               Our live extractor searches high-fidelity music networks for English, Hindi, and Punjabi hits, allowing you to stream or import tracks directly to your library.
             </p>
           </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Pause, Mic2, ChevronRight, Shuffle, Disc, Flame, Heart, Search, Music, Zap, ChevronDown, ChevronUp } from 'lucide-react';
+import { Play, ChevronRight, Shuffle, Disc, Flame, Heart, Search, Music, Zap, ChevronDown, ChevronUp, Disc3 } from 'lucide-react';
 import type { Artist, Song } from '../types';
 import { useAudio } from '../context/AudioContext';
 
 export const HomePage: React.FC = () => {
-  const { playSong, currentSong, isPlaying } = useAudio();
+  const { playSong, currentSong } = useAudio();
 
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
@@ -94,7 +94,7 @@ export const HomePage: React.FC = () => {
     } else if (libraryFilter === 'bollywood') {
       matchesFilter = (s.genre?.includes('Bollywood') ?? false) || (s.genre?.includes('Romantic') ?? false) || (s.genre?.includes('Acoustic') ?? false);
     } else if (libraryFilter === 'pop') {
-      matchesFilter = s.artist.includes('Bieber') || s.artist.includes('Weeknd') || s.artist.includes('Taylor') || s.artist.includes('Sheeran') || s.artist.includes('Coldplay');
+      matchesFilter = !s.artist.includes('Bieber') && (s.artist.includes('Weeknd') || s.artist.includes('Taylor') || s.artist.includes('Sheeran') || s.artist.includes('Coldplay'));
     }
 
     return matchesSearch && matchesFilter;
@@ -110,243 +110,603 @@ export const HomePage: React.FC = () => {
   const dhandaDisplayList = showAllDhanda ? dhandaSongs : dhandaSongs.slice(0, 12);
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-[#e7e0ec] pb-36 px-4 md:px-8 pt-6">
+    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 md:px-8 pt-6 select-none font-editorial">
       <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Ambient Glows */}
-        <div className="relative w-full overflow-hidden">
-          <div className="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute top-80 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
-        </div>
+        {/* TOP ATMOSPHERIC BANNER & EDITORIAL STATEMENT (STITCH WARM ANALOG RADIAL GROOVE) */}
+        <section className="relative w-full py-10 px-6 sm:px-10 rounded-xl bg-[#1e1b19] border border-[#554339]/40 overflow-hidden shadow-2xl">
+          {/* Concentric Vinyl Groove Radial Graphic */}
+          <div className="absolute -right-24 -top-24 w-[520px] h-[520px] opacity-25 pointer-events-none select-none flex items-center justify-center">
+            <svg className="w-full h-full stroke-[#ffb68c]" fill="none" viewBox="0 0 400 400">
+              <circle className="text-[#ffb68c]" cx="200" cy="200" r="190" stroke="currentColor" strokeWidth="1.5" />
+              <circle className="text-[#ecc15a]" cx="200" cy="200" r="160" stroke="currentColor" strokeDasharray="6 6" strokeWidth="1" />
+              <circle className="text-[#ffdbc9]" cx="200" cy="200" r="125" stroke="currentColor" strokeWidth="1.5" />
+              <circle className="text-[#ecc15a]" cx="200" cy="200" r="90" stroke="currentColor" strokeWidth="2" />
+              <circle className="text-[#ffb68c]" cx="200" cy="200" r="55" stroke="currentColor" strokeWidth="1" />
+              <circle className="text-[#ecc15a]/20" cx="200" cy="200" fill="currentColor" r="28" stroke="currentColor" strokeWidth="1.5" />
+              {/* Crosshairs */}
+              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="200" x2="200" y1="5" y2="40" />
+              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="200" x2="200" y1="360" y2="395" />
+              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="5" x2="40" y1="200" y2="200" />
+              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="360" x2="395" y1="200" y2="200" />
+            </svg>
+          </div>
 
-        {/* HERO SECTION: TITAN ARTIST SPOTLIGHT (JUSTIN BIEBER, ARIJIT SINGH, DHANDA NYOLIWALA, HONEY SINGH) */}
+          <div className="relative z-10 max-w-4xl flex flex-col gap-4">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="px-2.5 py-0.5 rounded bg-[#383431] text-[#ecc15a] font-mono-spec text-[10px] uppercase tracking-widest font-bold">
+                SANCTUARY FREQUENCY • 432 Hz ALIGNED
+              </span>
+              <span className="font-mono-spec text-[10px] text-[#a38c80]">
+                EDITION 09 // VALVE STATE ACTIVE • {allSongs.length} MASTER CUTS
+              </span>
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-[#ffb68c] tracking-tight leading-tight">
+              What frequency does your heart resonate with tonight?
+            </h1>
+
+            <p className="font-editorial text-base sm:text-lg text-[#dbc1b4] max-w-2xl font-normal leading-relaxed">
+              Choose an emotional sanctuary or let the stylus drift through analog tape saturation, nocturnal rain crackle, and uncompressed acoustic presence across 386 studio recordings.
+            </p>
+
+            {/* Analog Calibration HUD */}
+            <div className="flex flex-wrap items-center gap-6 pt-3 text-[#e9e1dd] font-mono-spec text-xs">
+              <div className="flex items-center gap-2">
+                <Disc className="w-3.5 h-3.5 text-[#ecc15a]" />
+                <span className="text-[#a38c80]">CALIBRATION:</span>
+                <span className="text-[#ecc15a] font-bold">RIAA CURVE 1954</span>
+              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#554339]" />
+              <div className="flex items-center gap-2">
+                <Flame className="w-3.5 h-3.5 text-[#ffb68c]" />
+                <span className="text-[#a38c80]">STYLUS FORCE:</span>
+                <span className="text-[#ffb68c] font-bold">1.82 GRAMS</span>
+              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#554339]" />
+              <div className="flex items-center gap-2">
+                <Music className="w-3.5 h-3.5 text-[#b7cdb2]" />
+                <span className="text-[#a38c80]">ATMOSPHERIC DISSOLVE:</span>
+                <span className="text-[#b7cdb2] font-bold">94.6% EMBEDDED</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CHAMBER 01: EMOTIONAL SANCTUARY CHAMBERS (STITCH ASYMMETRICAL GATEFOLD CARDS) */}
+        <section className="space-y-5">
+          <div className="flex items-end justify-between border-b border-[#554339]/40 pb-3">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 font-mono-spec text-xs text-[#a38c80] uppercase tracking-widest">
+                <span>01</span>
+                <span className="text-[#554339]">/</span>
+                <span>ATMOSPHERIC SPECTRUM</span>
+              </div>
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#e9e1dd]">
+                Emotional Sanctuary Chambers
+              </h2>
+            </div>
+            <div className="hidden sm:flex items-center gap-2 font-mono-spec text-[10px] text-[#ecc15a]">
+              <span>TAP CHAMBER TO ENGAGE ROTATIONAL NEEDLE</span>
+              <div className="w-2 h-2 rounded-full bg-[#ecc15a] animate-ping" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {/* Chamber I: Nostalgic Dusk (Arijit Singh & Soul) */}
+            <div
+              onClick={() => handlePlaySongList(arijitSongs, 0, true)}
+              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ecc15a]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
+                  <img
+                    src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80"
+                    alt="Nostalgic Dusk"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
+                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ecc15a] font-bold">
+                    CHAMBER I
+                  </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ffb68c] font-mono-spec text-[10px]">
+                    <span className="uppercase">FLUTTER: ±0.04%</span>
+                    <span className="text-[#a38c80]">33⅓ RPM</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-1">
+                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors">
+                    Nostalgic Dusk
+                  </h3>
+                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
+                    Warm sepia glow, gentle tape flutter, and Arijit Singh’s heartfelt nocturnal ivory romance anthems recorded in pure analog depth.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>CADENCE</span>
+                  <span className="text-[#e9e1dd]">64 BPM</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TEXTURE</span>
+                  <span className="text-[#ecc15a]">Heavy 1968 Crackle</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TONALITY</span>
+                  <span className="text-[#b7cdb2]">Bittersweet Stillness</span>
+                </div>
+                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
+                <div className="flex items-center justify-between">
+                  <span className="font-mono-spec text-[10px] text-[#ffb68c] flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffb68c] animate-pulse" />
+                    {arijitSongs.length} Tracks
+                  </span>
+                  <button className="w-7 h-7 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
+                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Chamber II: Cathartic Drift (Diljit, Anuv Jain, Shubh) */}
+            <div
+              onClick={() => handlePlaySongList(allSongs.filter(s => s.genre?.includes('Punjabi') || s.artist.includes('Anuv')), 0, true)}
+              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#b7cdb2]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
+                  <img
+                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80"
+                    alt="Cathartic Drift"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
+                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#b7cdb2] font-bold">
+                    CHAMBER II
+                  </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#b7cdb2] font-mono-spec text-[10px]">
+                    <span className="uppercase">REVERB: 8.4s CATHEDRAL</span>
+                    <span className="text-[#a38c80]">QUADRAPHONIC</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-1">
+                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#b7cdb2] transition-colors">
+                    Cathartic Drift
+                  </h3>
+                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
+                    Submerged plate reverbs, expansive acoustic piano echoes, and soothing indie vocals by Anuv Jain, Diljit Dosanjh, and Shubh dissolving into silence.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>CADENCE</span>
+                  <span className="text-[#e9e1dd]">52 BPM</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TEXTURE</span>
+                  <span className="text-[#b7cdb2]">Glacial Echo & Tape Bloom</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TONALITY</span>
+                  <span className="text-[#ecc15a]">Weightlessness & Calm</span>
+                </div>
+                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
+                <div className="flex items-center justify-between">
+                  <span className="font-mono-spec text-[10px] text-[#b7cdb2] flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#b7cdb2] animate-pulse" />
+                    Soul Anthems
+                  </span>
+                  <button className="w-7 h-7 rounded-full bg-[#82977f] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
+                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Chamber III: Golden Reverie (Justin Bieber & Global Icons) */}
+            <div
+              onClick={() => handlePlaySongList(bieberSongs, 0, true)}
+              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ecc15a]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
+                  <img
+                    src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80"
+                    alt="Golden Reverie"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
+                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ecc15a] font-bold">
+                    CHAMBER III
+                  </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ecc15a] font-mono-spec text-[10px]">
+                    <span className="uppercase">TUBE BIAS: CLASS-A</span>
+                    <span className="text-[#a38c80]">DIRECT CUT</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-1">
+                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ecc15a] transition-colors">
+                    Golden Reverie
+                  </h3>
+                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
+                    Warm acoustic wood grain, unhurried pop anthems, and Justin Bieber's multi-platinum masterpieces like Stay, Ghost, Peaches, and Love Yourself.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>CADENCE</span>
+                  <span className="text-[#e9e1dd]">78 BPM</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TEXTURE</span>
+                  <span className="text-[#ecc15a]">Silky Tube Saturation</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TONALITY</span>
+                  <span className="text-[#ffb68c]">Sunlit Contentment</span>
+                </div>
+                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
+                <div className="flex items-center justify-between">
+                  <span className="font-mono-spec text-[10px] text-[#ecc15a] flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-pulse" />
+                    {bieberSongs.length} Tracks
+                  </span>
+                  <button className="w-7 h-7 rounded-full bg-[#8c6b01] text-[#fff3df] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
+                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Chamber IV: Midnight Solitude (Dhanda Nyoliwala & Drill) */}
+            <div
+              onClick={() => handlePlaySongList(dhandaSongs, 0, true)}
+              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ffb68c]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
+                  <img
+                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=500&q=80"
+                    alt="Midnight Solitude"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
+                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ffb68c] font-bold">
+                    CHAMBER IV
+                  </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ffb68c] font-mono-spec text-[10px]">
+                    <span className="uppercase">BASS CHANNEL: STEREO SUB</span>
+                    <span className="text-[#a38c80]">192 kHz</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-1">
+                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors">
+                    Midnight Solitude
+                  </h3>
+                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
+                    Heavy Desi 808 bass, drill ictus, and raw lyrical prowess from Dhanda Nyoliwala, Yo Yo Honey Singh, and Sidhu Moose Wala cutting through midnight rain.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>CADENCE</span>
+                  <span className="text-[#e9e1dd]">58 BPM</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TEXTURE</span>
+                  <span className="text-[#ffb68c]">Sub Bass & Tape Saturation</span>
+                </div>
+                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
+                  <span>TONALITY</span>
+                  <span className="text-[#b7cdb2]">Raw Adrenaline</span>
+                </div>
+                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
+                <div className="flex items-center justify-between">
+                  <span className="font-mono-spec text-[10px] text-[#ffb68c] flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffb68c] animate-pulse" />
+                    {dhandaSongs.length} Tracks
+                  </span>
+                  <button className="w-7 h-7 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
+                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CHAMBER 02: FEATURED PHYSICAL CURATOR SLIPCASE (TITAN SPOTLIGHT - 7-COL + 5-COL ASYMMETRIC STITCH GATEFOLD) */}
         {activeSpotlight && (
-          <section className="relative rounded-3xl overflow-hidden glass-card border border-rose-500/30 p-6 md:p-10 bg-gradient-to-r from-red-950/40 via-purple-950/30 to-black shadow-2xl">
-            {/* Spotlight Switcher Tabs */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              <span className="text-xs uppercase tracking-widest font-bold text-neutral-400 mr-2 flex items-center gap-1.5">
-                <Flame className="w-3.5 h-3.5 text-amber-400" />
-                Featured Titans:
+          <section className="space-y-4">
+            <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3">
+              <div className="flex items-center gap-2 font-mono-spec text-xs text-[#a38c80] uppercase tracking-widest">
+                <span>02</span>
+                <span className="text-[#554339]">/</span>
+                <span>CURATOR CRATE FOCUS</span>
+              </div>
+              <span className="font-mono-spec text-xs text-[#ecc15a] uppercase">
+                ARCHIVAL PRESSING #{activeSpotlight.name.includes('Bieber') ? '151' : activeSpotlight.name.includes('Arijit') ? '120' : '066'}
+              </span>
+            </div>
+
+            {/* Switcher Tabs */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-mono-spec text-xs uppercase tracking-wider text-[#a38c80] mr-2">
+                SELECT TITAN:
               </span>
               {bieberArtist && (
                 <button
                   onClick={() => setSpotlightArtistId('bieber')}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
                     spotlightArtistId === 'bieber'
-                      ? 'bg-emerald-500 text-neutral-950 shadow-md'
-                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
                   }`}
                 >
                   <span>🌎 Justin Bieber</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/30 text-emerald-200">
-                    {bieberArtist.songCount || bieberSongs.length} Tracks
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {bieberSongs.length} Cuts
                   </span>
                 </button>
               )}
               {arijitArtist && (
                 <button
                   onClick={() => setSpotlightArtistId('arijit')}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
                     spotlightArtistId === 'arijit'
-                      ? 'bg-rose-500 text-white shadow-md'
-                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
                   }`}
                 >
                   <span>❤️ Arijit Singh</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/30 text-rose-200">
-                    {arijitArtist.songCount || arijitSongs.length} Tracks
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {arijitSongs.length} Cuts
                   </span>
                 </button>
               )}
               {dhandaArtist && (
                 <button
                   onClick={() => setSpotlightArtistId('dhanda')}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
                     spotlightArtistId === 'dhanda'
-                      ? 'bg-amber-500 text-neutral-950 shadow-md'
-                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
                   }`}
                 >
                   <span>🔥 Dhanda Nyoliwala</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/20">
-                    {dhandaArtist.songCount || dhandaSongs.length} Tracks
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {dhandaSongs.length} Cuts
                   </span>
                 </button>
               )}
               {honeySingh && (
                 <button
                   onClick={() => setSpotlightArtistId('honey')}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
                     spotlightArtistId === 'honey'
-                      ? 'bg-amber-500 text-neutral-950 shadow-md'
-                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
                   }`}
                 >
                   <span>👑 Yo Yo Honey Singh</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/20">
-                    {honeySingh.songCount} Tracks
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {honeySingh.songCount} Cuts
                   </span>
                 </button>
               )}
             </div>
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 justify-between">
-              <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                <div className="relative group shrink-0">
-                  <img
-                    src={activeSpotlight.avatarUrl || activeSpotlight.songs?.[0]?.coverUrl}
-                    alt={activeSpotlight.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        activeSpotlight.songs?.[0]?.coverUrl ||
-                        'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-                    }}
-                    className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-rose-400 shadow-[0_0_35px_rgba(244,63,94,0.45)] group-hover:scale-105 transition-transform bg-neutral-900"
-                  />
-                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-rose-500 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
-                    {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : '👑 King of Hits'}
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-rose-300 text-xs font-bold border border-white/10">
-                    <Heart className="w-3.5 h-3.5 text-rose-400" />
-                    <span>COMPLETE DISCOGRAPHY SPOTLIGHT</span>
+            {/* Asymmetrical 7-Col + 5-Col Gatefold Slipcase */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              
+              {/* Left Column (7 Cols): Physical Slipcase Jacket with Sliding Vinyl Disc */}
+              <div className="lg:col-span-7 bg-[#1e1b19] p-6 sm:p-8 rounded-xl border border-[#554339]/40 shadow-2xl flex flex-col md:flex-row gap-7 overflow-hidden relative group">
+                {/* The Vinyl Sleeve Jacket */}
+                <div className="relative w-full md:w-56 aspect-square flex-shrink-0">
+                  <div className="relative z-20 w-full h-full rounded-lg bg-[#110e0c] overflow-hidden shadow-2xl border border-[#554339]/40">
+                    <img
+                      src={activeSpotlight.avatarUrl || activeSpotlight.songs?.[0]?.coverUrl}
+                      alt={activeSpotlight.name}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          activeSpotlight.songs?.[0]?.coverUrl ||
+                          'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
+                      }}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-[#110e0c]/90 text-[#ecc15a] font-mono-spec text-[9px] uppercase font-bold">
+                      OBI STRIP #{activeSpotlight.name.includes('Bieber') ? '01' : '02'}
+                    </div>
+                    <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between font-mono-spec text-[9px] text-[#ffb68c]">
+                      <span>180 GRAM GATEFOLD</span>
+                      <span>33⅓ RPM</span>
+                    </div>
                   </div>
 
-                  <h1 className="text-3xl sm:text-5xl font-extrabold font-serif text-white tracking-tight">
-                    {activeSpotlight.name}
-                  </h1>
+                  {/* Physical Grooved Vinyl Disc Sliding Out from the Sleeve */}
+                  <div className="absolute top-2 -right-8 w-full h-[95%] rounded-full bg-[#0a0807] border border-[#2d2927] shadow-2xl flex items-center justify-center transform group-hover:translate-x-7 transition-transform duration-500 z-10 pointer-events-none">
+                    <div className="w-[88%] h-[88%] rounded-full border border-[#221f1d] flex items-center justify-center">
+                      <div className="w-[74%] h-[74%] rounded-full border border-[#2d2927] flex items-center justify-center">
+                        <div className="w-[56%] h-[56%] rounded-full border border-[#383431] flex items-center justify-center">
+                          {/* Record Center Paper Label */}
+                          <div className="w-[36%] h-[36%] rounded-full bg-[#8c6b01] flex items-center justify-center text-center p-1 shadow-inner">
+                            <span className="font-mono-spec text-[6px] text-[#fff3df] uppercase tracking-tighter">
+                              RESONANCE
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                  <p className="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">
-                    {activeSpotlight.bio || (activeSpotlight.name.includes('Bieber')
-                      ? 'Grammy-winning global pop superstar with over 150 million records sold. Stream all 151 monumental anthems across Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, and more.'
-                      : activeSpotlight.name.includes('Arijit')
-                      ? 'The undisputed voice of Indian romance. Stream 120 heartfelt anthems including Tum Hi Ho, Channa Mereya, Kesariya, Agar Tum Saath Ho, Apna Bana Le, Gerua, and Kalank.'
-                      : activeSpotlight.name.includes('Dhanda')
-                      ? 'The powerhouse behind Desi Drill & Haryanvi Hip Hop. Stream all 66 anthems including Russian Bandana, Up To U, Boom Shaka, Not Guilty, and Maruti.'
-                      : 'Explore blockbuster hits assembled from International Villager, Desi Kalakaar, and GLORY.')}
-                  </p>
+                {/* Liner Notes & Monograph */}
+                <div className="flex flex-col justify-between flex-1 z-20">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2 py-0.5 rounded bg-[#82977f]/20 text-[#b7cdb2] font-mono-spec text-[9px] uppercase font-bold">
+                        {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : '👑 King of Hits'}
+                      </span>
+                      <span className="font-mono-spec text-[10px] text-[#a38c80]">
+                        • {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : arijitSongs.length)} Master Tracks
+                      </span>
+                    </div>
 
-                  <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-semibold text-neutral-300">
-                    <span className="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">
-                      {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.songs?.length)} Full Songs
-                    </span>
-                    <span>•</span>
-                    <span className="text-neutral-400">{activeSpotlight.genre}</span>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#e9e1dd] leading-tight mt-1">
+                      {activeSpotlight.name}
+                    </h3>
+
+                    <p className="font-editorial text-sm text-[#dbc1b4] mt-1 leading-relaxed">
+                      {activeSpotlight.bio || (activeSpotlight.name.includes('Bieber')
+                        ? 'Grammy-winning global pop superstar with over 150 million records sold. Stream all 151 monumental anthems across Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, and more.'
+                        : activeSpotlight.name.includes('Arijit')
+                        ? 'The undisputed voice of Indian romance. Stream 120 heartfelt anthems including Tum Hi Ho, Channa Mereya, Kesariya, Agar Tum Saath Ho, Apna Bana Le, Gerua, and Kalank.'
+                        : activeSpotlight.name.includes('Dhanda')
+                        ? 'The powerhouse behind Desi Drill & Haryanvi Hip Hop. Stream all 66 anthems including Russian Bandana, Up To U, Boom Shaka, Not Guilty, and Maruti.'
+                        : 'Explore blockbuster hits assembled from International Villager, Desi Kalakaar, and GLORY.')}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between pt-4 bg-[#110e0c] px-4 py-3 rounded-lg border border-[#554339]/30">
+                    <div className="flex flex-col">
+                      <span className="font-mono-spec text-[9px] text-[#a38c80] uppercase">
+                        AUDIO MASTER
+                      </span>
+                      <span className="font-editorial text-xs text-[#ecc15a] font-medium">
+                        320kbps High-Fidelity Studio Stream
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handlePlayArtist(activeSpotlight)}
+                        className="flex items-center gap-1.5 px-4 py-2 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 active:scale-95 transition-all shadow-[0_0_15px_rgba(217,119,54,0.35)]"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                        <span>Drop Needle</span>
+                      </button>
+                      <button
+                        onClick={() => handlePlayArtist(activeSpotlight, true)}
+                        className="p-2 rounded bg-[#282422] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40 transition-all"
+                        title="Shuffle Discography"
+                      >
+                        <Shuffle className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 shrink-0">
-                <button
-                  onClick={() => handlePlayArtist(activeSpotlight)}
-                  className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-neutral-950 font-bold text-sm shadow-[0_0_24px_rgba(244,63,94,0.4)] hover:scale-105 transition-all"
-                >
-                  <Play className="w-5 h-5 fill-current" />
-                  <span>Play Discography ({activeSpotlight.songCount || activeSpotlight.songs?.length})</span>
-                </button>
-
-                <button
-                  onClick={() => handlePlayArtist(activeSpotlight, true)}
-                  className="p-3.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all border border-white/15"
-                  title="Shuffle Discography"
-                >
-                  <Shuffle className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Spotlight Top Hits Strip */}
-            {activeSpotlight.songs && activeSpotlight.songs.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs uppercase tracking-wider text-neutral-400 font-bold">
-                    {activeSpotlight.name} Blockbusters:
+              {/* Right Column (5 Cols): Top Hits Strip & Personnel Matrix */}
+              <div className="lg:col-span-5 bg-[#1e1b19] p-6 rounded-xl border border-[#554339]/40 shadow-xl flex flex-col gap-4">
+                <div className="flex items-center justify-between border-b border-[#554339]/30 pb-2">
+                  <span className="font-mono-spec text-xs text-[#ecc15a] uppercase tracking-wider font-bold">
+                    SELECT PRESSINGS ({activeSpotlight.name})
                   </span>
-                  <Link to={`/artist/${activeSpotlight.id}`} className="text-xs text-rose-400 hover:text-rose-300 font-bold flex items-center gap-1">
-                    <span>View All {activeSpotlight.songCount || activeSpotlight.songs.length} Songs</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                  <Link to={`/artist/${activeSpotlight.id}`} className="font-mono-spec text-[10px] text-[#ffb68c] hover:underline flex items-center gap-1">
+                    <span>Full Crate ({activeSpotlight.songCount || activeSpotlight.songs?.length})</span>
+                    <ChevronRight className="w-3 h-3" />
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                  {activeSpotlight.songs.slice(0, 6).map((song) => {
+                <div className="space-y-2">
+                  {(activeSpotlight.songs || (activeSpotlight.name.includes('Bieber') ? bieberSongs : arijitSongs)).slice(0, 5).map((song, idx) => {
                     const isCurrent = currentSong?.id === song.id;
                     return (
                       <div
                         key={song.id}
-                        onClick={() => playSong(song, undefined, activeSpotlight.songs)}
-                        className="p-2.5 rounded-xl bg-black/40 hover:bg-white/10 border border-white/5 hover:border-rose-500/40 cursor-pointer transition-all flex items-center gap-2.5 group"
+                        onClick={() => playSong(song, undefined, activeSpotlight.songs || (activeSpotlight.name.includes('Bieber') ? bieberSongs : arijitSongs))}
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                       >
-                        <img src={song.coverUrl} alt="" className="w-10 h-10 rounded-lg object-cover shrink-0" />
-                        <div className="min-w-0 flex-1">
-                          <p className={`text-xs font-bold truncate ${isCurrent ? 'text-rose-400' : 'text-neutral-100 group-hover:text-rose-300'}`}>
-                            {song.title}
-                          </p>
-                          <p className="text-[10px] text-neutral-400 truncate">{song.album || 'Single'}</p>
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                          <span className="font-mono-spec text-xs text-[#a38c80] w-5 text-right font-bold">
+                            {String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <img src={song.coverUrl} alt="" className="w-9 h-9 rounded object-cover flex-shrink-0" />
+                          <div className="min-w-0 flex-1">
+                            <p className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                              {song.title}
+                            </p>
+                            <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single Master'}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono-spec text-[10px] text-[#a38c80]">
+                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                          </span>
+                          <button className="p-1.5 rounded-full bg-[#110e0c] text-[#ffb68c] group-hover:bg-[#d97736] group-hover:text-[#221f1d] transition-all">
+                            <Play className="w-3 h-3 fill-current ml-0.5" />
+                          </button>
                         </div>
                       </div>
                     );
                   })}
                 </div>
               </div>
-            )}
+
+            </div>
           </section>
         )}
 
-        {/* SINGERS HORIZONTAL SELECTION CAROUSEL */}
+        {/* CHAMBER 03: SINGER DISCOGRAPHIES CAROUSEL */}
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-white">
-              <Mic2 className="w-5 h-5 text-amber-400" />
-              <h2 className="text-2xl font-bold font-serif">Select Singer Discography</h2>
+          <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3">
+            <div className="flex items-center gap-2 font-mono-spec text-xs text-[#a38c80] uppercase tracking-widest">
+              <span>03</span>
+              <span className="text-[#554339]">/</span>
+              <span>TACTILE SINGER CRATES</span>
             </div>
-            <Link to="/artists" className="text-xs text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1">
+            <Link to="/artists" className="font-mono-spec text-xs text-[#ecc15a] hover:underline flex items-center gap-1">
               <span>View All Singers</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="flex items-center gap-3 overflow-x-auto pb-3 scrollbar-none">
-            {/* "All Singers" button */}
+          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
             <button
               onClick={() => setSelectedSingerId('all')}
-              className={`flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2.5 px-4 py-2 rounded-lg font-mono-spec text-xs font-bold whitespace-nowrap transition-all border ${
                 selectedSingerId === 'all'
-                  ? 'bg-amber-500 text-neutral-950 shadow-md'
-                  : 'glass-pill text-neutral-300 hover:text-white'
+                  ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-md'
+                  : 'bg-[#1e1b19] text-[#dbc1b4] border-[#554339]/40 hover:border-[#ecc15a]/40'
               }`}
             >
-              <Disc className="w-4 h-4" />
-              <span>All Singers ({allSongs.length} Songs)</span>
+              <Disc className="w-3.5 h-3.5" />
+              <span>All Singers ({allSongs.length} Cuts)</span>
             </button>
 
-            {/* Individual Singer Buttons with Avatars */}
             {artists.map((artist) => {
               const isSelected = selectedSingerId === artist.id;
               return (
                 <button
                   key={artist.id}
                   onClick={() => setSelectedSingerId(artist.id)}
-                  className={`flex items-center gap-2.5 pl-2 pr-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all border ${
+                  className={`flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg font-mono-spec text-xs whitespace-nowrap transition-all border ${
                     isSelected
-                      ? 'bg-amber-500 text-neutral-950 font-bold border-amber-400 shadow-md'
-                      : 'glass-pill text-neutral-300 hover:text-white border-white/10 hover:border-amber-500/30'
+                      ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c] shadow-md'
+                      : 'bg-[#1e1b19] text-[#dbc1b4] border-[#554339]/40 hover:border-[#ecc15a]/40'
                   }`}
                 >
                   <img
                     src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
                     alt={artist.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        artist.songs?.[0]?.coverUrl ||
-                        'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-                    }}
-                    className="w-7 h-7 rounded-full object-cover border border-white/20 bg-neutral-900"
+                    className="w-6 h-6 rounded-full object-cover border border-[#554339] bg-[#110e0c]"
                   />
                   <span>{artist.name}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-neutral-900/30 text-neutral-950' : 'bg-white/10 text-neutral-400'}`}>
+                  <span className={`text-[9px] px-1.5 py-0.2 rounded ${isSelected ? 'bg-black/30 text-[#fff3df]' : 'bg-[#110e0c] text-[#a38c80]'}`}>
                     {artist.songCount}
                   </span>
                 </button>
@@ -355,81 +715,64 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* IF INDIVIDUAL SINGER FILTER IS SELECTED: DISPLAY SINGER'S SONGS */}
+        {/* IF INDIVIDUAL SINGER IS SELECTED */}
         {selectedSingerId !== 'all' && selectedSinger && (
-          <section className="glass-card rounded-3xl p-6 md:p-8 border border-amber-500/30 space-y-6">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <section className="bg-[#1e1b19] rounded-xl p-6 sm:p-8 border border-[#554339]/40 space-y-6 shadow-2xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#554339]/40 pb-5">
               <div className="flex items-center gap-4">
                 <img
                   src={selectedSinger.avatarUrl || selectedSinger.songs?.[0]?.coverUrl}
                   alt={selectedSinger.name}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      selectedSinger.songs?.[0]?.coverUrl ||
-                      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-                  }}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-amber-400 shadow-lg bg-neutral-900"
+                  className="w-16 h-16 rounded-lg object-cover border-2 border-[#ecc15a] shadow-lg bg-[#110e0c]"
                 />
                 <div>
-                  <h3 className="text-2xl font-bold font-serif text-white">{selectedSinger.name}</h3>
-                  <p className="text-xs text-neutral-400">{selectedSinger.genre} • {displayedSongs.length} Songs</p>
+                  <h3 className="font-serif text-2xl font-bold text-[#e9e1dd]">{selectedSinger.name}</h3>
+                  <p className="font-mono-spec text-xs text-[#a38c80]">{selectedSinger.genre} • {displayedSongs.length} Master Cuts</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => handlePlayArtist(selectedSinger)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 text-neutral-950 font-bold text-xs shadow-md hover:bg-amber-400"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-bold uppercase tracking-wider shadow-md hover:brightness-110"
                 >
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
-                  <span>Play All ({displayedSongs.length})</span>
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Drop Needle ({displayedSongs.length})</span>
                 </button>
                 <button
                   onClick={() => handlePlayArtist(selectedSinger, true)}
-                  className="p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all border border-white/15"
-                  title="Shuffle"
+                  className="p-2.5 rounded bg-[#282422] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
+                  title="Shuffle Discography"
                 >
                   <Shuffle className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {displayedSongs.map((song) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {displayedSongs.map((song, i) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
                   <div
                     key={song.id}
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-amber-500/30 transition-all group"
+                    onClick={() => playSong(song, undefined, displayedSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => playSong(song, undefined, displayedSongs)}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                        >
-                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                        </button>
-                      </div>
-
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100'}`}>
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                           {song.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
-                        <span className="text-[10px] text-neutral-500">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => playSong(song, undefined, displayedSongs)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-amber-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </button>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
                   </div>
                 );
               })}
@@ -440,17 +783,17 @@ export const HomePage: React.FC = () => {
         {/* SECTION 1: 🌎 JUSTIN BIEBER COMPLETE GLOBAL DISCOGRAPHY (151 TRACKS) */}
         {selectedSingerId === 'all' && bieberSongs.length > 0 && (
           <section className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
               <div className="flex items-center gap-2.5">
-                <Disc className="w-6 h-6 text-emerald-400" />
+                <Disc3 className="w-6 h-6 text-[#ecc15a]" />
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold font-serif text-white flex items-center gap-2">
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
                     <span>Justin Bieber — Global Pop Sensation & Complete Discography</span>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
                       {bieberSongs.length} Tracks
                     </span>
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-0.5">
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
                     Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, What Do You Mean? & 140+ More
                   </p>
                 </div>
@@ -459,21 +802,21 @@ export const HomePage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handlePlaySongList(bieberSongs, 0, false)}
-                  className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-neutral-950 font-bold text-xs hover:scale-105 transition-all shadow-md"
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play All ({bieberSongs.length})</span>
                 </button>
                 <button
                   onClick={() => handlePlaySongList(bieberSongs, 0, true)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/15"
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
                   title="Shuffle Bieber Tracks"
                 >
                   <Shuffle className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setShowAllBieber(!showAllBieber)}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold border border-white/10 transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
                 >
                   <span>{showAllBieber ? 'Show Less' : `View All ${bieberSongs.length}`}</span>
                   {showAllBieber ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -481,42 +824,30 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {bieberDisplayList.map((song) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {bieberDisplayList.map((song, i) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
                   <div
                     key={song.id}
-                    className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
+                    onClick={() => playSong(song, undefined, bieberSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => playSong(song, undefined, bieberSongs)}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                        >
-                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                        </button>
-                      </div>
-
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-emerald-400' : 'text-neutral-100 group-hover:text-emerald-300'}`}>
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                           {song.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
-                        <span className="text-[10px] text-neutral-500">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => playSong(song, undefined, bieberSongs)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-emerald-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </button>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
                   </div>
                 );
               })}
@@ -526,10 +857,10 @@ export const HomePage: React.FC = () => {
               <div className="text-center pt-2">
                 <button
                   onClick={() => setShowAllBieber(true)}
-                  className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all inline-flex items-center gap-2"
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
                 >
                   <span>Show All {bieberSongs.length} Songs by Justin Bieber</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
             )}
@@ -539,17 +870,17 @@ export const HomePage: React.FC = () => {
         {/* SECTION 2: ❤️ ARIJIT SINGH COMPLETE ROMANCE & SOUL DISCOGRAPHY (120 TRACKS) */}
         {selectedSingerId === 'all' && arijitSongs.length > 0 && (
           <section className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
               <div className="flex items-center gap-2.5">
-                <Heart className="w-6 h-6 text-rose-500 fill-rose-500/20" />
+                <Heart className="w-6 h-6 text-[#ffb68c]" />
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold font-serif text-white flex items-center gap-2">
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
                     <span>Arijit Singh — King of Romance & Soulful Melodies</span>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
                       {arijitSongs.length} Tracks
                     </span>
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-0.5">
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
                     Tum Hi Ho, Channa Mereya, Kesariya, Apna Bana Le, Agar Tum Saath Ho, Gerua, Shayad, Satranga & More
                   </p>
                 </div>
@@ -558,21 +889,21 @@ export const HomePage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handlePlaySongList(arijitSongs, 0, false)}
-                  className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-neutral-950 font-bold text-xs hover:scale-105 transition-all shadow-md"
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play All ({arijitSongs.length})</span>
                 </button>
                 <button
                   onClick={() => handlePlaySongList(arijitSongs, 0, true)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/15"
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
                   title="Shuffle Arijit Tracks"
                 >
                   <Shuffle className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setShowAllArijit(!showAllArijit)}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold border border-white/10 transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
                 >
                   <span>{showAllArijit ? 'Show Less' : `View All ${arijitSongs.length}`}</span>
                   {showAllArijit ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -580,42 +911,30 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {arijitDisplayList.map((song) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {arijitDisplayList.map((song, i) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
                   <div
                     key={song.id}
-                    className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-rose-500/40 hover:bg-rose-500/5 transition-all group"
+                    onClick={() => playSong(song, undefined, arijitSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => playSong(song, undefined, arijitSongs)}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                        >
-                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                        </button>
-                      </div>
-
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-rose-400' : 'text-neutral-100 group-hover:text-rose-300'}`}>
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                           {song.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
-                        <span className="text-[10px] text-neutral-500">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => playSong(song, undefined, arijitSongs)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-rose-500 text-neutral-300 hover:text-white transition-colors ml-2 shrink-0"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </button>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
                   </div>
                 );
               })}
@@ -625,30 +944,30 @@ export const HomePage: React.FC = () => {
               <div className="text-center pt-2">
                 <button
                   onClick={() => setShowAllArijit(true)}
-                  className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold transition-all inline-flex items-center gap-2"
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
                 >
                   <span>Show All {arijitSongs.length} Songs by Arijit Singh</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
             )}
           </section>
         )}
 
-        {/* SECTION 2: 🔥 DHANDA NYOLIWALA COMPLETE DISCOGRAPHY (66 TRACKS) */}
+        {/* SECTION 3: 🔥 DHANDA NYOLIWALA COMPLETE DISCOGRAPHY (66 TRACKS) */}
         {selectedSingerId === 'all' && dhandaSongs.length > 0 && (
           <section className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
               <div className="flex items-center gap-2.5">
-                <Zap className="w-6 h-6 text-amber-400" />
+                <Zap className="w-6 h-6 text-[#ecc15a]" />
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold font-serif text-white flex items-center gap-2">
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
                     <span>Dhanda Nyoliwala — Desi Drill & Haryanvi Hip Hop</span>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
                       {dhandaSongs.length} Tracks
                     </span>
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-0.5">
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
                     Russian Bandana, Up To U, Boom Shaka, Not Guilty, Maruti, Death Row, Vaaroon & More
                   </p>
                 </div>
@@ -657,21 +976,21 @@ export const HomePage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handlePlaySongList(dhandaSongs, 0, false)}
-                  className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 font-bold text-xs hover:scale-105 transition-all shadow-md"
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play All ({dhandaSongs.length})</span>
                 </button>
                 <button
                   onClick={() => handlePlaySongList(dhandaSongs, 0, true)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/15"
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
                   title="Shuffle Dhanda Tracks"
                 >
                   <Shuffle className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setShowAllDhanda(!showAllDhanda)}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold border border-white/10 transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
                 >
                   <span>{showAllDhanda ? 'Show Less' : `View All ${dhandaSongs.length}`}</span>
                   {showAllDhanda ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -679,42 +998,30 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {dhandaDisplayList.map((song) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {dhandaDisplayList.map((song, i) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
                   <div
                     key={song.id}
-                    className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all group"
+                    onClick={() => playSong(song, undefined, dhandaSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => playSong(song, undefined, dhandaSongs)}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                        >
-                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                        </button>
-                      </div>
-
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100 group-hover:text-amber-300'}`}>
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                           {song.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
-                        <span className="text-[10px] text-neutral-500">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => playSong(song, undefined, dhandaSongs)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-amber-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </button>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
                   </div>
                 );
               })}
@@ -724,71 +1031,59 @@ export const HomePage: React.FC = () => {
               <div className="text-center pt-2">
                 <button
                   onClick={() => setShowAllDhanda(true)}
-                  className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold transition-all inline-flex items-center gap-2"
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
                 >
                   <span>Show All {dhandaSongs.length} Songs by Dhanda Nyoliwala</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
             )}
           </section>
         )}
 
-        {/* SECTION 3: 👑 YO YO HONEY SINGH COMPLETE HITS */}
+        {/* SECTION 4: 👑 YO YO HONEY SINGH HITS */}
         {selectedSingerId === 'all' && honeySingh && (
           <section className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3">
               <div className="flex items-center gap-2">
-                <Flame className="w-5 h-5 text-amber-400" />
-                <h3 className="text-xl md:text-2xl font-bold font-serif text-white">
-                  Yo Yo Honey Singh Hits ({honeySingh.songCount} Songs)
+                <Flame className="w-5 h-5 text-[#ecc15a]" />
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd]">
+                  Yo Yo Honey Singh Blockbusters ({honeySingh.songCount} Cuts)
                 </h3>
               </div>
               <button
                 onClick={() => handlePlayArtist(honeySingh)}
-                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-neutral-950 text-xs font-bold transition-all border border-amber-500/30"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1e1b19] border border-[#ecc15a]/40 text-[#ecc15a] font-mono-spec text-xs font-bold hover:bg-[#282422] transition-all"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
-                <span>Play Discography</span>
+                <span>Drop Needle</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {(honeySingh.songs || []).map((song) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {(honeySingh.songs || []).map((song, i) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
                   <div
                     key={song.id}
-                    className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-amber-500/30 transition-all group"
+                    onClick={() => playSong(song, undefined, honeySingh.songs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => playSong(song, undefined, honeySingh.songs)}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                        >
-                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                        </button>
-                      </div>
-
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100'}`}>
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                           {song.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
-                        <span className="text-[10px] text-neutral-500">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
                       </div>
                     </div>
-
-                    <button
-                      onClick={() => playSong(song, undefined, honeySingh.songs)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-amber-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                    >
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </button>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
                   </div>
                 );
               })}
@@ -796,221 +1091,41 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 4: 🌾 PUNJABI LEGENDS (SIDHU, DILJIT, AUJLA, AP DHILLON, SHUBH) */}
+        {/* SECTION 5: 🎵 COMPLETE SONGS LIBRARY (ALL 386 CUTS WITH STITCH EDITORIAL TRACK INDEX) */}
         {selectedSingerId === 'all' && (
-          <section className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-2">
-                <Mic2 className="w-5 h-5 text-rose-400" />
-                <h3 className="text-xl md:text-2xl font-bold font-serif text-white">
-                  Punjabi Kings (Sidhu Moose Wala, Diljit, Aujla, AP Dhillon, Shubh)
-                </h3>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {allSongs
-                .filter((s) => s.genre?.includes('Punjabi') && !s.artist.includes('Honey Singh'))
-                .map((song) => {
-                  const isCurrent = currentSong?.id === song.id;
-                  return (
-                    <div
-                      key={song.id}
-                      className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-rose-500/30 transition-all group"
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                          <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                          <button
-                            onClick={() => playSong(song, undefined, allSongs)}
-                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                          >
-                            {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                          </button>
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100'}`}>
-                            {song.title}
-                          </h4>
-                          <p className="text-xs text-neutral-400 truncate">{song.artist}</p>
-                          <span className="text-[10px] text-neutral-500">
-                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                          </span>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => playSong(song, undefined, allSongs)}
-                        className="p-2 rounded-full bg-white/5 hover:bg-rose-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                      </button>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
-        )}
-
-        {/* SECTION 5: 🎬 BOLLYWOOD & SUFI MELODIES */}
-        {selectedSingerId === 'all' && (
-          <section className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-2">
-                <Heart className="w-5 h-5 text-indigo-400" />
-                <h3 className="text-xl md:text-2xl font-bold font-serif text-white">
-                  Bollywood Soul & Melodies (Atif Aslam, KK, Anuv Jain, Pritam)
-                </h3>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {allSongs
-                .filter((s) => !s.artist.includes('Arijit') && ((s.genre?.includes('Bollywood') ?? false) || (s.genre?.includes('Romantic') ?? false) || (s.genre?.includes('Acoustic') ?? false)))
-                .map((song) => {
-                  const isCurrent = currentSong?.id === song.id;
-                  return (
-                    <div
-                      key={song.id}
-                      className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-indigo-500/30 transition-all group"
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                          <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                          <button
-                            onClick={() => playSong(song, undefined, allSongs)}
-                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                          >
-                            {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                          </button>
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100'}`}>
-                            {song.title}
-                          </h4>
-                          <p className="text-xs text-neutral-400 truncate">{song.artist}</p>
-                          <span className="text-[10px] text-neutral-500">
-                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                          </span>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => playSong(song, undefined, allSongs)}
-                        className="p-2 rounded-full bg-white/5 hover:bg-indigo-500 text-neutral-300 hover:text-white transition-colors ml-2 shrink-0"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                      </button>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
-        )}
-
-        {/* SECTION 6: ⚡ GLOBAL POP ICONS */}
-        {selectedSingerId === 'all' && (
-          <section className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-2">
-                <Disc className="w-5 h-5 text-indigo-400" />
-                <h3 className="text-xl md:text-2xl font-bold font-serif text-white">
-                  Global Pop Icons (The Weeknd, Taylor Swift, Ed Sheeran, Coldplay)
-                </h3>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {allSongs
-                .filter(
-                  (s) =>
-                    !s.artist.includes('Bieber') &&
-                    (s.artist.includes('Weeknd') ||
-                      s.artist.includes('Taylor') ||
-                      s.artist.includes('Sheeran') ||
-                      s.artist.includes('Dua') ||
-                      s.artist.includes('Malone') ||
-                      s.artist.includes('Coldplay'))
-                )
-                .map((song) => {
-                  const isCurrent = currentSong?.id === song.id;
-                  return (
-                    <div
-                      key={song.id}
-                      className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-emerald-500/30 transition-all group"
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-                          <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                          <button
-                            onClick={() => playSong(song, undefined, allSongs)}
-                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                          >
-                            {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                          </button>
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-amber-400' : 'text-neutral-100'}`}>
-                            {song.title}
-                          </h4>
-                          <p className="text-xs text-neutral-400 truncate">{song.artist}</p>
-                          <span className="text-[10px] text-neutral-500">
-                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                          </span>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => playSong(song, undefined, allSongs)}
-                        className="p-2 rounded-full bg-white/5 hover:bg-emerald-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                      </button>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
-        )}
-
-        {/* SECTION 7: 🎵 COMPLETE SONGS LIBRARY (ALL 386 SONGS WITH LIVE FILTER & INSTANT SEARCH) */}
-        {selectedSingerId === 'all' && (
-          <section className="glass-card rounded-3xl p-6 md:p-8 border border-white/10 space-y-6">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <section className="bg-[#1e1b19] rounded-xl p-6 sm:p-8 border border-[#554339]/40 space-y-6 shadow-2xl">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#554339]/40 pb-5">
               <div>
-                <div className="flex items-center gap-2 text-rose-400 text-xs uppercase font-bold tracking-widest mb-1">
-                  <Music className="w-4 h-4" />
-                  <span>Master Track Database</span>
+                <div className="flex items-center gap-2 text-[#ffb68c] font-mono-spec text-xs uppercase font-bold tracking-widest mb-1">
+                  <Music className="w-4 h-4 text-[#ecc15a]" />
+                  <span>MASTER VINYL TRACK DATABASE</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-extrabold font-serif text-white flex items-center gap-2">
+                <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-[#e9e1dd] flex items-center gap-2">
                   <span>Complete Songs Library</span>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 font-sans font-bold">
-                    {filteredLibrarySongs.length} of {allSongs.length} Tracks
+                  <span className="font-mono-spec text-xs px-2.5 py-0.5 rounded bg-[#d97736]/20 text-[#ffb68c] font-bold border border-[#d97736]/40">
+                    {filteredLibrarySongs.length} of {allSongs.length} Cuts
                   </span>
                 </h3>
-                <p className="text-xs text-neutral-400 mt-1">
-                  Instant search and filter across all {allSongs.length} high-fidelity studio songs.
+                <p className="font-editorial text-xs text-[#a38c80] mt-1">
+                  Precision search and catalog filters across all {allSongs.length} high-fidelity studio pressings.
                 </p>
               </div>
 
-              {/* Instant Filter & Search */}
+              {/* Instant Filter & Search (Recessed Metal Faceplate Style) */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <div className="relative min-w-[260px]">
-                  <Search className="w-4 h-4 text-rose-400 absolute left-3.5 top-3" />
+                <div className="relative min-w-[280px]">
+                  <Search className="w-4 h-4 text-[#a38c80] absolute left-3 top-2.5" />
                   <input
                     type="text"
-                    placeholder={`Search all ${allSongs.length} songs...`}
+                    placeholder={`Search all ${allSongs.length} songs or albums...`}
                     value={librarySearch}
                     onChange={(e) => setLibrarySearch(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 rounded-full bg-white/5 border border-white/15 focus:border-rose-400 text-xs text-white placeholder-neutral-500 outline-none transition-all"
+                    className="w-full pl-9 pr-4 py-2 rounded bg-[#110e0c] border border-[#554339]/60 focus:border-[#ecc15a]/80 font-editorial text-xs text-[#e9e1dd] placeholder:text-[#a38c80]/60 outline-none transition-all"
                   />
                   {librarySearch && (
                     <button
                       onClick={() => setLibrarySearch('')}
-                      className="absolute right-3 top-2.5 text-neutral-400 hover:text-white text-xs"
+                      className="absolute right-3 top-2 text-[#a38c80] hover:text-[#e9e1dd] text-xs"
                     >
                       ✕
                     </button>
@@ -1020,7 +1135,7 @@ export const HomePage: React.FC = () => {
                 <button
                   onClick={() => handlePlaySongList(filteredLibrarySongs, 0, false)}
                   disabled={filteredLibrarySongs.length === 0}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-rose-500 text-white font-bold text-xs shadow-md hover:bg-rose-400 transition-all disabled:opacity-40"
+                  className="flex items-center justify-center gap-1.5 px-4 py-2 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-bold uppercase tracking-wider shadow-md hover:brightness-110 transition-all disabled:opacity-40"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play Filtered</span>
@@ -1028,10 +1143,10 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {/* Category Filter Pills (Stitch Soft Badges) */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
               {[
-                { id: 'all', label: `All Tracks (${allSongs.length})` },
+                { id: 'all', label: `All Cuts (${allSongs.length})` },
                 { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },
                 { id: 'arijit', label: `❤️ Arijit Singh (${arijitSongs.length})` },
                 { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
@@ -1043,10 +1158,10 @@ export const HomePage: React.FC = () => {
                 <button
                   key={pill.id}
                   onClick={() => setLibraryFilter(pill.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                  className={`px-3 py-1 rounded text-xs whitespace-nowrap transition-all border ${
                     libraryFilter === pill.id
-                      ? 'bg-rose-500 text-white font-bold shadow-sm'
-                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                      ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c] shadow-sm'
+                      : 'bg-[#221f1d] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
                   }`}
                 >
                   {pill.label}
@@ -1054,55 +1169,49 @@ export const HomePage: React.FC = () => {
               ))}
             </div>
 
-            {/* Grid of Songs */}
+            {/* Grid of Songs (Stitch Editorial Record Back-Cover Format) */}
             {filteredLibrarySongs.length === 0 ? (
               <div className="text-center py-12 space-y-2">
-                <Music className="w-10 h-10 text-neutral-600 mx-auto" />
-                <p className="text-neutral-400 text-sm">No songs found matching "{librarySearch}"</p>
+                <Music className="w-10 h-10 text-[#554339] mx-auto" />
+                <p className="font-editorial text-sm text-[#a38c80]">No cuts found matching "{librarySearch}"</p>
                 <button
                   onClick={() => { setLibrarySearch(''); setLibraryFilter('all'); }}
-                  className="text-xs text-rose-400 hover:underline font-bold"
+                  className="font-mono-spec text-xs text-[#ffb68c] hover:underline font-bold"
                 >
-                  Reset search & filters
+                  Reset catalog search
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 max-h-[700px] overflow-y-auto pr-2 scrollbar-thin">
-                {filteredLibrarySongs.map((song) => {
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[700px] overflow-y-auto pr-1 scrollbar-thin">
+                {filteredLibrarySongs.map((song, i) => {
                   const isCurrent = currentSong?.id === song.id;
                   return (
                     <div
                       key={song.id}
-                      className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-rose-500/30 transition-all group"
+                      onClick={() => playSong(song, undefined, filteredLibrarySongs)}
+                      className="flex items-center justify-between p-2.5 rounded-lg bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                     >
                       <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 shadow-md">
-                          <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
-                          <button
-                            onClick={() => playSong(song, undefined, filteredLibrarySongs)}
-                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
-                          >
-                            {isCurrent && isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
-                          </button>
-                        </div>
-
+                        <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <img src={song.coverUrl} alt="" className="w-9 h-9 rounded object-cover flex-shrink-0" />
                         <div className="min-w-0 flex-1">
-                          <h4 className={`font-bold text-xs truncate ${isCurrent ? 'text-rose-400' : 'text-neutral-100 group-hover:text-rose-300'}`}>
+                          <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
                             {song.title}
                           </h4>
-                          <p className="text-[11px] text-neutral-400 truncate">{song.artist}</p>
-                          <span className="text-[10px] text-neutral-500">
-                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                          </span>
+                          <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.artist}</p>
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => playSong(song, undefined, filteredLibrarySongs)}
-                        className="p-1.5 rounded-full bg-white/5 hover:bg-rose-500 text-neutral-300 hover:text-white transition-colors ml-2 shrink-0"
-                      >
-                        <Play className="w-3 h-3 fill-current ml-0.5" />
-                      </button>
+                      <div className="flex items-center gap-1.5 ml-2">
+                        <span className="font-mono-spec text-[9px] text-[#a38c80]">
+                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                        </span>
+                        <button className="p-1 rounded-full bg-[#110e0c] text-[#ffb68c] group-hover:bg-[#d97736] group-hover:text-[#221f1d] transition-colors">
+                          <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
