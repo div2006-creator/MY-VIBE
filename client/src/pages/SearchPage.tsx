@@ -42,12 +42,12 @@ export const SearchPage: React.FC = () => {
 
   // Quick preset pills
   const presets = [
+    { label: '🌎 Justin Bieber', q: 'Justin Bieber' },
     { label: '❤️ Arijit Singh', q: 'Arijit Singh' },
     { label: '🔥 Dhanda Nyoliwala', q: 'Dhanda Nyoliwala' },
     { label: '🌾 Sidhu Moose Wala', q: 'Sidhu Moose Wala' },
     { label: '✨ Diljit Dosanjh', q: 'Diljit Dosanjh' },
     { label: '🔥 Karan Aujla', q: 'Karan Aujla' },
-    { label: '❤️ Arijit Singh', q: 'Arijit Singh' },
     { label: '🌧️ Anuv Jain', q: 'Anuv Jain' },
     { label: '⚡ The Weeknd', q: 'The Weeknd' },
     { label: '🎀 Taylor Swift', q: 'Taylor Swift' },

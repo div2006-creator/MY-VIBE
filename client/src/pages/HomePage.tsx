@@ -10,7 +10,8 @@ export const HomePage: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
   const [selectedSingerId, setSelectedSingerId] = useState<string>('all');
-  const [spotlightArtistId, setSpotlightArtistId] = useState<'arijit' | 'dhanda' | 'honey'>('arijit');
+  const [spotlightArtistId, setSpotlightArtistId] = useState<'bieber' | 'arijit' | 'dhanda' | 'honey'>('bieber');
+  const [showAllBieber, setShowAllBieber] = useState<boolean>(false);
   const [showAllArijit, setShowAllArijit] = useState<boolean>(false);
   const [showAllDhanda, setShowAllDhanda] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
@@ -51,12 +52,15 @@ export const HomePage: React.FC = () => {
   };
 
   // Major Discography Artists
+  const bieberArtist = artists.find((a) => a.name.includes('Bieber'));
   const arijitArtist = artists.find((a) => a.name.includes('Arijit'));
   const dhandaArtist = artists.find((a) => a.name.toLowerCase().includes('dhanda'));
   const honeySingh = artists.find((a) => a.name.includes('Honey Singh'));
 
-  let activeSpotlight: Artist | undefined = arijitArtist || artists[0];
-  if (spotlightArtistId === 'dhanda' && dhandaArtist) {
+  let activeSpotlight: Artist | undefined = bieberArtist || arijitArtist || artists[0];
+  if (spotlightArtistId === 'bieber' && bieberArtist) {
+    activeSpotlight = bieberArtist;
+  } else if (spotlightArtistId === 'dhanda' && dhandaArtist) {
     activeSpotlight = dhandaArtist;
   } else if (spotlightArtistId === 'honey' && honeySingh) {
     activeSpotlight = honeySingh;
@@ -77,7 +81,9 @@ export const HomePage: React.FC = () => {
       (s.album && s.album.toLowerCase().includes(librarySearch.toLowerCase()));
 
     let matchesFilter = true;
-    if (libraryFilter === 'arijit') {
+    if (libraryFilter === 'bieber') {
+      matchesFilter = s.artist.includes('Bieber');
+    } else if (libraryFilter === 'arijit') {
       matchesFilter = s.artist.includes('Arijit');
     } else if (libraryFilter === 'dhanda') {
       matchesFilter = s.artist.includes('Dhanda');
@@ -93,6 +99,9 @@ export const HomePage: React.FC = () => {
 
     return matchesSearch && matchesFilter;
   });
+
+  const bieberSongs = allSongs.filter((s) => s.artist.includes('Bieber'));
+  const bieberDisplayList = showAllBieber ? bieberSongs : bieberSongs.slice(0, 12);
 
   const arijitSongs = allSongs.filter((s) => s.artist.includes('Arijit'));
   const arijitDisplayList = showAllArijit ? arijitSongs : arijitSongs.slice(0, 12);
@@ -110,7 +119,7 @@ export const HomePage: React.FC = () => {
           <div className="absolute top-80 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
         </div>
 
-        {/* HERO SECTION: TITAN ARTIST SPOTLIGHT (ARIJIT SINGH, DHANDA NYOLIWALA, HONEY SINGH) */}
+        {/* HERO SECTION: TITAN ARTIST SPOTLIGHT (JUSTIN BIEBER, ARIJIT SINGH, DHANDA NYOLIWALA, HONEY SINGH) */}
         {activeSpotlight && (
           <section className="relative rounded-3xl overflow-hidden glass-card border border-rose-500/30 p-6 md:p-10 bg-gradient-to-r from-red-950/40 via-purple-950/30 to-black shadow-2xl">
             {/* Spotlight Switcher Tabs */}
@@ -119,6 +128,21 @@ export const HomePage: React.FC = () => {
                 <Flame className="w-3.5 h-3.5 text-amber-400" />
                 Featured Titans:
               </span>
+              {bieberArtist && (
+                <button
+                  onClick={() => setSpotlightArtistId('bieber')}
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    spotlightArtistId === 'bieber'
+                      ? 'bg-emerald-500 text-neutral-950 shadow-md'
+                      : 'bg-white/5 hover:bg-white/10 text-neutral-300'
+                  }`}
+                >
+                  <span>🌎 Justin Bieber</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/30 text-emerald-200">
+                    {bieberArtist.songCount || bieberSongs.length} Tracks
+                  </span>
+                </button>
+              )}
               {arijitArtist && (
                 <button
                   onClick={() => setSpotlightArtistId('arijit')}
@@ -180,7 +204,7 @@ export const HomePage: React.FC = () => {
                     className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-rose-400 shadow-[0_0_35px_rgba(244,63,94,0.45)] group-hover:scale-105 transition-transform bg-neutral-900"
                   />
                   <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-rose-500 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-lg whitespace-nowrap">
-                    {activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : '👑 King of Hits'}
+                    {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : '👑 King of Hits'}
                   </span>
                 </div>
 
@@ -195,7 +219,9 @@ export const HomePage: React.FC = () => {
                   </h1>
 
                   <p className="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">
-                    {activeSpotlight.bio || (activeSpotlight.name.includes('Arijit')
+                    {activeSpotlight.bio || (activeSpotlight.name.includes('Bieber')
+                      ? 'Grammy-winning global pop superstar with over 150 million records sold. Stream all 151 monumental anthems across Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, and more.'
+                      : activeSpotlight.name.includes('Arijit')
                       ? 'The undisputed voice of Indian romance. Stream 120 heartfelt anthems including Tum Hi Ho, Channa Mereya, Kesariya, Agar Tum Saath Ho, Apna Bana Le, Gerua, and Kalank.'
                       : activeSpotlight.name.includes('Dhanda')
                       ? 'The powerhouse behind Desi Drill & Haryanvi Hip Hop. Stream all 66 anthems including Russian Bandana, Up To U, Boom Shaka, Not Guilty, and Maruti.'
@@ -204,7 +230,7 @@ export const HomePage: React.FC = () => {
 
                   <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-semibold text-neutral-300">
                     <span className="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">
-                      {activeSpotlight.songCount || (activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.songs?.length)} Full Songs
+                      {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.songs?.length)} Full Songs
                     </span>
                     <span>•</span>
                     <span className="text-neutral-400">{activeSpotlight.genre}</span>
@@ -411,7 +437,106 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 1: ❤️ ARIJIT SINGH COMPLETE ROMANCE & SOUL DISCOGRAPHY (120 TRACKS) */}
+        {/* SECTION 1: 🌎 JUSTIN BIEBER COMPLETE GLOBAL DISCOGRAPHY (151 TRACKS) */}
+        {selectedSingerId === 'all' && bieberSongs.length > 0 && (
+          <section className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2.5">
+                <Disc className="w-6 h-6 text-emerald-400" />
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold font-serif text-white flex items-center gap-2">
+                    <span>Justin Bieber — Global Pop Sensation & Complete Discography</span>
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      {bieberSongs.length} Tracks
+                    </span>
+                  </h3>
+                  <p className="text-xs text-neutral-400 mt-0.5">
+                    Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, What Do You Mean? & 140+ More
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handlePlaySongList(bieberSongs, 0, false)}
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-neutral-950 font-bold text-xs hover:scale-105 transition-all shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Play All ({bieberSongs.length})</span>
+                </button>
+                <button
+                  onClick={() => handlePlaySongList(bieberSongs, 0, true)}
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all border border-white/15"
+                  title="Shuffle Bieber Tracks"
+                >
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setShowAllBieber(!showAllBieber)}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold border border-white/10 transition-colors"
+                >
+                  <span>{showAllBieber ? 'Show Less' : `View All ${bieberSongs.length}`}</span>
+                  {showAllBieber ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {bieberDisplayList.map((song) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    className="flex items-center justify-between p-3.5 rounded-2xl glass-card border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
+                        <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
+                        <button
+                          onClick={() => playSong(song, undefined, bieberSongs)}
+                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
+                        >
+                          {isCurrent && isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
+                        </button>
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-bold text-sm truncate ${isCurrent ? 'text-emerald-400' : 'text-neutral-100 group-hover:text-emerald-300'}`}>
+                          {song.title}
+                        </h4>
+                        <p className="text-xs text-neutral-400 truncate">{song.album || 'Single'}</p>
+                        <span className="text-[10px] text-neutral-500">
+                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                        </span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => playSong(song, undefined, bieberSongs)}
+                      className="p-2 rounded-full bg-white/5 hover:bg-emerald-500 text-neutral-300 hover:text-neutral-950 transition-colors ml-2 shrink-0"
+                    >
+                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            {!showAllBieber && bieberSongs.length > 12 && (
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setShowAllBieber(true)}
+                  className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all inline-flex items-center gap-2"
+                >
+                  <span>Show All {bieberSongs.length} Songs by Justin Bieber</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* SECTION 2: ❤️ ARIJIT SINGH COMPLETE ROMANCE & SOUL DISCOGRAPHY (120 TRACKS) */}
         {selectedSingerId === 'all' && arijitSongs.length > 0 && (
           <section className="space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
@@ -785,14 +910,14 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 6: 🌎 JUSTIN BIEBER & GLOBAL POP */}
+        {/* SECTION 6: ⚡ GLOBAL POP ICONS */}
         {selectedSingerId === 'all' && (
           <section className="space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <Disc className="w-5 h-5 text-emerald-400" />
+                <Disc className="w-5 h-5 text-indigo-400" />
                 <h3 className="text-xl md:text-2xl font-bold font-serif text-white">
-                  Justin Bieber & Global Icons (The Weeknd, Taylor Swift, Ed Sheeran, Coldplay)
+                  Global Pop Icons (The Weeknd, Taylor Swift, Ed Sheeran, Coldplay)
                 </h3>
               </div>
             </div>
@@ -801,13 +926,13 @@ export const HomePage: React.FC = () => {
               {allSongs
                 .filter(
                   (s) =>
-                    s.artist.includes('Bieber') ||
-                    s.artist.includes('Weeknd') ||
-                    s.artist.includes('Taylor') ||
-                    s.artist.includes('Sheeran') ||
-                    s.artist.includes('Dua') ||
-                    s.artist.includes('Malone') ||
-                    s.artist.includes('Coldplay')
+                    !s.artist.includes('Bieber') &&
+                    (s.artist.includes('Weeknd') ||
+                      s.artist.includes('Taylor') ||
+                      s.artist.includes('Sheeran') ||
+                      s.artist.includes('Dua') ||
+                      s.artist.includes('Malone') ||
+                      s.artist.includes('Coldplay'))
                 )
                 .map((song) => {
                   const isCurrent = currentSong?.id === song.id;
@@ -851,7 +976,7 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 7: 🎵 COMPLETE SONGS LIBRARY (ALL 237 SONGS WITH LIVE FILTER & INSTANT SEARCH) */}
+        {/* SECTION 7: 🎵 COMPLETE SONGS LIBRARY (ALL 386 SONGS WITH LIVE FILTER & INSTANT SEARCH) */}
         {selectedSingerId === 'all' && (
           <section className="glass-card rounded-3xl p-6 md:p-8 border border-white/10 space-y-6">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-5">
@@ -907,12 +1032,13 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
               {[
                 { id: 'all', label: `All Tracks (${allSongs.length})` },
+                { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },
                 { id: 'arijit', label: `❤️ Arijit Singh (${arijitSongs.length})` },
                 { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
                 { id: 'honey', label: `👑 Honey Singh (${honeySingh?.songCount || 16})` },
                 { id: 'punjabi', label: '🌾 Punjabi Kings' },
                 { id: 'bollywood', label: '🎬 Bollywood & Sufi' },
-                { id: 'pop', label: '🌎 Global Pop' },
+                { id: 'pop', label: '⚡ Other Global Pop' },
               ].map((pill) => (
                 <button
                   key={pill.id}
