@@ -48,31 +48,50 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/external', externalRoutes);
 
 // Serve frontend static build in production
-const possibleClientDistPaths = [
+const staticSearchPaths = [
+  path.resolve(process.cwd(), 'client/dist'),
+  path.resolve(process.cwd(), 'dist'),
   path.resolve(__dirname, '../../client/dist'),
   path.resolve(__dirname, '../client/dist'),
-  path.resolve(process.cwd(), 'client/dist'),
-  path.resolve(process.cwd(), 'dist')
+  process.cwd(),
 ];
 
-const clientDist = possibleClientDistPaths.find((p) => fs.existsSync(p));
+// Serve assets directory specifically
+app.use('/assets', express.static(path.resolve(process.cwd(), 'assets')));
+app.use('/assets', express.static(path.resolve(process.cwd(), 'client/dist/assets')));
+app.use('/assets', express.static(path.resolve(__dirname, '../../client/dist/assets')));
 
-if (clientDist) {
-  console.log(`📦 Serving frontend static build from: ${clientDist}`);
-  app.use(express.static(clientDist));
-
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) {
-      return next();
-    }
-    const indexPath = path.join(clientDist, 'index.html');
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      next();
-    }
-  });
+// Register static handlers for existing candidate directories
+for (const dir of staticSearchPaths) {
+  if (fs.existsSync(dir)) {
+    app.use(express.static(dir));
+  }
 }
+
+// SPA fallback for client-side routing
+app.get('*', (req, res, next) => {
+  // Never serve HTML for API or static assets
+  if (
+    req.path.startsWith('/api') ||
+    req.path.startsWith('/assets') ||
+    req.path.match(/\.(js|css|svg|png|jpg|jpeg|gif|ico|woff|woff2|json)$/i)
+  ) {
+    return next();
+  }
+
+  const indexCandidates = [
+    path.resolve(process.cwd(), 'client/dist/index.html'),
+    path.resolve(process.cwd(), 'index.html'),
+    path.resolve(__dirname, '../../client/dist/index.html'),
+  ];
+
+  const foundIndex = indexCandidates.find((p) => fs.existsSync(p));
+  if (foundIndex) {
+    res.sendFile(foundIndex);
+  } else {
+    next();
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`✨ VIBE API Server running on port ${PORT}`);
