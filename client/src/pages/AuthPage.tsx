@@ -32,7 +32,7 @@ export const AuthPage: React.FC = () => {
         navigate('/home');
       }, 400);
     } catch (err: any) {
-      setErrorMsg(err.message || 'Authentication error. Please check your ID and Password.');
+      setErrorMsg(err.message || 'Invalid ID or Password. Please try again.');
     } finally {
       setLoading(false);
     }

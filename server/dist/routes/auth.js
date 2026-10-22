@@ -11,7 +11,7 @@ export const MASTER_PASSWORD = 'Vibe@#77889';
 // POST /api/auth/register (Disabled for single-user system)
 router.post('/register', async (_req, res) => {
     return res.status(403).json({
-        message: 'Public registration is disabled. Please log in with the authorized master account credentials (ID: Vibe2006).',
+        message: 'Registration is not available. Access restricted.',
     });
 });
 // POST /api/auth/login - Strictly validates against single master ID and Password
@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
         const isPasswordValid = password === MASTER_PASSWORD;
         if (!isIdValid || !isPasswordValid) {
             return res.status(401).json({
-                message: 'Invalid ID or Password. Only the authorized platform credentials (ID: Vibe2006) are permitted.',
+                message: 'Invalid ID or Password. Please try again.',
             });
         }
         // Find or create the master user in database
