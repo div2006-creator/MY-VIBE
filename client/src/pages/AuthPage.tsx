@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogIn, Lock, KeyRound, ShieldCheck, Eye, EyeOff, Zap, CheckCircle2 } from 'lucide-react';
+import { LogIn, Lock, KeyRound, ShieldCheck, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const AuthPage: React.FC = () => {
@@ -30,18 +30,12 @@ export const AuthPage: React.FC = () => {
       setSuccessMsg('Authentication successful! Welcome to VIBE.');
       setTimeout(() => {
         navigate('/home');
-      }, 500);
+      }, 400);
     } catch (err: any) {
       setErrorMsg(err.message || 'Authentication error. Please check your ID and Password.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleFillCredentials = () => {
-    setLoginId('Vibe2006');
-    setPassword('Vibe@#77889');
-    setErrorMsg('');
   };
 
   return (
@@ -71,36 +65,8 @@ export const AuthPage: React.FC = () => {
               VIBE Access
             </h1>
             <p className="text-xs text-neutral-400 mt-1">
-              Single-User Master Portal. Enter your authorized credentials below.
+              Sign in to unlock your music timeline and memory journal.
             </p>
-          </div>
-        </div>
-
-        {/* Credentials Info Badge */}
-        <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs space-y-1.5">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] uppercase tracking-wider text-amber-300 font-bold flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-amber-400" />
-              Authorized Credentials:
-            </span>
-            <button
-              type="button"
-              onClick={handleFillCredentials}
-              className="text-[11px] font-bold text-amber-400 hover:text-amber-300 underline flex items-center gap-1"
-            >
-              <Zap className="w-3 h-3 fill-current" />
-              <span>Auto-Fill</span>
-            </button>
-          </div>
-          <div className="grid grid-cols-2 gap-2 text-[11px] font-mono bg-black/40 p-2 rounded-xl border border-white/5">
-            <div>
-              <span className="text-neutral-400 block text-[10px]">ID:</span>
-              <span className="text-amber-300 font-bold select-all">Vibe2006</span>
-            </div>
-            <div>
-              <span className="text-neutral-400 block text-[10px]">Password:</span>
-              <span className="text-amber-300 font-bold select-all">Vibe@#77889</span>
-            </div>
           </div>
         </div>
 
@@ -124,14 +90,15 @@ export const AuthPage: React.FC = () => {
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-neutral-300 flex items-center gap-1.5">
               <KeyRound className="w-3.5 h-3.5 text-amber-400" />
-              <span>Authorized ID</span>
+              <span>User ID</span>
             </label>
             <input
               type="text"
-              placeholder="Vibe2006"
+              placeholder="Enter your ID"
               value={loginId}
               onChange={(e) => setLoginId(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400 focus:bg-white/10 transition-all font-mono"
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-amber-400 focus:bg-white/10 transition-all"
+              autoComplete="username"
               required
             />
           </div>
@@ -144,10 +111,11 @@ export const AuthPage: React.FC = () => {
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Vibe@#77889"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-4 pr-11 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-rose-400 focus:bg-white/10 transition-all font-mono"
+                className="w-full pl-4 pr-11 py-3 rounded-xl bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 outline-none focus:border-rose-400 focus:bg-white/10 transition-all"
+                autoComplete="current-password"
                 required
               />
               <button
@@ -164,17 +132,17 @@ export const AuthPage: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 hover:from-amber-400 hover:to-rose-400 text-neutral-950 shadow-lg hover:shadow-amber-500/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 hover:from-amber-400 hover:to-rose-400 text-neutral-950 shadow-lg hover:shadow-amber-500/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             <LogIn className="w-4 h-4 fill-current" />
-            <span>{loading ? 'Verifying Credentials...' : 'Sign In'}</span>
+            <span>{loading ? 'Verifying...' : 'Sign In'}</span>
           </button>
         </form>
 
         <div className="pt-2 border-t border-white/10 text-center text-[11px] text-neutral-400 space-y-1">
           <p className="flex items-center justify-center gap-1 text-neutral-500">
             <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>Protected single-user platform access</span>
+            <span>Restricted platform access</span>
           </p>
         </div>
 
