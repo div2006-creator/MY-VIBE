@@ -63,6 +63,21 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Synchronized state references to prevent stale closure bugs in HTML5 audio listeners
+  const queueRef = useRef<Song[]>([]);
+  const currentIndexRef = useRef<number>(0);
+  const isShuffleRef = useRef<boolean>(false);
+  const isRepeatRef = useRef<'off' | 'all' | 'one'>('off');
+  const activeVibeRef = useRef<Vibe | null>(null);
+  const allSongsRef = useRef<Song[]>([]);
+  const handleSongEndedRef = useRef<() => void>(() => {});
+
+  useEffect(() => { queueRef.current = queue; }, [queue]);
+  useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
+  useEffect(() => { isShuffleRef.current = isShuffle; }, [isShuffle]);
+  useEffect(() => { isRepeatRef.current = isRepeat; }, [isRepeat]);
+  useEffect(() => { activeVibeRef.current = activeVibe; }, [activeVibe]);
+
   useEffect(() => {
     const audio = new Audio();
     audio.volume = volume;
@@ -75,17 +90,27 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setDuration(audio.duration || 0);
     });
 
+    // 🎵 AUTO PLAY NEXT SONG WHEN PREVIOUS SONG FINISHES
     audio.addEventListener('ended', () => {
-      handleSongEnded();
+      handleSongEndedRef.current();
+    });
+
+    // Auto-advance if audio fails or stream ends abruptly
+    audio.addEventListener('error', (err) => {
+      console.warn('Audio playback error, auto-advancing to next song...', err);
+      setTimeout(() => {
+        handleSongEndedRef.current();
+      }, 1200);
     });
 
     audioRef.current = audio;
 
-    // Pre-seed first song into standby needle dock (so floating player appears docked as in wireframe)
+    // Pre-seed first song into standby needle dock & cache all songs catalog
     fetch('/api/songs')
       .then((r) => r.json())
       .then((songs: Song[]) => {
         if (Array.isArray(songs) && songs.length > 0) {
+          allSongsRef.current = songs;
           setCurrentSong((prev) => {
             if (prev) return prev;
             const bieber = songs.find((s) => s.artist.includes('Bieber'));
@@ -105,25 +130,51 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   const handleSongEnded = () => {
-    if (isRepeat === 'one') {
+    const repeatMode = isRepeatRef.current;
+    if (repeatMode === 'one') {
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(console.warn);
       }
     } else {
       nextSong();
     }
   };
+  handleSongEndedRef.current = handleSongEnded;
 
   const playSong = (song: Song, vibe?: Vibe, playlist?: Song[]) => {
-    if (vibe) setActiveVibe(vibe);
+    if (vibe) {
+      setActiveVibe(vibe);
+      activeVibeRef.current = vibe;
+    }
+
     if (playlist && playlist.length > 0) {
       setQueue(playlist);
+      queueRef.current = playlist;
       const idx = playlist.findIndex((s) => s.id === song.id);
-      setCurrentIndex(idx !== -1 ? idx : 0);
-    } else if (!queue.some((s) => s.id === song.id)) {
-      setQueue((prev) => [song, ...prev]);
-      setCurrentIndex(0);
+      const chosenIdx = idx !== -1 ? idx : 0;
+      setCurrentIndex(chosenIdx);
+      currentIndexRef.current = chosenIdx;
+    } else {
+      // If no playlist provided, ensure queue has allSongs or continues smoothly
+      setQueue((prev) => {
+        let updatedQ: Song[];
+        if (prev.length === 0 && allSongsRef.current.length > 0) {
+          updatedQ = allSongsRef.current;
+        } else if (!prev.some((s) => s.id === song.id)) {
+          updatedQ = [song, ...prev];
+        } else {
+          updatedQ = prev;
+        }
+        queueRef.current = updatedQ;
+        const idx = updatedQ.findIndex((s) => s.id === song.id);
+        const chosenIdx = idx !== -1 ? idx : 0;
+        setCurrentIndex(chosenIdx);
+        currentIndexRef.current = chosenIdx;
+        return updatedQ;
+      });
     }
 
     setCurrentSong(song);
@@ -142,8 +193,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const playVibe = (vibe: Vibe, startSongIndex: number = 0) => {
     if (!vibe.songs || vibe.songs.length === 0) return;
     setActiveVibe(vibe);
+    activeVibeRef.current = vibe;
     setQueue(vibe.songs);
+    queueRef.current = vibe.songs;
     setCurrentIndex(startSongIndex);
+    currentIndexRef.current = startSongIndex;
     const targetSong = vibe.songs[startSongIndex];
     setCurrentSong(targetSong);
 
@@ -178,44 +232,57 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const nextSong = () => {
-    if (queue.length === 0) return;
-    let nextIdx = currentIndex + 1;
-    if (isShuffle) {
-      nextIdx = Math.floor(Math.random() * queue.length);
-    } else if (nextIdx >= queue.length) {
-      if (isRepeat === 'off') {
-        setIsPlaying(false);
-        return;
+    const currentQueue = queueRef.current;
+    if (currentQueue.length === 0) {
+      if (allSongsRef.current.length > 0) {
+        const nextS = allSongsRef.current[Math.floor(Math.random() * allSongsRef.current.length)];
+        playSong(nextS, undefined, allSongsRef.current);
       }
-      nextIdx = 0; // repeat all
+      return;
     }
+
+    let nextIdx = currentIndexRef.current + 1;
+    if (isShuffleRef.current) {
+      nextIdx = Math.floor(Math.random() * currentQueue.length);
+    } else if (nextIdx >= currentQueue.length) {
+      // Loop back to index 0 so music continues seamlessly
+      nextIdx = 0;
+    }
+
+    currentIndexRef.current = nextIdx;
     setCurrentIndex(nextIdx);
-    const nextS = queue[nextIdx];
+
+    const nextS = currentQueue[nextIdx];
     if (nextS) {
       setCurrentSong(nextS);
       if (audioRef.current) {
         audioRef.current.src = nextS.audioUrl;
         audioRef.current.play().then(() => {
           setIsPlaying(true);
-          logListenHistory(nextS.id, activeVibe?.id);
-        }).catch(console.warn);
+          logListenHistory(nextS.id, activeVibeRef.current?.id);
+        }).catch((err) => {
+          console.warn('Auto play next song error:', err);
+          setIsPlaying(false);
+        });
       }
     }
   };
 
   const prevSong = () => {
-    if (queue.length === 0) return;
-    let prevIdx = currentIndex - 1;
-    if (prevIdx < 0) prevIdx = queue.length - 1;
+    const currentQueue = queueRef.current;
+    if (currentQueue.length === 0) return;
+    let prevIdx = currentIndexRef.current - 1;
+    if (prevIdx < 0) prevIdx = currentQueue.length - 1;
+    currentIndexRef.current = prevIdx;
     setCurrentIndex(prevIdx);
-    const prevS = queue[prevIdx];
+    const prevS = currentQueue[prevIdx];
     if (prevS) {
       setCurrentSong(prevS);
       if (audioRef.current) {
         audioRef.current.src = prevS.audioUrl;
         audioRef.current.play().then(() => {
           setIsPlaying(true);
-          logListenHistory(prevS.id, activeVibe?.id);
+          logListenHistory(prevS.id, activeVibeRef.current?.id);
         }).catch(console.warn);
       }
     }
