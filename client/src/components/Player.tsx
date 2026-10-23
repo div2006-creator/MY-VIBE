@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Shuffle, Repeat, ListMusic, Sparkles, Mic2, Sliders, Moon } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Shuffle, Repeat, ListMusic, Sparkles, Mic2, Sliders, Moon, Heart } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import { QueueDrawer } from './QueueDrawer';
 import { LyricsModal } from './LyricsModal';
@@ -27,6 +27,8 @@ export const Player: React.FC = () => {
     openReliveModal,
     toggleLyrics,
     toggleEqualizer,
+    toggleLike,
+    isLiked,
   } = useAudio();
 
   const [isMuted, setIsMuted] = useState(false);
@@ -145,8 +147,17 @@ export const Player: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Playback Controls (Prev, Big Play/Pause, Next) */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          {/* Right: Like Button & Playback Controls */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {/* Heart Like Button */}
+            <button
+              onClick={() => toggleLike(currentSong.id)}
+              className="p-1.5 active:scale-90 transition-transform"
+              title={isLiked(currentSong.id) ? "Remove from Liked Songs" : "Like Song"}
+            >
+              <Heart className={`w-4 h-4 transition-all ${isLiked(currentSong.id) ? 'text-rose-500 fill-rose-500 scale-110' : 'text-[#a38c80] hover:text-rose-400'}`} />
+            </button>
+
             <button
               onClick={prevSong}
               className="p-1 text-[#dbc1b4] hover:text-[#ffb68c] active:scale-95 transition-all"
@@ -247,6 +258,15 @@ export const Player: React.FC = () => {
                 )}
               </div>
             </div>
+
+            {/* Desktop Like Song Button */}
+            <button
+              onClick={() => toggleLike(currentSong.id)}
+              className="p-2 rounded-full hover:bg-[#282422]/60 active:scale-90 transition-all flex-shrink-0 ml-1"
+              title={isLiked(currentSong.id) ? "Remove from Liked Songs" : "Save to Liked Songs"}
+            >
+              <Heart className={`w-4 h-4 transition-all ${isLiked(currentSong.id) ? 'text-rose-500 fill-rose-500 scale-110' : 'text-[#a38c80] hover:text-rose-400'}`} />
+            </button>
           </div>
 
           {/* Center: Controls & Precision Space Mono Timeline */}

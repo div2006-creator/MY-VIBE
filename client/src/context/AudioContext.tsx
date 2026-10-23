@@ -37,6 +37,9 @@ interface AudioContextType {
   cancelSleepTimer: () => void;
   removeFromQueue: (index: number) => void;
   clearQueue: () => void;
+  likedSongIds: string[];
+  toggleLike: (songId: string) => Promise<boolean>;
+  isLiked: (songId: string) => boolean;
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -56,6 +59,16 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isLyricsOpen, setIsLyricsOpen] = useState(false);
   const [isEqualizerOpen, setIsEqualizerOpen] = useState(false);
   const [eqPreset, setEqPresetState] = useState('Balanced Ambient');
+
+  // Liked Songs Management (Synchronized with localStorage & backend)
+  const [likedSongIds, setLikedSongIds] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('vibe_liked_song_ids');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const [sleepTimerMinutes, setSleepTimerMinutes] = useState<number | null>(null);
   const [remainingSleepSeconds, setRemainingSleepSeconds] = useState<number | null>(null);
@@ -373,6 +386,59 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       .catch(() => {});
   };
 
+  useEffect(() => {
+    // Initial fetch of liked songs to sync across devices/sessions
+    const token = localStorage.getItem('vibe_token');
+    fetch('/api/songs/liked', {
+      headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+    })
+      .then((res) => res.json())
+      .then((data: Song[]) => {
+        if (Array.isArray(data)) {
+          const ids = data.map((s) => s.id);
+          setLikedSongIds((prev) => {
+            const merged = Array.from(new Set([...prev, ...ids]));
+            try {
+              localStorage.setItem('vibe_liked_song_ids', JSON.stringify(merged));
+            } catch {}
+            return merged;
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const toggleLike = async (songId: string): Promise<boolean> => {
+    const isCurrentlyLiked = likedSongIds.includes(songId);
+    const updatedIds = isCurrentlyLiked
+      ? likedSongIds.filter((id) => id !== songId)
+      : [...likedSongIds, songId];
+
+    setLikedSongIds(updatedIds);
+    try {
+      localStorage.setItem('vibe_liked_song_ids', JSON.stringify(updatedIds));
+    } catch {}
+
+    window.dispatchEvent(new CustomEvent('vibe_liked_updated', { detail: { songId, liked: !isCurrentlyLiked } }));
+
+    const token = localStorage.getItem('vibe_token');
+    try {
+      const res = await fetch(`/api/songs/${songId}/like`, {
+        method: 'POST',
+        headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+      });
+      const data = await res.json();
+      return !!data.liked;
+    } catch (err) {
+      console.warn('Like toggle sync error:', err);
+      return !isCurrentlyLiked;
+    }
+  };
+
+  const isLiked = (songId: string): boolean => {
+    return likedSongIds.includes(songId);
+  };
+
   return (
     <AudioContext.Provider
       value={{
@@ -410,6 +476,9 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         cancelSleepTimer,
         removeFromQueue,
         clearQueue,
+        likedSongIds,
+        toggleLike,
+        isLiked,
       }}
     >
       {children}

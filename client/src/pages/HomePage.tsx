@@ -5,7 +5,7 @@ import type { Artist, Song } from '../types';
 import { useAudio } from '../context/AudioContext';
 
 export const HomePage: React.FC = () => {
-  const { playSong, currentSong } = useAudio();
+  const { playSong, currentSong, toggleLike, isLiked } = useAudio();
 
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
@@ -448,6 +448,16 @@ export const HomePage: React.FC = () => {
                       </div>
 
                       <div className="flex items-center gap-2 ml-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleLike(song.id);
+                          }}
+                          className="p-1 rounded-full hover:bg-[#383431] active:scale-90 transition-all"
+                          title={isLiked(song.id) ? "Remove from Liked" : "Save to Liked"}
+                        >
+                          <Heart className={`w-3.5 h-3.5 transition-all ${isLiked(song.id) ? 'text-rose-500 fill-rose-500 scale-110' : 'text-[#a38c80] hover:text-rose-400'}`} />
+                        </button>
                         <span className="font-mono-spec text-[9px] text-[#a38c80]">
                           {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
                         </span>
@@ -1560,7 +1570,17 @@ export const HomePage: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1.5 ml-2">
+                      <div className="flex items-center gap-2 ml-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleLike(song.id);
+                          }}
+                          className="p-1.5 rounded-full hover:bg-[#383431] active:scale-90 transition-all opacity-80 group-hover:opacity-100"
+                          title={isLiked(song.id) ? "Remove from Liked" : "Save to Liked"}
+                        >
+                          <Heart className={`w-3.5 h-3.5 transition-all ${isLiked(song.id) ? 'text-rose-500 fill-rose-500 scale-110' : 'text-[#a38c80] hover:text-rose-400'}`} />
+                        </button>
                         <span className="font-mono-spec text-[9px] text-[#a38c80]">
                           {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
                         </span>
