@@ -15,7 +15,6 @@ export const HomePage: React.FC = () => {
   const [showAllArijit, setShowAllArijit] = useState<boolean>(false);
   const [showAllDhanda, setShowAllDhanda] = useState<boolean>(false);
   const [showAllMasoom, setShowAllMasoom] = useState<boolean>(false);
-  const [showAllHaryanvi, setShowAllHaryanvi] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
 
@@ -95,14 +94,8 @@ export const HomePage: React.FC = () => {
       matchesFilter = (s.genre?.includes('Haryanvi') ?? false) ||
         s.artist.toLowerCase().includes('masoom') ||
         s.artist.toLowerCase().includes('dhanda') ||
-        s.artist.toLowerCase().includes('gulzaar') ||
-        s.artist.toLowerCase().includes('khasa') ||
         s.artist.toLowerCase().includes('renuka') ||
-        s.artist.toLowerCase().includes('sapna') ||
-        s.artist.toLowerCase().includes('sumit') ||
-        s.artist.toLowerCase().includes('raju') ||
-        s.artist.toLowerCase().includes('kd') ||
-        s.artist.toLowerCase().includes('amit saini');
+        s.title.toLowerCase().includes('52 gaj');
     } else if (libraryFilter === 'bieber') {
       matchesFilter = s.artist.includes('Bieber');
     } else if (libraryFilter === 'arijit') {
@@ -136,20 +129,14 @@ export const HomePage: React.FC = () => {
   const masoomSongs = allSongs.filter((s) => s.artist.toLowerCase().includes('masoom'));
   const masoomDisplayList = showAllMasoom ? masoomSongs : masoomSongs.slice(0, 12);
 
+  const renukaSong = allSongs.find((s) => s.artist.toLowerCase().includes('renuka') || s.title.toLowerCase().includes('52 gaj'));
+
   const haryanviSongs = allSongs.filter((s) =>
     (s.genre?.includes('Haryanvi') ?? false) ||
     s.artist.toLowerCase().includes('masoom') ||
     s.artist.toLowerCase().includes('dhanda') ||
-    s.artist.toLowerCase().includes('gulzaar') ||
-    s.artist.toLowerCase().includes('khasa') ||
-    s.artist.toLowerCase().includes('renuka') ||
-    s.artist.toLowerCase().includes('sapna') ||
-    s.artist.toLowerCase().includes('sumit') ||
-    s.artist.toLowerCase().includes('raju') ||
-    s.artist.toLowerCase().includes('kd') ||
-    s.artist.toLowerCase().includes('amit saini')
+    s.artist.toLowerCase().includes('renuka')
   );
-  const haryanviDisplayList = showAllHaryanvi ? haryanviSongs : haryanviSongs.slice(0, 16);
 
   // Sync Recent Played (4 items matching wireframe layout)
   useEffect(() => {
@@ -198,11 +185,11 @@ export const HomePage: React.FC = () => {
   // Mobile Wireframe Playlists (6 Elevated Square Cards with Underneath Depth Shadows)
   const mobilePlaylists = [
     {
-      id: 'pl-haryanvi-top',
-      title: 'Haryanvi Superhits',
-      badge: 'HARYANVI',
-      cover: haryanviSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80',
-      songs: haryanviSongs,
+      id: 'pl-52gaj',
+      title: '52 Gaj Ka Daman',
+      badge: 'RENUKA',
+      cover: renukaSong?.coverUrl || 'https://c.saavncdn.com/407/52-Gaj-Ka-Daman-Haryanvi-2020-20210625170012-500x500.jpg',
+      songs: renukaSong ? [renukaSong] : [],
     },
     {
       id: 'pl-masoom',
@@ -243,11 +230,11 @@ export const HomePage: React.FC = () => {
 
   // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
   const mobileCategories = [
-    { id: 'haryanvi', label: 'Haryanvi', sub: `${haryanviSongs.length} Hits` },
     { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
     { id: 'masoom', label: 'Masoom', sub: `${masoomSongs.length} Cuts` },
     { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
     { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
+    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
     { id: 'all', label: 'All Cuts', sub: `${allSongs.length} Tracks` },
   ];
 
@@ -259,19 +246,7 @@ export const HomePage: React.FC = () => {
       (s.album && s.album.toLowerCase().includes(mobileSearch.toLowerCase()));
 
     let matchesCat = true;
-    if (mobileCategory === 'haryanvi') {
-      matchesCat = (s.genre?.includes('Haryanvi') ?? false) ||
-        s.artist.toLowerCase().includes('masoom') ||
-        s.artist.toLowerCase().includes('dhanda') ||
-        s.artist.toLowerCase().includes('gulzaar') ||
-        s.artist.toLowerCase().includes('khasa') ||
-        s.artist.toLowerCase().includes('renuka') ||
-        s.artist.toLowerCase().includes('sapna') ||
-        s.artist.toLowerCase().includes('sumit') ||
-        s.artist.toLowerCase().includes('raju') ||
-        s.artist.toLowerCase().includes('kd') ||
-        s.artist.toLowerCase().includes('amit saini');
-    } else if (mobileCategory === 'pop') {
+    if (mobileCategory === 'pop') {
       matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
     } else if (mobileCategory === 'masoom') {
       matchesCat = s.artist.toLowerCase().includes('masoom');
@@ -1593,90 +1568,48 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 5: 🌾 HARYANVI SUPERHITS & BLOCKBUSTER ANTHEMS */}
-        {selectedSingerId === 'all' && haryanviSongs.length > 0 && (
-          <section className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
-              <div className="flex items-center gap-2.5">
-                <Flame className="w-6 h-6 text-[#d97736]" />
+        {/* SECTION 5: 👑 RENUKA PANWAR — 52 GAJ KA DAMAN (ALL-TIME HARYANVI RECORD) */}
+        {selectedSingerId === 'all' && renukaSong && (
+          <section className="bg-gradient-to-r from-[#2a1708] via-[#1e1b19] to-[#161311] rounded-2xl p-6 sm:p-7 border border-[#ecc15a]/40 shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#ecc15a]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+                <div className="relative w-28 h-28 sm:w-24 sm:h-24 rounded-xl overflow-hidden shadow-2xl border-2 border-[#ecc15a]/60 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                  <img
+                    src={renukaSong.coverUrl}
+                    alt="52 Gaj Ka Daman"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20" />
+                </div>
                 <div>
-                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
-                    <span>Haryanvi Superhits & Monumental Anthems</span>
-                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
-                      {haryanviSongs.length} Tracks
+                  <div className="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#ecc15a]/20 text-[#ecc15a] font-mono-spec text-[10px] uppercase font-bold tracking-wider border border-[#ecc15a]/40">
+                      🏆 All-Time Haryanvi Anthem
                     </span>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80]">
+                      3+ Billion Streams
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors">
+                    {renukaSong.title}
                   </h3>
-                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
-                    Gulzaar Chhaniwala, Khasa Aala Chahar, Renuka Panwar, Sapna Choudhary, Raju Punjabi, Sumit Goswami, KD, Amit Saini & More
+                  <p className="font-editorial text-xs sm:text-sm text-[#dbc1b4] mt-1 max-w-xl">
+                    By <span className="font-bold text-[#ecc15a]">{renukaSong.artist}</span> • The historic record-shattering anthem of Indian music that took Haryanvi folk pop to global charts.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <button
-                  onClick={() => handlePlaySongList(haryanviSongs, 0, false)}
-                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
+                  onClick={() => playSong(renukaSong)}
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-extrabold uppercase tracking-wider shadow-[0_0_20px_rgba(217,119,54,0.4)] hover:brightness-110 active:scale-95 transition-all"
                 >
-                  <Play className="w-3.5 h-3.5 fill-current" />
-                  <span>Play All ({haryanviSongs.length})</span>
-                </button>
-                <button
-                  onClick={() => handlePlaySongList(haryanviSongs, 0, true)}
-                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
-                  title="Shuffle Haryanvi Tracks"
-                >
-                  <Shuffle className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setShowAllHaryanvi(!showAllHaryanvi)}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
-                >
-                  <span>{showAllHaryanvi ? 'Show Less' : `View All ${haryanviSongs.length}`}</span>
-                  {showAllHaryanvi ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  <Play className="w-4 h-4 fill-current" />
+                  <span>Play 52 Gaj Ka Daman</span>
                 </button>
               </div>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
-              {haryanviDisplayList.map((song, i) => {
-                const isCurrent = currentSong?.id === song.id;
-                return (
-                  <div
-                    key={song.id}
-                    onClick={() => playSong(song, undefined, haryanviSongs)}
-                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
-                      <div className="min-w-0 flex-1">
-                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
-                          {song.title}
-                        </h4>
-                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.artist}</p>
-                      </div>
-                    </div>
-                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
-                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-
-            {!showAllHaryanvi && haryanviSongs.length > 16 && (
-              <div className="text-center pt-2">
-                <button
-                  onClick={() => setShowAllHaryanvi(true)}
-                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
-                >
-                  <span>Show All {haryanviSongs.length} Haryanvi Anthems</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            )}
           </section>
         )}
 
@@ -1786,7 +1719,7 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
               {[
                 { id: 'all', label: `All Cuts (${allSongs.length})` },
-                { id: 'haryanvi', label: `🌾 All Haryanvi (${haryanviSongs.length})` },
+                { id: 'haryanvi', label: `🌾 52 Gaj & Haryanvi (${haryanviSongs.length})` },
                 { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
                 { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
                 { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },

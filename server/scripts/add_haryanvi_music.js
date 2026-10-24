@@ -131,6 +131,7 @@ async function getSongDetailsBatch(pids) {
 
     // Pick a primary artist name
     let primaryArtist = cleanHtml(song.primary_artists || song.singers || 'Haryanvi Hits');
+    // If comma-separated, split and clean
     if (primaryArtist.includes(',')) {
       primaryArtist = primaryArtist.split(',')[0].trim();
     }
@@ -145,7 +146,8 @@ async function getSongDetailsBatch(pids) {
       coverUrl: (song.image || '').replace('150x150', '500x500'),
       audioUrl: fullAudio,
       year: Number(song.year) || 2024,
-      genre: 'Haryanvi Folk & Desi Pop',
+      genre: 'Haryanvi / Desi Folk',
+      language: song.language,
     });
   }
   return results;
@@ -169,7 +171,7 @@ async function main() {
 
   console.log(`\n🎵 Successfully retrieved & decrypted ${allSongDetails.length} songs.`);
 
-  // Filter out any songs already in database
+  // Filter out any songs that are not Haryanvi or already in database
   const existingSongs = await prisma.song.findMany({
     select: { title: true, audioUrl: true, artist: { select: { name: true } } }
   });
@@ -205,7 +207,8 @@ async function main() {
           name,
           bio: `${name} — Celebrated Haryanvi music powerhouse with monumental desi anthems and high-energy folk rhythms.`,
           avatarUrl: avatarUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80',
-          genre: 'Haryanvi Folk & Desi Pop',
+          genre: 'Haryanvi / Desi Folk',
+          songCount: 0,
         },
       });
       console.log(`   + Created new Artist: "${name}"`);
@@ -221,8 +224,8 @@ async function main() {
         data: {
           title,
           artistId,
-          releaseYear: 2024,
           coverUrl: coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80',
+          genre: 'Haryanvi / Desi Folk',
         },
       });
     }
@@ -243,10 +246,16 @@ async function main() {
           durationSec: track.durationSec,
           audioUrl: track.audioUrl,
           coverUrl: track.coverUrl,
-          genre: 'Haryanvi Folk & Desi Pop',
+          genre: 'Haryanvi / Desi Folk',
           artistId: artist.id,
           albumId: album.id,
         },
+      });
+
+      // Update song count
+      await prisma.artist.update({
+        where: { id: artist.id },
+        data: { songCount: { increment: 1 } },
       });
 
       verifiedSongsToAdd.push({
@@ -257,7 +266,7 @@ async function main() {
         duration: track.durationSec,
         audio_url: track.audioUrl,
         cover_url: track.coverUrl,
-        genre: 'Haryanvi Folk & Desi Pop',
+        genre: 'Haryanvi / Desi Folk',
         verified: true,
       });
 
@@ -296,34 +305,28 @@ async function main() {
           { artist: { name: { contains: 'Gulzaar' } } },
           { artist: { name: { contains: 'Khasa' } } },
           { artist: { name: { contains: 'Renuka' } } },
-          { artist: { name: { contains: 'Sapna' } } },
-          { artist: { name: { contains: 'Raju' } } },
-          { artist: { name: { contains: 'Sumit' } } },
         ]
       },
       take: 40,
     });
 
     if (allHaryanvi.length > 0) {
-      const vibe = await prisma.vibe.create({
+      const vibe = await prisma.playlist.create({
         data: {
-          title: 'Haryanvi Superhits & Desi Anthems',
-          date: '2026-10-24',
-          location: 'Haryana, India',
-          mood: 'Energetic & Desi Swagger',
-          story: 'The monumental collection of blockbuster Haryanvi anthems, desi drill, and folk swagger featuring Gulzaar Chhaniwala, Masoom Sharma, Dhanda Nyoliwala, Khasa Aala Chahar, Renuka Panwar, Raju Punjabi, Sapna Choudhary & more.',
+          name: 'Haryanvi Superhits & Desi Anthems',
+          description: 'The monumental collection of blockbuster Haryanvi anthems, desi drill, and folk swagger featuring Gulzaar Chhaniwala, Masoom Sharma, Dhanda Nyoliwala, Khasa Aala Chahar, Renuka Panwar & more.',
           coverUrl: allHaryanvi[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80',
           userId: adminUser.id,
           isPublic: true,
-          vibeSongs: {
+          songs: {
             create: allHaryanvi.map((s, idx) => ({
               songId: s.id,
-              orderIndex: idx,
+              position: idx,
             })),
           },
         },
       });
-      console.log(`🔥 Created Signature Vibe: "${vibe.title}" with ${allHaryanvi.length} tracks!`);
+      console.log(`🔥 Created Signature Vibe: "${vibe.name}" with ${allHaryanvi.length} tracks!`);
     }
   }
 
