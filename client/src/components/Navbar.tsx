@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Disc, Compass, Clock, Heart, Search, PlusCircle, LogIn, LogOut, Menu, X, Mic2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Disc, Clock, Heart, Search, PlusCircle, LogIn, LogOut, Menu, X, Mic2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -12,7 +12,6 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { path: '/home', label: 'Mood Sanctuary', icon: Disc },
     { path: '/artists', label: 'Titans & Singers', icon: Mic2 },
-    { path: '/explore', label: 'Crate Explorer', icon: Compass },
     { path: '/my-vibes', label: 'My Vibes', icon: Clock },
     { path: '/liked-songs', label: 'Liked Pressings', icon: Heart },
   ];
