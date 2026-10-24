@@ -15,6 +15,7 @@ export const HomePage: React.FC = () => {
   const [showAllArijit, setShowAllArijit] = useState<boolean>(false);
   const [showAllDhanda, setShowAllDhanda] = useState<boolean>(false);
   const [showAllMasoom, setShowAllMasoom] = useState<boolean>(false);
+  const [showAllHaryanvi, setShowAllHaryanvi] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
 
@@ -90,7 +91,19 @@ export const HomePage: React.FC = () => {
       (s.album && s.album.toLowerCase().includes(librarySearch.toLowerCase()));
 
     let matchesFilter = true;
-    if (libraryFilter === 'bieber') {
+    if (libraryFilter === 'haryanvi') {
+      matchesFilter = (s.genre?.includes('Haryanvi') ?? false) ||
+        s.artist.toLowerCase().includes('masoom') ||
+        s.artist.toLowerCase().includes('dhanda') ||
+        s.artist.toLowerCase().includes('gulzaar') ||
+        s.artist.toLowerCase().includes('khasa') ||
+        s.artist.toLowerCase().includes('renuka') ||
+        s.artist.toLowerCase().includes('sapna') ||
+        s.artist.toLowerCase().includes('sumit') ||
+        s.artist.toLowerCase().includes('raju') ||
+        s.artist.toLowerCase().includes('kd') ||
+        s.artist.toLowerCase().includes('amit saini');
+    } else if (libraryFilter === 'bieber') {
       matchesFilter = s.artist.includes('Bieber');
     } else if (libraryFilter === 'arijit') {
       matchesFilter = s.artist.includes('Arijit');
@@ -122,6 +135,21 @@ export const HomePage: React.FC = () => {
 
   const masoomSongs = allSongs.filter((s) => s.artist.toLowerCase().includes('masoom'));
   const masoomDisplayList = showAllMasoom ? masoomSongs : masoomSongs.slice(0, 12);
+
+  const haryanviSongs = allSongs.filter((s) =>
+    (s.genre?.includes('Haryanvi') ?? false) ||
+    s.artist.toLowerCase().includes('masoom') ||
+    s.artist.toLowerCase().includes('dhanda') ||
+    s.artist.toLowerCase().includes('gulzaar') ||
+    s.artist.toLowerCase().includes('khasa') ||
+    s.artist.toLowerCase().includes('renuka') ||
+    s.artist.toLowerCase().includes('sapna') ||
+    s.artist.toLowerCase().includes('sumit') ||
+    s.artist.toLowerCase().includes('raju') ||
+    s.artist.toLowerCase().includes('kd') ||
+    s.artist.toLowerCase().includes('amit saini')
+  );
+  const haryanviDisplayList = showAllHaryanvi ? haryanviSongs : haryanviSongs.slice(0, 16);
 
   // Sync Recent Played (4 items matching wireframe layout)
   useEffect(() => {
@@ -167,11 +195,18 @@ export const HomePage: React.FC = () => {
     }
   }, [currentSong, allSongs]);
 
-  // Mobile Wireframe Playlists (5 Elevated Square Cards with Underneath Depth Shadows)
+  // Mobile Wireframe Playlists (6 Elevated Square Cards with Underneath Depth Shadows)
   const mobilePlaylists = [
     {
+      id: 'pl-haryanvi-top',
+      title: 'Haryanvi Superhits',
+      badge: 'HARYANVI',
+      cover: haryanviSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80',
+      songs: haryanviSongs,
+    },
+    {
       id: 'pl-masoom',
-      title: 'Haryanvi Anthems',
+      title: 'Masoom Sharma Anthems',
       badge: 'MASOOM',
       cover: masoomSongs[0]?.coverUrl || 'https://c.saavncdn.com/978/Bahu-Kale-Ki-Haryanvi-2018-20230206124545-500x500.jpg',
       songs: masoomSongs.length > 0 ? masoomSongs : allSongs.filter((s) => s.artist.toLowerCase().includes('masoom')),
@@ -208,11 +243,11 @@ export const HomePage: React.FC = () => {
 
   // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
   const mobileCategories = [
+    { id: 'haryanvi', label: 'Haryanvi', sub: `${haryanviSongs.length} Hits` },
     { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
     { id: 'masoom', label: 'Masoom', sub: `${masoomSongs.length} Cuts` },
     { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
     { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
-    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
     { id: 'all', label: 'All Cuts', sub: `${allSongs.length} Tracks` },
   ];
 
@@ -224,7 +259,19 @@ export const HomePage: React.FC = () => {
       (s.album && s.album.toLowerCase().includes(mobileSearch.toLowerCase()));
 
     let matchesCat = true;
-    if (mobileCategory === 'pop') {
+    if (mobileCategory === 'haryanvi') {
+      matchesCat = (s.genre?.includes('Haryanvi') ?? false) ||
+        s.artist.toLowerCase().includes('masoom') ||
+        s.artist.toLowerCase().includes('dhanda') ||
+        s.artist.toLowerCase().includes('gulzaar') ||
+        s.artist.toLowerCase().includes('khasa') ||
+        s.artist.toLowerCase().includes('renuka') ||
+        s.artist.toLowerCase().includes('sapna') ||
+        s.artist.toLowerCase().includes('sumit') ||
+        s.artist.toLowerCase().includes('raju') ||
+        s.artist.toLowerCase().includes('kd') ||
+        s.artist.toLowerCase().includes('amit saini');
+    } else if (mobileCategory === 'pop') {
       matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
     } else if (mobileCategory === 'masoom') {
       matchesCat = s.artist.toLowerCase().includes('masoom');
@@ -1546,7 +1593,94 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 5: 👑 YO YO HONEY SINGH HITS */}
+        {/* SECTION 5: 🌾 HARYANVI SUPERHITS & BLOCKBUSTER ANTHEMS */}
+        {selectedSingerId === 'all' && haryanviSongs.length > 0 && (
+          <section className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
+              <div className="flex items-center gap-2.5">
+                <Flame className="w-6 h-6 text-[#d97736]" />
+                <div>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
+                    <span>Haryanvi Superhits & Monumental Anthems</span>
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
+                      {haryanviSongs.length} Tracks
+                    </span>
+                  </h3>
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
+                    Gulzaar Chhaniwala, Khasa Aala Chahar, Renuka Panwar, Sapna Choudhary, Raju Punjabi, Sumit Goswami, KD, Amit Saini & More
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handlePlaySongList(haryanviSongs, 0, false)}
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Play All ({haryanviSongs.length})</span>
+                </button>
+                <button
+                  onClick={() => handlePlaySongList(haryanviSongs, 0, true)}
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
+                  title="Shuffle Haryanvi Tracks"
+                >
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setShowAllHaryanvi(!showAllHaryanvi)}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
+                >
+                  <span>{showAllHaryanvi ? 'Show Less' : `View All ${haryanviSongs.length}`}</span>
+                  {showAllHaryanvi ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {haryanviDisplayList.map((song, i) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    onClick={() => playSong(song, undefined, haryanviSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                          {song.title}
+                        </h4>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.artist}</p>
+                      </div>
+                    </div>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {!showAllHaryanvi && haryanviSongs.length > 16 && (
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setShowAllHaryanvi(true)}
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
+                >
+                  <span>Show All {haryanviSongs.length} Haryanvi Anthems</span>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* SECTION 6: 👑 YO YO HONEY SINGH HITS */}
         {selectedSingerId === 'all' && honeySingh && (
           <section className="space-y-4">
             <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3">
@@ -1596,7 +1730,7 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 6: 🎵 COMPLETE SONGS LIBRARY (ALL CUTS WITH STITCH EDITORIAL TRACK INDEX) */}
+        {/* SECTION 7: 🎵 COMPLETE SONGS LIBRARY (ALL CUTS WITH STITCH EDITORIAL TRACK INDEX) */}
         {selectedSingerId === 'all' && (
           <section className="bg-[#1e1b19] rounded-xl p-6 sm:p-8 border border-[#554339]/40 space-y-6 shadow-2xl">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#554339]/40 pb-5">
@@ -1652,10 +1786,11 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
               {[
                 { id: 'all', label: `All Cuts (${allSongs.length})` },
+                { id: 'haryanvi', label: `🌾 All Haryanvi (${haryanviSongs.length})` },
+                { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
+                { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
                 { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },
                 { id: 'arijit', label: `❤️ Arijit Singh (${arijitSongs.length})` },
-                { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
-                { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
                 { id: 'honey', label: `👑 Honey Singh (${honeySingh?.songCount || 16})` },
                 { id: 'punjabi', label: '🌾 Punjabi Kings' },
                 { id: 'bollywood', label: '🎬 Bollywood & Sufi' },

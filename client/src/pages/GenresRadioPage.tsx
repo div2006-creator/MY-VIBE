@@ -17,14 +17,14 @@ export const GenresRadioPage: React.FC = () => {
 
   const radioStations: RadioStation[] = [
     {
-      id: 'haryanvi-drill',
-      name: 'Haryanvi Drill & Desi Hip Hop Radio',
-      mood: '🔥 Heavy 808s, Raw Drill & Street Anthems',
-      description: 'Raw basslines, unapologetic street flow, and heavy drill rhythms by Dhanda Nyoliwala and the desi underground.',
-      coverUrl: allSongs.find((s) => s.artist.includes('Dhanda'))?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+      id: 'haryanvi-hits',
+      name: 'Haryanvi Superhits & Desi Folk Radio',
+      mood: '🌾 Raw Desi Beats, High-Octane Swagger & Folk Anthems',
+      description: 'Blockbuster rural rhythms, infectious folk melodies, and heavy desi basslines by Gulzaar Chhaniwala, Masoom Sharma, Dhanda Nyoliwala, Renuka Panwar, and Khasa Aala Chahar.',
+      coverUrl: allSongs.find((s) => (s.genre?.includes('Haryanvi') ?? false) || s.artist.toLowerCase().includes('masoom') || s.artist.toLowerCase().includes('gulzaar'))?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
       gradient: 'from-amber-600/40 via-red-600/30 to-black',
-      tag: 'Haryanvi Drill',
-      songs: allSongs.filter((s) => s.genre?.includes('Haryanvi') || s.genre?.includes('Drill') || s.artist.includes('Dhanda')),
+      tag: 'Haryanvi Superhits',
+      songs: allSongs.filter((s) => (s.genre?.includes('Haryanvi') ?? false) || (s.genre?.includes('Drill') ?? false) || s.artist.toLowerCase().includes('dhanda') || s.artist.toLowerCase().includes('masoom') || s.artist.toLowerCase().includes('gulzaar') || s.artist.toLowerCase().includes('khasa') || s.artist.toLowerCase().includes('renuka') || s.artist.toLowerCase().includes('sapna')),
     },
     {
       id: 'punjabi-heat',
