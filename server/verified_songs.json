@@ -3455,5 +3455,1975 @@
     "audioUrl": "https://aac.saavncdn.com/549/4a9707697dbe982dfb0a658475c0ad58_320.mp4",
     "durationSec": 215,
     "genre": "Global Pop & R&B"
+  },
+  {
+    "title": "Yaari",
+    "artist": "Masoom Sharma",
+    "album": "Yaari",
+    "durationSec": 170,
+    "coverUrl": "https://c.saavncdn.com/504/Yaari-Hindi-2025-20250731193932-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/504/ac392496bfe30aad00437a62939fbb44_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Sharp Shooter (feat. Ruba Khan)",
+    "artist": "Masoom Sharma",
+    "album": "Sharp Shooter (feat. Ruba Khan)",
+    "durationSec": 176,
+    "coverUrl": "https://c.saavncdn.com/906/Sharp-Shooter-feat-Ruba-Khan-Haryanvi-2024-20260714192012-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/906/b38bbb2d0164d20e66baa99652baaa34_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Raat Ke Shikari",
+    "artist": "Masoom Sharma",
+    "album": "Raat Ke Shikari",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/982/Raat-Ke-Shikari-Haryanvi-2025-20250508155806-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/982/e3ea56f52417c1dc4d3165088f1ab64c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Lofar",
+    "artist": "Masoom Sharma",
+    "album": "Lofar",
+    "durationSec": 129,
+    "coverUrl": "https://c.saavncdn.com/820/Lofar-Unknown-2024-20251009050343-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/820/f25e948b4fa8a3a90d5a29c90574c9ef_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Teri Ramjhol Bole Gi (feat. Kay D)",
+    "artist": "Masoom Sharma",
+    "album": "Teri Ramjhol Bole Gi (feat. Kay D)",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/882/Teri-Ramjhol-Bole-Gi-feat-Kay-D-Haryanvi-2024-20260520193315-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/882/ae1cd6b89f0b7b8af120073e2ef41242_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Warning",
+    "artist": "Masoom Sharma",
+    "album": "Warning",
+    "durationSec": 160,
+    "coverUrl": "https://c.saavncdn.com/295/Warning-Haryanvi-2025-20250428172621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/295/1af90b92aa0d52b7d385f2b2eec75cb2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Blender (feat. Dev Chouhan,Pooja Saxena)",
+    "artist": "Masoom Sharma",
+    "album": "Blender (feat. Dev Chouhan,Pooja Saxena)",
+    "durationSec": 172,
+    "coverUrl": "https://c.saavncdn.com/807/Blender-feat-Dev-Chouhan-Pooja-Saxena-Haryanvi-2024-20250825094223-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/807/933ef862452ea6551bfc2dfbe4eeba6c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Khatole 2",
+    "artist": "Masoom Sharma",
+    "album": "Khatole 2",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/162/Khatole-2-Haryanvi-2024-20260327230057-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/162/c4565acf7507402f9907adb447bd6d9a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Byah Ke Lavange",
+    "artist": "Masoom Sharma",
+    "album": "Byah Ke Lavange",
+    "durationSec": 189,
+    "coverUrl": "https://c.saavncdn.com/838/Byah-Ke-Lavange-Haryanvi-2023-20250111072435-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/838/91522b2554907c7532c1525561be633e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Yaha Ke Bahubali",
+    "artist": "Masoom Sharma",
+    "album": "Yaha Ke Bahubali",
+    "durationSec": 178,
+    "coverUrl": "https://c.saavncdn.com/244/Yaha-Ke-Bahubali-Haryanvi-2026-20260226163022-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/244/aa0a937c85990bbbe1734d90aaab288f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "2 Ghode",
+    "artist": "Masoom Sharma",
+    "album": "2 Ghode",
+    "durationSec": 208,
+    "coverUrl": "https://c.saavncdn.com/225/2-Ghode-Haryanvi-2025-20250301091236-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/225/dc1a8cd331c9c3f946ff202862ee3b57_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Shikari",
+    "artist": "Masoom Sharma",
+    "album": "Shikari",
+    "durationSec": 156,
+    "coverUrl": "https://c.saavncdn.com/549/Shikari-Haryanvi-2025-20250113131907-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/549/6a69ea419ea50814c554bc0f064a26c1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "AA Gaye Se Haryana Te",
+    "artist": "Masoom Sharma",
+    "album": "AA Gaye Se Haryana Te",
+    "durationSec": 141,
+    "coverUrl": "https://c.saavncdn.com/518/AA-Gaye-Se-Haryana-Te-Haryanvi-2026-20261002141254-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/518/e9c8463e51f8e96e046914f5bbc2bcc2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Bhagatt Aadmi",
+    "artist": "Masoom Sharma",
+    "album": "Bhagatt Aadmi",
+    "durationSec": 195,
+    "coverUrl": "https://c.saavncdn.com/417/Bhagat-Aadmi-Haryanvi-2022-20220603182743-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/417/178b216c4221b067e441d11400ab9b23_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Madam Ji",
+    "artist": "Masoom Sharma",
+    "album": "Madam Ji",
+    "durationSec": 205,
+    "coverUrl": "https://c.saavncdn.com/018/Madam-Ji-Haryanvi-2025-20250930113619-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/018/71cb27a4152b1355cefbda8ab8462b2c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Thekedara Ka Byah (feat. Shivani Yadav)",
+    "artist": "Masoom Sharma",
+    "album": "Thekedara Ka Byah (feat. Shivani Yadav)",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/026/Thekedara-Ka-Byah-feat-Shivani-Yadav-Haryanvi-2026-20260214065352-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/026/f923cb173ae19cc165b26b103bf631e5_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "4 5 Pistol (feat. Masoom Sharma,Dev Chouhan,Shivani Yadav)",
+    "artist": "Masoom Sharma",
+    "album": "4 5 Pistol (feat. Masoom Sharma,Dev Chouhan,Shivani Yadav)",
+    "durationSec": 163,
+    "coverUrl": "https://c.saavncdn.com/233/4-5-Pistol-feat-Masoom-Sharma-Dev-Chouhan-Shivani-Yadav-Haryanvi-2025-20250503100151-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/233/2917896e82decde8c2c623c6f4326936_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Rola Yaara Kaa",
+    "artist": "Masoom Sharma",
+    "album": "Rola Yaara Kaa",
+    "durationSec": 211,
+    "coverUrl": "https://c.saavncdn.com/460/Rola-Yaara-Kaa-Haryanvi-2025-20260420210301-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/460/355635f0a088cd5b8ffa91133eaf23c6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mithe Tere Bol Pari",
+    "artist": "Masoom Sharma",
+    "album": "Mithe Tere Bol Pari",
+    "durationSec": 162,
+    "coverUrl": "https://c.saavncdn.com/469/Mithe-Tere-Bol-Pari-Haryanvi-2025-20251226221036-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/469/115b83bae46229bda2f311183410318f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Ramayan Ka Saar",
+    "artist": "Masoom Sharma",
+    "album": "Ramayan Ka Saar",
+    "durationSec": 187,
+    "coverUrl": "https://c.saavncdn.com/931/Ramayan-Ka-Saar-Haryanvi-2025-20250521141230-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/931/dc85bc9570ef9035de6f4c65d2480428_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Baba VS Kand (feat. Manjeet Mor)",
+    "artist": "Masoom Sharma",
+    "album": "Baba VS Kand (feat. Manjeet Mor)",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/868/Baba-VS-Kand-feat-Nidhi-Sharma-Manjeet-Mor-Haryanvi-2024-20241007150105-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/868/5d94e5e922d26fc752f290d4260d821a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Badmash Jamai",
+    "artist": "Masoom Sharma",
+    "album": "Badmash Jamai",
+    "durationSec": 137,
+    "coverUrl": "https://c.saavncdn.com/235/Badmash-Jamai-Unknown-2024-20240817013116-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/235/f351add06da567057ba15a8302213e41_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Gentleman 2",
+    "artist": "Masoom Sharma",
+    "album": "Rupa",
+    "durationSec": 158,
+    "coverUrl": "https://c.saavncdn.com/117/Rupa-Haryanvi-2024-20250226193419-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/117/fed59c1338f5f1b37dd73fa893cbb32d_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Gentleman 2 3D",
+    "artist": "Masoom Sharma",
+    "album": "Gentleman 2 3D",
+    "durationSec": 157,
+    "coverUrl": "https://c.saavncdn.com/105/Gentleman-2-3D-Haryanvi-2025-20250702203947-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/105/acbf10b1a523033135569a5c79a87c13_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Sab Gunday hai",
+    "artist": "Masoom Sharma",
+    "album": "Sab Gunday hai",
+    "durationSec": 182,
+    "coverUrl": "https://c.saavncdn.com/358/Sab-Gunday-hai-Hindi-2024-20241210043706-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/358/799127ec733dbe18a7fe0eb0ef2eb575_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Rangkaat",
+    "artist": "Masoom Sharma",
+    "album": "Rangkaat",
+    "durationSec": 142,
+    "coverUrl": "https://c.saavncdn.com/639/Rangkaat-Haryanvi-2025-20250421233043-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/639/f911b38092a1c77d66c772ecedc32cf3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "32 Ke Fire (feat. Vaishali Chaudhary)",
+    "artist": "Masoom Sharma",
+    "album": "32 Ke Fire (feat. Vaishali Chaudhary)",
+    "durationSec": 208,
+    "coverUrl": "https://c.saavncdn.com/649/32-Ke-Fire-feat-Vaishali-Chaudhary-Haryanvi-2025-20250625163140-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/649/ed60aba531cf754dec6e983a50986843_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Gundagarh",
+    "artist": "Masoom Sharma",
+    "album": "Gundagarh",
+    "durationSec": 179,
+    "coverUrl": "https://c.saavncdn.com/964/Gundagarh-Haryanvi-2025-20250813171027-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/964/08c4f86daac9e668af64118208b7badf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Ban",
+    "artist": "Masoom Sharma",
+    "album": "Ban",
+    "durationSec": 125,
+    "coverUrl": "https://c.saavncdn.com/511/Ban-Haryanvi-2025-20250408101524-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/511/41435b8e0145919b757a8596716f5516_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Hum Se Pakke Utt Khapitar",
+    "artist": "Masoom Sharma",
+    "album": "Hum Se Pakke Utt Khapitar",
+    "durationSec": 165,
+    "coverUrl": "https://c.saavncdn.com/434/Hum-Se-Pakke-Utt-Khapitar-Haryanvi-2026-20261016011451-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/434/8e4e00f18be721e107a6845e2068d959_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Ek Khtola Jail Ke Bhitar (feat. Ankiit Baliyann)",
+    "artist": "Masoom Sharma",
+    "album": "Ek Khtola Jail Ke Bhitar (feat. Ankiit Baliyann)",
+    "durationSec": 166,
+    "coverUrl": "https://c.saavncdn.com/355/Ek-Khtola-Jail-Ke-Bhitar-feat-Ankiit-Baliyann-Haryanvi-2023-20250124110531-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/355/11be9ffee33f630f9f256d83eb1cb155_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Ghode 3",
+    "artist": "Masoom Sharma",
+    "album": "Ghode 3",
+    "durationSec": 170,
+    "coverUrl": "https://c.saavncdn.com/773/Ghode-3-Haryanvi-2025-20250602112532-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/773/e9b25fa20038151010bd64da50079c7f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Rani Gundya Ki",
+    "artist": "Masoom Sharma",
+    "album": "Rani Gundya Ki",
+    "durationSec": 149,
+    "coverUrl": "https://c.saavncdn.com/121/Gundya-Ki-Rani-Haryanvi-2026-20260316211100-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/121/e160250a762ec3dbf0025867c10ae3d1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Sarkaar Ghar Ki",
+    "artist": "Masoom Sharma",
+    "album": "Sarkaar Ghar Ki",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/222/Sarkaar-Ghar-Ki-Haryanvi-2025-20251203091842-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/222/049c45780e7e8953dd76c5ce68d1e8ab_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Bhirad Ladgi",
+    "artist": "Masoom Sharma",
+    "album": "Bhirad Ladgi",
+    "durationSec": 201,
+    "coverUrl": "https://c.saavncdn.com/552/Bhirad-Ladgi-Haryanvi-2024-20260521210152-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/552/f1421fb442930e07211d0217ba0dcd29_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Badmashi Delhi Me",
+    "artist": "Masoom Sharma",
+    "album": "Badmashi Delhi Me",
+    "durationSec": 125,
+    "coverUrl": "https://c.saavncdn.com/398/Badmashi-Delhi-Me-Haryanvi-2024-20260511133059-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/398/7b9eaef699935fb1105eb1379a6774bc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Bateu",
+    "artist": "Masoom Sharma",
+    "album": "Bateu",
+    "durationSec": 193,
+    "coverUrl": "https://c.saavncdn.com/968/Bateu-Haryanvi-2025-20250305160124-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/968/f3911ee52df7b4a0553bc539fca6d7e5_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "2 Dada",
+    "artist": "Masoom Sharma",
+    "album": "2 Dada",
+    "durationSec": 180,
+    "coverUrl": "https://c.saavncdn.com/045/2-Dada-Haryanvi-2025-20241224121535-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/045/6408c037f6f0a9501909177e2cfacd19_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "9 Round (feat. Divyanka Sirohi & Sandy Kuchrana)",
+    "artist": "Masoom Sharma",
+    "album": "9 Round (feat. Divyanka Sirohi & Sandy Kuchrana)",
+    "durationSec": 145,
+    "coverUrl": "https://c.saavncdn.com/315/9-Round-feat-Divyanka-Sirohi-Sandy-Kuchrana-Haryanvi-2025-20250317223143-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/315/cf76cd137a37841f26385abf0c5c9232_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Main Vohe",
+    "artist": "Masoom Sharma",
+    "album": "Main Vohe",
+    "durationSec": 190,
+    "coverUrl": "https://c.saavncdn.com/725/Main-Vohe-Haryanvi-2026-20260619060745-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/725/d5e8d7a29ece2647b263fb1099513216_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "UP Ale Kaam",
+    "artist": "Masoom Sharma",
+    "album": "UP Ale Kaam",
+    "durationSec": 152,
+    "coverUrl": "https://c.saavncdn.com/832/UP-Ale-Kaam-Haryanvi-2024-20241211061130-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/832/f87487a40f99a536763ae049359f3017_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "1800 Shooter (feat. Kay D & Jatin Tyagi)",
+    "artist": "Masoom Sharma",
+    "album": "1800 Shooter (feat. Kay D & Jatin Tyagi)",
+    "durationSec": 130,
+    "coverUrl": "https://c.saavncdn.com/926/1800-Shooter-feat-Kay-D-Jatin-Tyagi-Haryanvi-2025-20250402231330-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/926/ca50e9d0da8a2c04ed9a4b06eaeca664_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "English Medium",
+    "artist": "Masoom Sharma",
+    "album": "English Medium",
+    "durationSec": 198,
+    "coverUrl": "https://c.saavncdn.com/538/English-Medium-Haryanvi-2022-20221109120154-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/538/562252e68c0586fae2594b282cfa8839_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Baba Dhore Hathiyaar",
+    "artist": "Masoom Sharma",
+    "album": "Baba Dhore Hathiyaar",
+    "durationSec": 172,
+    "coverUrl": "https://c.saavncdn.com/022/Baba-Dhore-Hathiyaar-Hindi-2024-20241029104401-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/022/114d1efec92d0054dd214fd58cc8594a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Pistol Premi",
+    "artist": "Masoom Sharma",
+    "album": "Pistol Premi",
+    "durationSec": 217,
+    "coverUrl": "https://c.saavncdn.com/715/Pistol-Premi-Haryanvi-2026-20260630120602-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/715/2d4c6f99c4ee04d0973ae4678563c16a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Mahabharat",
+    "artist": "Masoom Sharma",
+    "album": "Mahabharat",
+    "durationSec": 169,
+    "coverUrl": "https://c.saavncdn.com/957/Mahabharat-Haryanvi-2025-20260910223710-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/957/a62ae1c2c83cfca2f5b0522a614e8273_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Competition",
+    "artist": "Masoom Sharma",
+    "album": "Competition",
+    "durationSec": 192,
+    "coverUrl": "https://c.saavncdn.com/276/Competition-Haryanvi-2025-20251016033628-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/276/0b0896bd8ea60c08297bf2ec2d678721_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Kaun Marvana",
+    "artist": "Masoom Sharma",
+    "album": "Kaun Marvana",
+    "durationSec": 179,
+    "coverUrl": "https://c.saavncdn.com/351/Kaun-Marvana-Haryanvi-2026-20260918113904-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/351/a2385a09081eb03aac29024c60bca8e6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Gunde Chacha Tau Ke",
+    "artist": "Masoom Sharma",
+    "album": "Gunde Chacha Tau Ke",
+    "durationSec": 173,
+    "coverUrl": "https://c.saavncdn.com/629/Gunde-Chacha-Tau-Ke-Haryanvi-2023-20231018090935-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/629/d38becc13c2ba4c3fe8895670125e4fe_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Bolero Badmashan Ki Gadi",
+    "artist": "Masoom Sharma",
+    "album": "Bolero Badmashan Ki Gadi",
+    "durationSec": 190,
+    "coverUrl": "https://c.saavncdn.com/900/Bolero-Badmashan-Ki-Gadi-Haryanvi-2026-20261008163815-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/900/11cc3aac248281d4108c334f272ec418_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Special Cell (feat. Kala Dighal)",
+    "artist": "Masoom Sharma",
+    "album": "Special Cell (feat. Kala Dighal)",
+    "durationSec": 164,
+    "coverUrl": "https://c.saavncdn.com/573/Special-Cell-feat-Kala-Dighal-Haryanvi-2025-20260414163157-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/573/399d7517e16b55043e9108d5b549c626_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chai Pe Gun",
+    "artist": "Masoom Sharma",
+    "album": "Chai Pe Gun",
+    "durationSec": 173,
+    "coverUrl": "https://c.saavncdn.com/541/Chai-Pe-Gun-Haryanvi-2025-20250310132238-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/541/ea6546efc484881d2ca61de979d04667_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Jodi No.1 (feat. Vaishali Choudhary)",
+    "artist": "Masoom Sharma",
+    "album": "Jodi No.1 (feat. Vaishali Choudhary)",
+    "durationSec": 170,
+    "coverUrl": "https://c.saavncdn.com/817/Jodi-No-1-feat-Vaishali-Choudhary-Haryanvi-2025-20251212133621-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/817/fbf8b4fc579a35db4181cd15ce0350ac_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mhashya Ji",
+    "artist": "Masoom Sharma",
+    "album": "Mhashya Ji",
+    "durationSec": 130,
+    "coverUrl": "https://c.saavncdn.com/530/Mhashya-Ji-Haryanvi-2025-20250402223145-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/530/a24849737efe4874f4846cb26e429188_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Sant Na Gunde",
+    "artist": "Masoom Sharma",
+    "album": "Sant Na Gunde",
+    "durationSec": 195,
+    "coverUrl": "https://c.saavncdn.com/028/Sant-Na-Gunde-Haryanvi-2025-20250625163140-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/028/22a6224f3ad9315b219b3e382fb2b911_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Yaaran Khaatir",
+    "artist": "Masoom Sharma",
+    "album": "Yaaran Khaatir",
+    "durationSec": 184,
+    "coverUrl": "https://c.saavncdn.com/611/Yaaran-Khaatir-Hindi-2026-20260723200037-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/611/192d97c6f6aca734822e06db754c4059_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "12 Bande",
+    "artist": "Masoom Sharma",
+    "album": "12 Bande",
+    "durationSec": 165,
+    "coverUrl": "https://c.saavncdn.com/450/12-Bande-Haryanvi-2025-20251210060740-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/450/a3e4351e6d2a33e1d1a767bfd9f147ed_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Barati Pit Ke Jawenge (Feat .Manjeet Mor, Nidhi Negi)",
+    "artist": "Masoom Sharma",
+    "album": "Barati Pit Ke Jawenge (Feat .Manjeet Mor, Nidhi Negi)",
+    "durationSec": 158,
+    "coverUrl": "https://c.saavncdn.com/184/Barati-Pit-Ke-Jawenge-Feat-Manjeet-Mor-Nidhi-Negi-Haryanvi-2025-20250204045818-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/184/08b9cea49c5eed9a99e798bfe3451759_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Bhaichara (feat. Mithuuworldzz)",
+    "artist": "Masoom Sharma",
+    "album": "Bhaichara (feat. Mithuuworldzz)",
+    "durationSec": 195,
+    "coverUrl": "https://c.saavncdn.com/754/Bhaichara-feat-Mithuuworldzz-Haryanvi-2025-20250925163540-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/754/4a35ec6e65304ddc4888e6ff41637479_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Filmy Babe",
+    "artist": "Masoom Sharma",
+    "album": "Filmy Babe",
+    "durationSec": 220,
+    "coverUrl": "https://c.saavncdn.com/719/Filmy-Babe-Haryanvi-2026-20260904075247-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/719/808c3600c88a08a86cf01be9366907b3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Arbi Ghode",
+    "artist": "Masoom Sharma",
+    "album": "Arbi Ghode",
+    "durationSec": 200,
+    "coverUrl": "https://c.saavncdn.com/508/Arbi-Ghode-Unknown-2024-20240616133051-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/508/387d8c8c9944736e17f7d36fb5891df2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Licence Ka Asla (From \"Licence\")",
+    "artist": "Masoom Sharma",
+    "album": "Licence",
+    "durationSec": 163,
+    "coverUrl": "https://c.saavncdn.com/308/Licence-Hindi-2026-20260326192933-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/308/d2294cf574cc3021182ea0a0352c3a16_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Zamanat (feat. Manjeet Mor & Muskan Thakur)",
+    "artist": "Masoom Sharma",
+    "album": "Zamanat (feat. Manjeet Mor & Muskan Thakur)",
+    "durationSec": 164,
+    "coverUrl": "https://c.saavncdn.com/640/Zamanat-feat-Manjeet-Mor-Muskan-Thakur-Haryanvi-2025-20251121193311-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/640/11d1f7dc1accebfe56727597235949a4_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Kalam Tod Di",
+    "artist": "Masoom Sharma",
+    "album": "Kalam Tod Di",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/588/Kalam-Tod-Di-Unknown-2025-20250217163230-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/588/21d4ab5ba721806d6a9ef7d064dd18c7_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Marda Ke Role",
+    "artist": "Masoom Sharma",
+    "album": "Marda Ke Role",
+    "durationSec": 178,
+    "coverUrl": "https://c.saavncdn.com/712/Marda-Ke-Role-Haryanvi-2025-20251210131223-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/712/89e9b7a679fab402999f86fa9d2165ec_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Khoon Ki Holi",
+    "artist": "Masoom Sharma",
+    "album": "Khoon Ki Holi",
+    "durationSec": 173,
+    "coverUrl": "https://c.saavncdn.com/062/Khoon-Ki-Holi-Hindi-2025-20251227093634-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/062/44baf32c99f0d6dccdd84f2104943aa6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mukadma (feat. Vaishali Chaudhary)",
+    "artist": "Masoom Sharma",
+    "album": "Mukadma (feat. Vaishali Chaudhary)",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/522/Mukadma-Haryanvi-2024-20240416212611-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/522/2677ceba4f5c663ba23d3a671cd545ee_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Chulla Nondh (feat. Nidhi Sharma)",
+    "artist": "Masoom Sharma",
+    "album": "Chulla Nondh (feat. Nidhi Sharma)",
+    "durationSec": 172,
+    "coverUrl": "https://c.saavncdn.com/612/Chulla-Nondh-Haryanvi-2024-20241016204127-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/612/cfcc30ffe5209a7984916be855328f7d_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Yaar Ki Zubaan",
+    "artist": "Masoom Sharma",
+    "album": "Yaar Ki Zubaan",
+    "durationSec": 187,
+    "coverUrl": "https://c.saavncdn.com/711/Yaar-Ki-Zubaan-Unknown-2026-20260910013319-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/711/bcdd6c113f08b1704d242f410fb0b145_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Thaa Ke Le Jaanga (feat. Kay D, Vaishali Choudhary)",
+    "artist": "Masoom Sharma",
+    "album": "Thaa Ke Le Jaanga (feat. Kay D, Vaishali Choudhary)",
+    "durationSec": 180,
+    "coverUrl": "https://c.saavncdn.com/419/Thaa-Ke-Le-Jaanga-feat-Kay-D-Vaishali-Choudhary-Haryanvi-2026-20260214065352-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/419/6aa3dea4a096c1e63da224a282c0e97f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Tatvdarshi",
+    "artist": "Masoom Sharma",
+    "album": "Tatvdarshi",
+    "durationSec": 211,
+    "coverUrl": "https://c.saavncdn.com/131/Tatvdarshi-Haryanvi-2026-20260825093422-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/131/da1256be588bcb18d48874ae336e1db5_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Udte Teer Jamaiya Ke",
+    "artist": "Masoom Sharma",
+    "album": "Udte Teer Jamaiya Ke",
+    "durationSec": 223,
+    "coverUrl": "https://c.saavncdn.com/918/Udte-Teer-Jamaiya-Ke-Unknown-2024-20241120032007-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/918/3bdbf3544cbc35f93afaa354df6d4262_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "10 Numbari",
+    "artist": "Masoom Sharma",
+    "album": "10 Numbari",
+    "durationSec": 185,
+    "coverUrl": "https://c.saavncdn.com/658/10-Numbari-Punjabi-2022-20221024115211-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/658/a639a160fabfb9779083f9b2b01e4cb6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Dada",
+    "artist": "Masoom Sharma",
+    "album": "Dada",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/385/Dada-Haryanvi-2026-20260908123713-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/385/f05d7999d15ab8b26b6f34bb7dd8e481_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "One Man Army (feat. Prithviraj Pilania)",
+    "artist": "Masoom Sharma",
+    "album": "One Man Army (feat. Prithviraj Pilania)",
+    "durationSec": 167,
+    "coverUrl": "https://c.saavncdn.com/127/One-Man-Army-feat-Prithviraj-Pilania-Haryanvi-2025-20260327191130-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/127/1ff860c8cecaebb7cbfc2c0ab4936b05_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Khoon Kharaba (feat. Lalit Tyagi & Vaishali Chaudhary)",
+    "artist": "Masoom Sharma",
+    "album": "Khoon Kharaba (feat. Lalit Tyagi & Vaishali Chaudhary)",
+    "durationSec": 141,
+    "coverUrl": "https://c.saavncdn.com/505/Khoon-Kharaba-feat-Lalit-Tyagi-Vaishali-Chaudhary-Haryanvi-2025-20250123105053-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/505/deb92e0dbc623124ff34a936ae531c05_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Jhottya barge Chore",
+    "artist": "Masoom Sharma",
+    "album": "Jhottya barge Chore",
+    "durationSec": 161,
+    "coverUrl": "https://c.saavncdn.com/103/Jhottya-barge-Chore-Haryanvi-2023-20230820173751-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/103/e74728b05bfd7a5cc2d9f4be19e3ffb1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Danda Deniya",
+    "artist": "Masoom Sharma",
+    "album": "Danda Deniya",
+    "durationSec": 183,
+    "coverUrl": "https://c.saavncdn.com/374/Danda-Deniya-Haryanvi-2025-20250414193206-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/374/818de644fbbbcdca351c76eddbc6bb86_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chetting Setting (feat. Pooja Saxena, Dev Chouhan)",
+    "artist": "Masoom Sharma",
+    "album": "Chetting Setting (feat. Pooja Saxena, Dev Chouhan)",
+    "durationSec": 166,
+    "coverUrl": "https://c.saavncdn.com/321/Chetting-Setting-feat-Pooja-Saxena-Dev-Chouhan-Haryanvi-2025-20251125063450-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/321/ca99dd4f725b677fe99982dbf0d20d49_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Goli Bhatkan Lagi",
+    "artist": "Masoom Sharma",
+    "album": "Goli Bhatkan Lagi",
+    "durationSec": 150,
+    "coverUrl": "https://c.saavncdn.com/544/Goli-Bhatkan-Lagi-Haryanvi-2025-20250210151516-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/544/ffa227889364a769d627e9143b81024b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Panwadi (Best Wedding Dance Song 2026)",
+    "artist": "Masoom Sharma",
+    "album": "Sunny Sanskari Ki Tulsi Kumari",
+    "durationSec": 240,
+    "coverUrl": "https://c.saavncdn.com/129/Sunny-Sanskari-Ki-Tulsi-Kumari-Hindi-2025-20250930132056-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/129/e4a440b1cff87756e8ee5ecd9fe3728e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Bandook Ma Goli",
+    "artist": "Masoom Sharma",
+    "album": "Bandook Ma Goli",
+    "durationSec": 215,
+    "coverUrl": "https://c.saavncdn.com/271/Bandook-Ma-Goli-Haryanvi-2022-20220706172753-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/271/c2b94b6503489b0bb687ebc3ccbf9e08_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "No Parking (feat. Khushi Baliyan,Deepak Baldi)",
+    "artist": "Masoom Sharma",
+    "album": "No Parking (feat. Khushi Baliyan,Deepak Baldi)",
+    "durationSec": 154,
+    "coverUrl": "https://c.saavncdn.com/852/No-Parking-feat-Khushi-Baliyan-Deepak-Baldi-Haryanvi-2024-20241018115630-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/852/91bf4b5e39a8657cd710bd36e077a5b4_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Gach Laage  (From \"Licence\")",
+    "artist": "Masoom Sharma",
+    "album": "Licence",
+    "durationSec": 181,
+    "coverUrl": "https://c.saavncdn.com/308/Licence-Hindi-2026-20260326192933-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/308/0a491efbf6dfe9caec08e32a29191f50_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Nach Bindani Dj Pe (Feat. Gulshan Music, Jaat Nia)",
+    "artist": "Masoom Sharma",
+    "album": "Nach Bindani Dj Pe (Feat. Gulshan Music, Jaat Nia)",
+    "durationSec": 162,
+    "coverUrl": "https://c.saavncdn.com/741/Nach-Bindani-Dj-Pe-Feat-Gulshan-Music-Jaat-Nia-Haryanvi-2026-20261015113459-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/741/6896933c257c1698b4395d51029e4cf7_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "UP Garh (feat. Manjeet Mor)",
+    "artist": "Masoom Sharma",
+    "album": "UP Garh (feat. Manjeet Mor)",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/291/UP-Garh-feat-Manjeet-Mor-Haryanvi-2025-20251020114609-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/291/90972a5410456569bed7e524cae8b78f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Badnaam",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Super Hit Songs",
+    "durationSec": 155,
+    "coverUrl": "https://c.saavncdn.com/411/Haryanvi-Super-Hit-Songs-Haryanvi-2024-20240816204046-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/411/cdaf387e5959d41fea501373529efd8a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Cheete",
+    "artist": "Masoom Sharma",
+    "album": "Cheete",
+    "durationSec": 152,
+    "coverUrl": "https://c.saavncdn.com/524/Cheete-Haryanvi-2025-20260601143613-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/524/0b11f719dbc245771f6a6482714a266b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Haridwar Me Khatola",
+    "artist": "Masoom Sharma",
+    "album": "Haridwar Me Khatola",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/028/Haridwar-Me-Khatola-Haryanvi-2025-20250610113750-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/028/5729410cdda19fcfb924642e647e983a_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Naami Gunde",
+    "artist": "Masoom Sharma",
+    "album": "Naami Gunde",
+    "durationSec": 154,
+    "coverUrl": "https://c.saavncdn.com/512/Naami-Gunde-Haryanvi-2023-20260706073935-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/512/ab80642e40d61e97b2f5be30bdcfb776_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Feel Badmasha Aali",
+    "artist": "Masoom Sharma",
+    "album": "Feel Badmasha Aali",
+    "durationSec": 139,
+    "coverUrl": "https://c.saavncdn.com/550/Feel-Badmasha-Aali-Haryanvi-2024-20240518042207-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/550/354924530bba357edf4b7c556e48a1e6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Lofar 2",
+    "artist": "Masoom Sharma",
+    "album": "Lofar 2",
+    "durationSec": 143,
+    "coverUrl": "https://c.saavncdn.com/729/Lofar-2-Unknown-2025-20260204141144-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/729/84dc5f13bf05e6ac68f95a78e9fbd0d6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Cheteh Balak",
+    "artist": "Masoom Sharma",
+    "album": "Cheteh Balak",
+    "durationSec": 183,
+    "coverUrl": "https://c.saavncdn.com/570/Cheteh-Balak-Haryanvi-2025-20250113113719-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/570/b9b288e261a9480469f85db1e937dead_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "60 Mukadme (Remix Bass Boosted) ((Remix Bass Boosted))",
+    "artist": "Masoom Sharma",
+    "album": "60 Mukadme (Remix Bass Boosted)",
+    "durationSec": 158,
+    "coverUrl": "https://c.saavncdn.com/158/60-Mukadme-Remix-Bass-Boosted-Haryanvi-2025-20250405071305-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/158/f9b9657d51e2d65029b06a1aeca9e14c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Gundyan Mein Basanti (From \"Licence\")",
+    "artist": "Masoom Sharma",
+    "album": "Licence",
+    "durationSec": 206,
+    "coverUrl": "https://c.saavncdn.com/308/Licence-Hindi-2026-20260326192933-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/308/ba0517de7f13ec2e2fbd5032f9519dd8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Mahila Mittar",
+    "artist": "Masoom Sharma",
+    "album": "Mahila Mittar",
+    "durationSec": 230,
+    "coverUrl": "https://c.saavncdn.com/869/Mahila-Mittar-Unknown-2025-20250212163328-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/869/a4dce119297e40dd3ea62b620f020251_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Badnam Gabru",
+    "artist": "Masoom Sharma",
+    "album": "Badnam Gabru",
+    "durationSec": 180,
+    "coverUrl": "https://c.saavncdn.com/716/Badnam-Gabru-Haryanvi-2021-20250808093800-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/716/445ea9e90bd1352f33cb42b3a75ad961_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2021
+  },
+  {
+    "title": "Raja Ka Chora",
+    "artist": "Masoom Sharma",
+    "album": "Raja Ka Chora",
+    "durationSec": 138,
+    "coverUrl": "https://c.saavncdn.com/054/Raja-Ka-Chora-Haryanvi-2025-20250708142200-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/054/d6ec2322550ac7df9065c0b72f15d696_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Bhai Bhai",
+    "artist": "Masoom Sharma",
+    "album": "Bhai Bhai",
+    "durationSec": 180,
+    "coverUrl": "https://c.saavncdn.com/567/Bhai-Bhai-Haryanvi-2025-20260114062612-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/567/c86ae768ac833099757093d89f64ebb0_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Baju Pe Bhola",
+    "artist": "Masoom Sharma",
+    "album": "Baju Pe Bhola",
+    "durationSec": 268,
+    "coverUrl": "https://c.saavncdn.com/587/Baju-Pe-Bhola-Haryanvi-2025-20250715171811-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/587/b201ce8ea6e0881a61f1bcf09504cf32_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "The Great Warriors",
+    "artist": "Masoom Sharma",
+    "album": "The Great Warriors",
+    "durationSec": 218,
+    "coverUrl": "https://c.saavncdn.com/461/The-Great-Warriors-Haryanvi-2026-20260926142605-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/461/ff52641f0942c5c498c5a3e54f8f7fac_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "2 Hole (feat. Vaishali Chaudhary)",
+    "artist": "Masoom Sharma",
+    "album": "2 Hole (feat. Vaishali Chaudhary)",
+    "durationSec": 142,
+    "coverUrl": "https://c.saavncdn.com/496/2-Hole-feat-Vaishali-Chaudhary-Haryanvi-2025-20250415182916-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/496/8868ffbc85e0b07551e677e40be485bd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mard 2",
+    "artist": "Masoom Sharma",
+    "album": "Mard 2",
+    "durationSec": 161,
+    "coverUrl": "https://c.saavncdn.com/454/Mard-2-Haryanvi-2026-20260605133641-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/454/4caace7edee6345336c36486d5865f09_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Farm Gundagardi Ka",
+    "artist": "Masoom Sharma",
+    "album": "Farm Gundagardi Ka",
+    "durationSec": 155,
+    "coverUrl": "https://c.saavncdn.com/557/Farm-Gundagardi-Ka-Haryanvi-2024-20260706073948-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/557/aa0204869b680151b7a60d513e059425_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Khaas Mardega (feat. Dev Chouhan, Pooja Saxena)",
+    "artist": "Masoom Sharma",
+    "album": "Khaas Mardega (feat. Dev Chouhan, Pooja Saxena)",
+    "durationSec": 230,
+    "coverUrl": "https://c.saavncdn.com/796/Khaas-Mardega-feat-Dev-Chouhan-Pooja-Saxena-Haryanvi-2024-20240515110726-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/796/a9e843b2ceed71528c5043638c7769c8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Jai Baba Ki (feat.Dev Chouhan,Pooja Saxena)",
+    "artist": "Masoom Sharma",
+    "album": "Jai Baba Ki (feat.Dev Chouhan,Pooja Saxena)",
+    "durationSec": 139,
+    "coverUrl": "https://c.saavncdn.com/783/Jai-Baba-Ki-feat-Dev-Chouhan-Pooja-Saxena-Haryanvi-2024-20240422063022-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/783/481dcdde7f6a2880faa3d674fda67c88_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Paati Paati Jeans",
+    "artist": "Masoom Sharma",
+    "album": "Paati Paati Jeans",
+    "durationSec": 172,
+    "coverUrl": "https://c.saavncdn.com/956/Paati-Paati-Jeans-Unknown-2022-20221127183224-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/956/6fb2a66e5e637b6905e740b58c24b44b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Dhokha",
+    "artist": "Masoom Sharma",
+    "album": "Dhokha",
+    "durationSec": 156,
+    "coverUrl": "https://c.saavncdn.com/062/Dhokha-Unknown-2024-20251011090502-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/062/319d46f36c27900525a4f5f0ae7b5928_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Ram Lakhan",
+    "artist": "Masoom Sharma",
+    "album": "Ram Lakhan",
+    "durationSec": 168,
+    "coverUrl": "https://c.saavncdn.com/241/Ram-Lakhan-Haryanvi-2026-20260820180017-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/241/92aaf79918406f09f4caedbc77a47228_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Davai",
+    "artist": "Masoom Sharma",
+    "album": "Davai",
+    "durationSec": 151,
+    "coverUrl": "https://c.saavncdn.com/574/Davai-Unknown-2025-20250424033349-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/574/00307d0a9d03a03ca981c1bb7f36ccdf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chambal K Dakku Dj Remix",
+    "artist": "Masoom Sharma",
+    "album": "Chambal K Dakku Dj Remix",
+    "durationSec": 243,
+    "coverUrl": "https://c.saavncdn.com/401/Chambal-K-Dakku-Dj-Remix-Unknown-2024-20241216185724-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/401/da9a5a029dbe04030a2b18cce784a3d3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Challiya",
+    "artist": "Masoom Sharma",
+    "album": "Challiya",
+    "durationSec": 225,
+    "coverUrl": "https://c.saavncdn.com/889/Challiya-Hindi-2021-20210407135456-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/889/77707d3d0fcde0d4d600ea668a69fd60_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2021
+  },
+  {
+    "title": "Duniyadari",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Super Hit Songs",
+    "durationSec": 168,
+    "coverUrl": "https://c.saavncdn.com/411/Haryanvi-Super-Hit-Songs-Haryanvi-2024-20240816204046-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/411/62cd8a46a2033863d2ab8faf4c87fc61_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Faisla",
+    "artist": "Masoom Sharma",
+    "album": "Faisla",
+    "durationSec": 166,
+    "coverUrl": "https://c.saavncdn.com/655/Faisla-Haryanvi-2026-20260930110616-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/655/402052bc3a224ede0445790c7b81c939_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Patang",
+    "artist": "Masoom Sharma",
+    "album": "Patang",
+    "durationSec": 167,
+    "coverUrl": "https://c.saavncdn.com/757/Patang-Hindi-2024-20240530215551-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/757/a0b83fee405eddf11f1f68cd238d145b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Parole",
+    "artist": "Masoom Sharma",
+    "album": "Parole",
+    "durationSec": 229,
+    "coverUrl": "https://c.saavncdn.com/215/Parole-Haryanvi-2022-20221109132009-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/215/eb0e5b93ebcbeded9281082df4974ec4_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Kad Pe Jewde (feat. Kay D, Prachi Tyagi)",
+    "artist": "Masoom Sharma",
+    "album": "Kad Pe Jewde (feat. Kay D, Prachi Tyagi)",
+    "durationSec": 136,
+    "coverUrl": "https://c.saavncdn.com/230/Kad-Pe-Jewde-feat-Kay-D-Prachi-Tyagi-Haryanvi-2025-20250628091933-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/230/60fafe49dc5a0d514f774324865bd02f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mithi Bole Bangro",
+    "artist": "Masoom Sharma",
+    "album": "Mithi Bole Bangro",
+    "durationSec": 174,
+    "coverUrl": "https://c.saavncdn.com/368/Mithi-Bole-Bangro-Haryanvi-2025-20250416152013-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/368/658292316fff5b31870c8c694fa1d59e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Baba Badmash",
+    "artist": "Masoom Sharma",
+    "album": "Baba Badmash",
+    "durationSec": 153,
+    "coverUrl": "https://c.saavncdn.com/516/Baba-Badmash-Haryanvi-2024-20241030164255-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/516/b8e84331593f222608d0be5811ef4ed8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Jaat Baman",
+    "artist": "Masoom Sharma",
+    "album": "Jaat Baman",
+    "durationSec": 134,
+    "coverUrl": "https://c.saavncdn.com/420/Jaat-Baman-Haryanvi-2023-20250226163323-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/420/0f32c0f129dcbaeb2d485b7769cf371b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Khaan Ne Daane",
+    "artist": "Masoom Sharma",
+    "album": "Khaan Ne Daane",
+    "durationSec": 136,
+    "coverUrl": "https://c.saavncdn.com/230/Khaan-Ne-Daane-Unknown-2025-20250506213438-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/230/004f468306a313b6fe439d2458855939_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Jail Byali",
+    "artist": "Masoom Sharma",
+    "album": "Jail Byali",
+    "durationSec": 208,
+    "coverUrl": "https://c.saavncdn.com/650/Jail-Byali-Haryanvi-2022-20220905154251-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/650/ecec1c6f5fc51e3262503dcd5331c678_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Vakaalat",
+    "artist": "Masoom Sharma",
+    "album": "Vakaalat",
+    "durationSec": 151,
+    "coverUrl": "https://c.saavncdn.com/169/Vakaalat-Unknown-2024-20240503033616-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/169/360f97dc5bf0fb17b7bbab884abfbe37_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Blacklisted Gaddi",
+    "artist": "Masoom Sharma",
+    "album": "Blacklisted Gaddi",
+    "durationSec": 142,
+    "coverUrl": "https://c.saavncdn.com/800/Blacklisted-Gaddi-Unknown-2025-20250805210411-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/800/ee555f87a7fa4eab4dbd5a53bcc2e350_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Yamraaj",
+    "artist": "Masoom Sharma",
+    "album": "Yamraaj",
+    "durationSec": 180,
+    "coverUrl": "https://c.saavncdn.com/422/Yamraaj-Haryanvi-2023-20260415082920-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/422/68026ec4647aaefa9896fd1d6f2856f2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Hi-Fi",
+    "artist": "Masoom Sharma",
+    "album": "Hi-Fi",
+    "durationSec": 133,
+    "coverUrl": "https://c.saavncdn.com/707/Hi-Fi-Haryanvi-2026-20260217223212-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/707/c3d42bf039b4b7337a326b30a9a28ca3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Sarpanch",
+    "artist": "Masoom Sharma",
+    "album": "Sarpanch",
+    "durationSec": 209,
+    "coverUrl": "https://c.saavncdn.com/534/Sarpanch-Haryanvi-2025-20251203065441-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/534/e76697f9a4f238b7ae822cda468fbeea_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Ravan Ka Chela",
+    "artist": "Masoom Sharma",
+    "album": "Ravan Ka Chela",
+    "durationSec": 160,
+    "coverUrl": "https://c.saavncdn.com/509/Ravan-Ka-Chela-Haryanvi-2025-20250918200206-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/509/bb1e1a04a7dac4b0fc108d8248e6a338_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Bhole Ka Pujari",
+    "artist": "Masoom Sharma",
+    "album": "Bhole Ka Pujari",
+    "durationSec": 146,
+    "coverUrl": "https://c.saavncdn.com/615/Bhole-Ka-Pujari-Haryanvi-2025-20250710135503-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/615/117ca439056362988a461e6917dcf2ff_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chambal K Dakku Slowed Reverb",
+    "artist": "Masoom Sharma",
+    "album": "Chambal K Dakku Slowed Reverb",
+    "durationSec": 253,
+    "coverUrl": "https://c.saavncdn.com/681/Chambal-K-Dakku-Slowed-Reverb-Unknown-2024-20240618002418-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/681/2fc4808338a2f77069f21ea108f95996_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "College Kand",
+    "artist": "Masoom Sharma",
+    "album": "College Kand",
+    "durationSec": 164,
+    "coverUrl": "https://c.saavncdn.com/972/College-Kand-Haryanvi-2024-20250808093810-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/972/9300dcb11547ae4ca6f54cf324cc4155_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Peshi",
+    "artist": "Masoom Sharma",
+    "album": "Peshi",
+    "durationSec": 203,
+    "coverUrl": "https://c.saavncdn.com/834/Peshi-Haryanvi-2022-20220622061654-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/834/9174a26dc90306f1c4dc4b598d80bcb0_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "HALF HOUR",
+    "artist": "Masoom Sharma",
+    "album": "HALF HOUR",
+    "durationSec": 173,
+    "coverUrl": "https://c.saavncdn.com/373/HALF-HOUR-Haryanvi-2025-20260420210248-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/373/66a3da8b08478668fde5ba031d6f4300_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Yaari Zindabad",
+    "artist": "Masoom Sharma",
+    "album": "Yaari Zindabad",
+    "durationSec": 204,
+    "coverUrl": "https://c.saavncdn.com/810/Yaari-Zindabad-Haryanvi-2025-20251212115720-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/810/3b50e8f6047c4925dcb0e760a3c951ce_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Dushman",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Super Hit Songs",
+    "durationSec": 120,
+    "coverUrl": "https://c.saavncdn.com/411/Haryanvi-Super-Hit-Songs-Haryanvi-2024-20240816204046-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/411/9634f13b95c167b5dd6ce7905b7c3688_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Wadiyan",
+    "artist": "Masoom Sharma",
+    "album": "Wadiyan",
+    "durationSec": 230,
+    "coverUrl": "https://c.saavncdn.com/320/Wadiyan-Haryanvi-2025-20251224113015-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/320/e77481714aa9f77d797f674ceb95276e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chamunda",
+    "artist": "Masoom Sharma",
+    "album": "Chamunda",
+    "durationSec": 176,
+    "coverUrl": "https://c.saavncdn.com/985/Chamunda-Haryanvi-2023-20260706074000-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/985/cada8d474d11d0c892f70099e7ed953f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "20 Nonstop Haryanvi Dj Songs(Remix By Kedrock,Sd Style)",
+    "artist": "Masoom Sharma",
+    "album": "20 Nonstop Haryanvi Dj Songs",
+    "durationSec": 947,
+    "coverUrl": "https://c.saavncdn.com/737/20-Nonstop-Haryanvi-Dj-Songs-Haryanvi-2022-20230121170815-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/737/8dc47d9add735620b4cea0b10246251b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Badmashi Ka Shonk",
+    "artist": "Masoom Sharma",
+    "album": "Badmashi Ka Shonk",
+    "durationSec": 176,
+    "coverUrl": "https://c.saavncdn.com/493/Badmashi-Ka-Shonk-Haryanvi-2025-20250528203727-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/493/d0a788e306841b9b4aeccaf3e18d4bbc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Khatu Aale Ki Kripa Se",
+    "artist": "Masoom Sharma",
+    "album": "Khatu Aale Ki Kripa Se",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/292/Khatu-Aale-Ki-Kripa-Se-Haryanvi-2025-20250331122009-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/292/2e4ab8f2c64ba88590dc6bed7c9f3032_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Khule Khule Baal (From \"Khule Khule Baal\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 191,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/3f6a96a337ee6da8def40eb6fd5e3a6e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Khule Khule Baal",
+    "artist": "Masoom Sharma",
+    "album": "Khule Khule Baal",
+    "durationSec": 191,
+    "coverUrl": "https://c.saavncdn.com/543/Khule-Khule-Baal-Haryanvi-2023-20230113201008-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/543/992ccf76671b894df803a2c16d0d16dd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "2 Numbari Lofi",
+    "artist": "Masoom Sharma",
+    "album": "2 Numbari Lofi",
+    "durationSec": 262,
+    "coverUrl": "https://c.saavncdn.com/184/2-Numbari-Lofi-Haryanvi-2025-20250415233533-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/184/ddff3330d2d9167cad37617ca9480f9c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Maut Ka Saudagar",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Super Hit Songs",
+    "durationSec": 165,
+    "coverUrl": "https://c.saavncdn.com/411/Haryanvi-Super-Hit-Songs-Haryanvi-2024-20240816204046-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/411/a60130e4dd5db37823363b113a9b6310_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Gandaas Hori Se",
+    "artist": "Masoom Sharma",
+    "album": "Gandaas Hori Se",
+    "durationSec": 265,
+    "coverUrl": "https://c.saavncdn.com/899/Gandaas-Hori-Se-Haryanvi-2023-20260316111700-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/3d5fb02bf6b8cdfd5f26ab197938b7f9_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Girkana (From \"Girkana\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 158,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/915f3ea2dee1a67fc77e6117356a65d8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Sir Pe Mod (From \"Sir Pe Mod\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 162,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/fe438e9761515ef56e0f6cda1f444fdf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Pache Pache Aavan Ka (From \"Pache Pache Aavan Ka\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 230,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/741a85a31b66eb6f32e49f52b506748c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Moj (From \"Moj\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 142,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/d43fbbf0e2d4841b7fb2dbbd8106da69_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Daman Aali Jhol (From \"Daman Aali Jhol\")",
+    "artist": "Masoom Sharma",
+    "album": "Non Stop Masoom Sharma Hits",
+    "durationSec": 282,
+    "coverUrl": "https://c.saavncdn.com/899/Non-Stop-Masoom-Sharma-Hits-Unknown-2026-20260130161058-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/899/86aea612118f868658ede68e0c0ea5bf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Dhai Di Ki Badmashi",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 475,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/76f6f8f217ce2379df5a02e4c526eebf_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Satyanashi",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Top Hits",
+    "durationSec": 158,
+    "coverUrl": "https://c.saavncdn.com/987/Haryanvi-Top-Hits-Haryanvi-2026-20260729164700-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/987/727fe1355747fbc0f77a89e55c977370_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Ladla Bhagat Singh",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 455,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/65a80d433b413f75794e60d1d6546ec9_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Sapela",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 424,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/5cfb1d97bb9273e3323f01f81e6f3e50_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Taj Mahal",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 425,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/8b21acf2d9979a03a1b710cb5cf95241_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Gori Chal Chale Matwali",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 334,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/af83381a8eb2ca93fb3cccbe16bbf297_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Jai Ram Ji",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 372,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/44e93f96ead358b4e87586036421424c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Jadya Me Byah",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 513,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/28d39f17f602ad21e29c0e6a1279a0b8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Size Teri Kamar Ka",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 513,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/90dfdbe9b8ef14171077c4f5cf1a04e1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Lalli Chhali",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 299,
+    "coverUrl": "https://c.saavncdn.com/996/Masoom-Sharma-Hits-Haryanvi-2026-20260610223526-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/996/e882214ae104ffb660346c8a0dc0fb17_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Yaar Kaleshi",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Top Hits",
+    "durationSec": 147,
+    "coverUrl": "https://c.saavncdn.com/987/Haryanvi-Top-Hits-Haryanvi-2026-20260729164700-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/987/36aa98f831fe59725edc35bfedeb520f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2026
+  },
+  {
+    "title": "Surme Ki Dhar (From \"Surme Ki Dhar\")",
+    "artist": "Masoom Sharma",
+    "album": "Gulshan Grooves - Gulshan Music Hits",
+    "durationSec": 190,
+    "coverUrl": "https://c.saavncdn.com/814/Gulshan-Grooves-Gulshan-Music-Hits-Unknown-2025-20251112181144-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/814/8b01580294918b68011cd498a9b0bef3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Meri Jaan (From \"Meri Jaan\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 223,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/eca8c4c986b4876601a3490af2cf8b84_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Maut",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/175a8fdd4b767a0973967bd967e087b2_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Town Ke Kitanu (From \"Town Ke Kitanu\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 186,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/174086d5cc1dfb55eb66369e3afea46f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Balam Chhota (From \"Balam Chhota\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/3ce35ac405cd7a1f3d509ff166ea4afe_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Gora Rang (From \"Gora Rang\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 236,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/5a778af6172c984c3705d5944394197e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Tu Raja Ki Rajdulari",
+    "artist": "Masoom Sharma",
+    "album": "Bhole (DJ Hits) Vol. 2",
+    "durationSec": 201,
+    "coverUrl": "https://c.saavncdn.com/267/Bhole-DJ-Hits-Vol-2-Hindi-1990-20230328115538-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/267/81d4c7fb2453060e2c2643f0002f619b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 1990
+  },
+  {
+    "title": "Name (From \"Name\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 225,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/561710d72a262c9f2dab727d134a4bfd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Khuli Jeep (From \"Khuli Jeep\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 175,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/22ed540c70d4705768ca7a74417f4aed_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Sunday Market (From \"Sunday Market\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 167,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/934f952c255e673c551fade9db778c95_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Naam Hove Se (From \"Naam Hove Se\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 161,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/ffcb587798b5f25e1cdc0ee8c7c28193_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Kilki (From \"Kilki\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 214,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/dce0ec702b663a56e3c18125eb913e7f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Mahol Bana Denge",
+    "artist": "Masoom Sharma",
+    "album": "Hot Hits Haryanvi",
+    "durationSec": 122,
+    "coverUrl": "https://c.saavncdn.com/919/Hot-Hits-Haryanvi-Haryanvi-2025-20250526233150-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/919/1c58000913bca7e7903c3e00d8c82590_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Darling",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 138,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/b1963b99d5b0991ac2dd1d9d234a9755_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Choubare Aali",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 134,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/74561cb1ed1bba99b8b3d4a0faf451e6_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Chhore Kaand Aale",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 138,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/b5d9a6d770ec8d7f6ae2543738cc63a8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Ulhana Odha Nahi Karte",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 115,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/82fcad1c1f6083b73730415709d2ba0b_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Tokni",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Viral Hits",
+    "durationSec": 134,
+    "coverUrl": "https://c.saavncdn.com/472/Haryanvi-Viral-Hits-Haryanvi-2025-20250421192943-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/472/fe0956a7d72ecefacc2df5d89d4ba8bd_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Gabru",
+    "artist": "Masoom Sharma",
+    "album": "Hot Hits Haryanvi",
+    "durationSec": 119,
+    "coverUrl": "https://c.saavncdn.com/919/Hot-Hits-Haryanvi-Haryanvi-2025-20250526233150-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/919/fb72a2fbbe92abb9325aa48dc124c3eb_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Malang",
+    "artist": "Masoom Sharma",
+    "album": "Sonotek DJ Remix Vol 9",
+    "durationSec": 169,
+    "coverUrl": "https://c.saavncdn.com/878/Sonotek-DJ-Remix-Vol-9-Hindi-1991-20230329182034-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/878/abd97db4c1047fb2a2173f9181398cb5_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 1991
+  },
+  {
+    "title": "Jija Tu Kala",
+    "artist": "Masoom Sharma",
+    "album": "Jija Tu Kala",
+    "durationSec": 242,
+    "coverUrl": "https://c.saavncdn.com/217/Jija-Tu-Kala-Haryanvi-2019-20250811103822-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/217/b2a4f9b30c6c112f9a84e4729346702c_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2019
+  },
+  {
+    "title": "Balam Chhota",
+    "artist": "Masoom Sharma",
+    "album": "Balam Chhota",
+    "durationSec": 188,
+    "coverUrl": "https://c.saavncdn.com/625/Balam-Chhota-Hindi-2020-20200403054001-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/625/1b9828bc91fda2b14297c50600cc4937_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2020
+  },
+  {
+    "title": "Akhbaar",
+    "artist": "Masoom Sharma",
+    "album": "Akhbaar",
+    "durationSec": 285,
+    "coverUrl": "https://c.saavncdn.com/759/Akhbaar-Haryanvi-2018-20180920-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/759/93c736edb786656a1f5ef45a2fb8dda4_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2018
+  },
+  {
+    "title": "Dj Pe Dhamaal - Haryanvi Non-Stop Mashup(Remix By Moodyboy)",
+    "artist": "Masoom Sharma",
+    "album": "Dj Pe Dhamaal - Haryanvi Non-Stop Mashup",
+    "durationSec": 632,
+    "coverUrl": "https://c.saavncdn.com/522/Dj-Pe-Dhamaal-Haryanvi-Non-Stop-Mashup-Haryanvi-2023-20231228191018-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/522/93fc5636458868844fa5946daa00ac9d_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Gift Me Gun Karde",
+    "artist": "Masoom Sharma",
+    "album": "Gift Me Gun Karde",
+    "durationSec": 252,
+    "coverUrl": "https://c.saavncdn.com/623/Gift-Me-Gun-Karde-Haryanvi-2019-20250814173809-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/623/762a94c403e360d1ef2c91aa94ac5c56_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2019
+  },
+  {
+    "title": "Parchi Mil Ki",
+    "artist": "Masoom Sharma",
+    "album": "Parchi Mil Ki",
+    "durationSec": 275,
+    "coverUrl": "https://c.saavncdn.com/009/Parchi-Mil-Ki-Haryanvi-2018-20181119131901-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/009/c1c81cc9158872677ca3bda3c3b6fb73_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2018
+  },
+  {
+    "title": "Palang",
+    "artist": "Masoom Sharma",
+    "album": "Palang",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/853/Palang-Hindi-2019-20191018104001-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/853/68aab04d173c3f9eba5e9387bfd53ee1_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2019
+  },
+  {
+    "title": "Haryanvi Dj Mashup 2020",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Dj Mashup 2020",
+    "durationSec": 279,
+    "coverUrl": "https://c.saavncdn.com/042/Haryanvi-Dj-Mashup-2020-Haryanvi-2020-20201026142405-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/042/6a6226a0c6fd0081b395abd1241f9c63_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2020
+  },
+  {
+    "title": "Tokk",
+    "artist": "Masoom Sharma",
+    "album": "Tokk",
+    "durationSec": 241,
+    "coverUrl": "https://c.saavncdn.com/408/Tokk-Hindi-2022-20230503182545-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/408/5beafd811f8f2e1ad4d2a0bf9bec516e_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Balma Ke Laad",
+    "artist": "Masoom Sharma",
+    "album": "Balma Ke Laad",
+    "durationSec": 267,
+    "coverUrl": "https://c.saavncdn.com/258/Balma-Ke-Laad-Haryanvi-2022-20260706074504-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/258/963d9f058dcae4abae9ef5042308e544_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2022
+  },
+  {
+    "title": "Haryanvi Valentine Mashup 2023(Remix By Kedrock,Sd Style)",
+    "artist": "Masoom Sharma",
+    "album": "Haryanvi Valentine Mashup 2023",
+    "durationSec": 510,
+    "coverUrl": "https://c.saavncdn.com/668/Haryanvi-Valentine-Mashup-2023-Haryanvi-2023-20230215122754-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/668/b0aa4405aec776b6570c1467e37653f3_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2023
+  },
+  {
+    "title": "Mhari Dhaani 2",
+    "artist": "Masoom Sharma",
+    "album": "Mhari Dhaani 2",
+    "durationSec": 239,
+    "coverUrl": "https://c.saavncdn.com/368/Mhari-Dhaani-2-Haryanvi-2021-20210730135415-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/368/eaf1ce9e78faa33e0521cb0c6e473887_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2021
+  },
+  {
+    "title": "Bandadi Banke Teri",
+    "artist": "Masoom Sharma",
+    "album": "Bandadi Banke Teri",
+    "durationSec": 170,
+    "coverUrl": "https://c.saavncdn.com/078/Bandadi-Banke-Teri-Haryanvi-2025-20250109110504-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/078/6a33cecc19d958c91a90dbf42832532f_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Baat Kasuti",
+    "artist": "Masoom Sharma",
+    "album": "Baat Kasuti",
+    "durationSec": 239,
+    "coverUrl": "https://c.saavncdn.com/131/Baat-Kasuti-Haryanvi-2024-20241212151504-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/131/89390d89ab1a00db12ad7f310d5ccda8_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2024
+  },
+  {
+    "title": "Mhari Dhaani 2 LoFi",
+    "artist": "Masoom Sharma",
+    "album": "Mhari Dhaani 2 LoFi",
+    "durationSec": 281,
+    "coverUrl": "https://c.saavncdn.com/827/Mhari-Dhaani-2-LoFi-Haryanvi-2025-20251205151808-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/827/32fe12a84df9249b87139d67ae331372_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
+  },
+  {
+    "title": "Palang (From \"Palang\")",
+    "artist": "Masoom Sharma",
+    "album": "Masoom Sharma Hits",
+    "durationSec": 148,
+    "coverUrl": "https://c.saavncdn.com/251/Masoom-Sharma-Hits-Haryanvi-2025-20250103151003-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/251/c2ef47355ab2331cb6e8432d00e37dfc_320.mp4",
+    "genre": "Haryanvi Hip Hop / Desi Folk",
+    "year": 2025
   }
 ]

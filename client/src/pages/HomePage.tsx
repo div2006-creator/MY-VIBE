@@ -10,10 +10,11 @@ export const HomePage: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
   const [selectedSingerId, setSelectedSingerId] = useState<string>('all');
-  const [spotlightArtistId, setSpotlightArtistId] = useState<'bieber' | 'arijit' | 'dhanda' | 'honey'>('bieber');
+  const [spotlightArtistId, setSpotlightArtistId] = useState<'bieber' | 'arijit' | 'dhanda' | 'honey' | 'masoom'>('bieber');
   const [showAllBieber, setShowAllBieber] = useState<boolean>(false);
   const [showAllArijit, setShowAllArijit] = useState<boolean>(false);
   const [showAllDhanda, setShowAllDhanda] = useState<boolean>(false);
+  const [showAllMasoom, setShowAllMasoom] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
 
@@ -61,12 +62,15 @@ export const HomePage: React.FC = () => {
   const arijitArtist = artists.find((a) => a.name.includes('Arijit'));
   const dhandaArtist = artists.find((a) => a.name.toLowerCase().includes('dhanda'));
   const honeySingh = artists.find((a) => a.name.includes('Honey Singh'));
+  const masoomArtist = artists.find((a) => a.name.toLowerCase().includes('masoom'));
 
   let activeSpotlight: Artist | undefined = bieberArtist || arijitArtist || artists[0];
   if (spotlightArtistId === 'bieber' && bieberArtist) {
     activeSpotlight = bieberArtist;
   } else if (spotlightArtistId === 'dhanda' && dhandaArtist) {
     activeSpotlight = dhandaArtist;
+  } else if (spotlightArtistId === 'masoom' && masoomArtist) {
+    activeSpotlight = masoomArtist;
   } else if (spotlightArtistId === 'honey' && honeySingh) {
     activeSpotlight = honeySingh;
   } else if (spotlightArtistId === 'arijit' && arijitArtist) {
@@ -92,6 +96,8 @@ export const HomePage: React.FC = () => {
       matchesFilter = s.artist.includes('Arijit');
     } else if (libraryFilter === 'dhanda') {
       matchesFilter = s.artist.includes('Dhanda');
+    } else if (libraryFilter === 'masoom') {
+      matchesFilter = s.artist.toLowerCase().includes('masoom');
     } else if (libraryFilter === 'honey') {
       matchesFilter = s.artist.includes('Honey Singh');
     } else if (libraryFilter === 'punjabi') {
@@ -113,6 +119,9 @@ export const HomePage: React.FC = () => {
 
   const dhandaSongs = allSongs.filter((s) => s.artist.includes('Dhanda') || s.genre?.includes('Haryanvi'));
   const dhandaDisplayList = showAllDhanda ? dhandaSongs : dhandaSongs.slice(0, 12);
+
+  const masoomSongs = allSongs.filter((s) => s.artist.toLowerCase().includes('masoom'));
+  const masoomDisplayList = showAllMasoom ? masoomSongs : masoomSongs.slice(0, 12);
 
   // Sync Recent Played (4 items matching wireframe layout)
   useEffect(() => {
@@ -158,8 +167,15 @@ export const HomePage: React.FC = () => {
     }
   }, [currentSong, allSongs]);
 
-  // Mobile Wireframe Playlists (4 Elevated Square Cards with Underneath Depth Shadows)
+  // Mobile Wireframe Playlists (5 Elevated Square Cards with Underneath Depth Shadows)
   const mobilePlaylists = [
+    {
+      id: 'pl-masoom',
+      title: 'Haryanvi Anthems',
+      badge: 'MASOOM',
+      cover: masoomSongs[0]?.coverUrl || 'https://c.saavncdn.com/978/Bahu-Kale-Ki-Haryanvi-2018-20230206124545-500x500.jpg',
+      songs: masoomSongs.length > 0 ? masoomSongs : allSongs.filter((s) => s.artist.toLowerCase().includes('masoom')),
+    },
     {
       id: 'pl-romance',
       title: 'Late Night Dusk',
@@ -193,10 +209,10 @@ export const HomePage: React.FC = () => {
   // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
   const mobileCategories = [
     { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
-    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
-    { id: 'metal', label: 'metal', sub: 'Heavy Beat' },
-    { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
+    { id: 'masoom', label: 'Masoom', sub: `${masoomSongs.length} Cuts` },
     { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
+    { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
+    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
     { id: 'all', label: 'All Cuts', sub: `${allSongs.length} Tracks` },
   ];
 
@@ -210,6 +226,8 @@ export const HomePage: React.FC = () => {
     let matchesCat = true;
     if (mobileCategory === 'pop') {
       matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
+    } else if (mobileCategory === 'masoom') {
+      matchesCat = s.artist.toLowerCase().includes('masoom');
     } else if (mobileCategory === 'rock') {
       matchesCat = (s.genre?.includes('Rock') ?? false) || (s.genre?.includes('Alternative') ?? false) || s.artist.includes('Coldplay');
     } else if (mobileCategory === 'metal') {
@@ -410,7 +428,7 @@ export const HomePage: React.FC = () => {
               <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#a38c80]" />
               <input
                 type="text"
-                placeholder="Search 386 songs, artists, albums..."
+                placeholder={`Search all ${allSongs.length || '580+'} songs, artists, albums...`}
                 value={mobileSearch}
                 onChange={(e) => setMobileSearch(e.target.value)}
                 className="w-full bg-[#110e0c] border border-[#554339]/60 rounded-xl pl-9 pr-3 py-2 text-xs text-[#e9e1dd] placeholder-[#a38c80]/70 focus:outline-none focus:border-[#ecc15a]"
@@ -857,6 +875,21 @@ export const HomePage: React.FC = () => {
                   </span>
                 </button>
               )}
+              {masoomArtist && (
+                <button
+                  onClick={() => setSpotlightArtistId('masoom')}
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
+                    spotlightArtistId === 'masoom'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
+                  }`}
+                >
+                  <span>🌾 Masoom Sharma</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {masoomSongs.length} Cuts
+                  </span>
+                </button>
+              )}
               {honeySingh && (
                 <button
                   onClick={() => setSpotlightArtistId('honey')}
@@ -923,10 +956,10 @@ export const HomePage: React.FC = () => {
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <span className="px-2 py-0.5 rounded bg-[#82977f]/20 text-[#b7cdb2] font-mono-spec text-[9px] uppercase font-bold">
-                        {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : '👑 King of Hits'}
+                        {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : activeSpotlight.name.toLowerCase().includes('masoom') ? '🌾 King of Haryanvi' : '👑 King of Hits'}
                       </span>
                       <span className="font-mono-spec text-[10px] text-[#a38c80]">
-                        • {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : arijitSongs.length)} Master Tracks
+                        • {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.name.toLowerCase().includes('masoom') ? masoomSongs.length : dhandaSongs.length)} Master Tracks
                       </span>
                     </div>
 
@@ -941,6 +974,8 @@ export const HomePage: React.FC = () => {
                         ? 'The undisputed voice of Indian romance. Stream 120 heartfelt anthems including Tum Hi Ho, Channa Mereya, Kesariya, Agar Tum Saath Ho, Apna Bana Le, Gerua, and Kalank.'
                         : activeSpotlight.name.includes('Dhanda')
                         ? 'The powerhouse behind Desi Drill & Haryanvi Hip Hop. Stream all 66 anthems including Russian Bandana, Up To U, Boom Shaka, Not Guilty, and Maruti.'
+                        : activeSpotlight.name.toLowerCase().includes('masoom')
+                        ? 'The undisputed voice of Haryana and rural Indian heartlands. Stream all 198 monumental anthems including Bahu Kale Ki, 2 Numbari, Kothe Chad Lalkaru, Bholenath, Badmashi, Kala Dhaaga, Gypsy, and more.'
                         : 'Explore blockbuster hits assembled from International Villager, Desi Kalakaar, and GLORY.')}
                     </p>
                   </div>
@@ -988,12 +1023,29 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 <div className="space-y-2">
-                  {(activeSpotlight.songs || (activeSpotlight.name.includes('Bieber') ? bieberSongs : arijitSongs)).slice(0, 5).map((song, idx) => {
+                  {((activeSpotlight.songs && activeSpotlight.songs.length > 0)
+                    ? activeSpotlight.songs
+                    : activeSpotlight.name.includes('Bieber')
+                    ? bieberSongs
+                    : activeSpotlight.name.includes('Arijit')
+                    ? arijitSongs
+                    : activeSpotlight.name.toLowerCase().includes('masoom')
+                    ? masoomSongs
+                    : dhandaSongs).slice(0, 5).map((song, idx) => {
                     const isCurrent = currentSong?.id === song.id;
+                    const songsList = (activeSpotlight.songs && activeSpotlight.songs.length > 0)
+                      ? activeSpotlight.songs
+                      : activeSpotlight.name.includes('Bieber')
+                      ? bieberSongs
+                      : activeSpotlight.name.includes('Arijit')
+                      ? arijitSongs
+                      : activeSpotlight.name.toLowerCase().includes('masoom')
+                      ? masoomSongs
+                      : dhandaSongs;
                     return (
                       <div
                         key={song.id}
-                        onClick={() => playSong(song, undefined, activeSpotlight.songs || (activeSpotlight.name.includes('Bieber') ? bieberSongs : arijitSongs))}
+                        onClick={() => playSong(song, undefined, songsList)}
                         className="flex items-center justify-between p-2.5 rounded-lg bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
                       >
                         <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -1407,7 +1459,94 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 4: 👑 YO YO HONEY SINGH HITS */}
+        {/* SECTION 4: 🌾 MASOOM SHARMA COMPLETE HARYANVI DISCOGRAPHY (198 TRACKS) */}
+        {selectedSingerId === 'all' && masoomSongs.length > 0 && (
+          <section className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
+              <div className="flex items-center gap-2.5">
+                <Disc3 className="w-6 h-6 text-[#ecc15a]" />
+                <div>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
+                    <span>Masoom Sharma — Haryanvi Superstar & Complete Discography</span>
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
+                      {masoomSongs.length} Tracks
+                    </span>
+                  </h3>
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
+                    Bahu Kale Ki, 2 Numbari, Kothe Chad Lalkaru, Bholenath, Badmashi, Kala Dhaaga, Gypsy & 190+ More
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handlePlaySongList(masoomSongs, 0, false)}
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Play All ({masoomSongs.length})</span>
+                </button>
+                <button
+                  onClick={() => handlePlaySongList(masoomSongs, 0, true)}
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
+                  title="Shuffle Masoom Tracks"
+                >
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setShowAllMasoom(!showAllMasoom)}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
+                >
+                  <span>{showAllMasoom ? 'Show Less' : `View All ${masoomSongs.length}`}</span>
+                  {showAllMasoom ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {masoomDisplayList.map((song, i) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    onClick={() => playSong(song, undefined, masoomSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                          {song.title}
+                        </h4>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
+                      </div>
+                    </div>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {!showAllMasoom && masoomSongs.length > 12 && (
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setShowAllMasoom(true)}
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
+                >
+                  <span>Show All {masoomSongs.length} Songs by Masoom Sharma</span>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* SECTION 5: 👑 YO YO HONEY SINGH HITS */}
         {selectedSingerId === 'all' && honeySingh && (
           <section className="space-y-4">
             <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3">
@@ -1457,7 +1596,7 @@ export const HomePage: React.FC = () => {
           </section>
         )}
 
-        {/* SECTION 5: 🎵 COMPLETE SONGS LIBRARY (ALL 386 CUTS WITH STITCH EDITORIAL TRACK INDEX) */}
+        {/* SECTION 6: 🎵 COMPLETE SONGS LIBRARY (ALL CUTS WITH STITCH EDITORIAL TRACK INDEX) */}
         {selectedSingerId === 'all' && (
           <section className="bg-[#1e1b19] rounded-xl p-6 sm:p-8 border border-[#554339]/40 space-y-6 shadow-2xl">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#554339]/40 pb-5">
@@ -1516,6 +1655,7 @@ export const HomePage: React.FC = () => {
                 { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },
                 { id: 'arijit', label: `❤️ Arijit Singh (${arijitSongs.length})` },
                 { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
+                { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
                 { id: 'honey', label: `👑 Honey Singh (${honeySingh?.songCount || 16})` },
                 { id: 'punjabi', label: '🌾 Punjabi Kings' },
                 { id: 'bollywood', label: '🎬 Bollywood & Sufi' },
