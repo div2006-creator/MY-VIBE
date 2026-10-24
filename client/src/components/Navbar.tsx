@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Disc, Compass, Clock, Heart, Search, PlusCircle, LogIn, LogOut, Menu, X, Radio, BarChart3, ListMusic, Users, Mic2 } from 'lucide-react';
+import { Disc, Compass, Clock, Heart, Search, PlusCircle, LogIn, LogOut, Menu, X, Radio, BarChart3, ListMusic, Users, Mic2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -50,40 +50,48 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Desktop Brand Logo & Chassis Indicator */}
-        <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
+        {/* Desktop Brand Logo & Spotify History Arrows */}
+        <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+          {/* Spotify-style History Navigation Buttons */}
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => window.history.back()}
+              className="w-8 h-8 rounded-full bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/50 flex items-center justify-center text-[#dbc1b4] hover:text-[#ffb68c] active:scale-95 transition-all shadow-sm"
+              title="Go back"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => window.history.forward()}
+              className="w-8 h-8 rounded-full bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/50 flex items-center justify-center text-[#dbc1b4] hover:text-[#ffb68c] active:scale-95 transition-all shadow-sm"
+              title="Go forward"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
               <img
                 src="/vibe-logo.png"
                 alt="VIBE Resonance"
-                className="h-9 w-auto rounded-lg shadow-md border border-[#ecc15a]/30 group-hover:scale-105 transition-transform duration-300 object-contain bg-[#110e0c]"
+                className="h-8 w-auto rounded-lg shadow-md border border-[#ecc15a]/30 group-hover:scale-105 transition-transform duration-300 object-contain bg-[#110e0c]"
               />
               <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#ecc15a] border-2 border-[#161311] animate-pulse" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-extrabold text-xl tracking-wider text-[#ffb68c]">
-                RESONANCE <span className="text-[#ecc15a] font-normal text-sm">/ VIBE</span>
+              <span className="font-serif font-extrabold text-lg tracking-wider text-[#ffb68c]">
+                RESONANCE <span className="text-[#ecc15a] font-normal text-xs">/ VIBE</span>
               </span>
-              <span className="font-mono-spec text-[9px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
-                Audio Sanctum • 33⅓ RPM • 386 Cuts
+              <span className="font-mono-spec text-[8.5px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
+                Spotify Format • 33⅓ RPM • 585 Cuts
               </span>
             </div>
           </Link>
-
-          {/* Analog Calibration Badge (Stitch Style) */}
-          <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded bg-[#1e1b19] border border-[#554339]/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-ping" />
-            <span className="font-mono-spec text-[10px] text-[#ecc15a] uppercase tracking-wider">
-              OPTICAL CHASSIS ACTIVE
-            </span>
-            <span className="text-[#554339]">•</span>
-            <span className="font-mono-spec text-[10px] text-[#a38c80]">EST. 1974</span>
-          </div>
         </div>
 
-        {/* Desktop Navigation Links (Warm Analog Editorial Tabs) */}
-        <div className="hidden lg:flex items-center gap-1 bg-[#1e1b19] px-2.5 py-1.5 rounded-lg border border-[#554339]/40 shadow-inner overflow-x-auto">
+        {/* Desktop Navigation Links (Spotify-style Pill Format) */}
+        <div className="hidden lg:flex items-center gap-1.5 bg-[#1e1b19]/90 px-3 py-1.5 rounded-full border border-[#554339]/40 shadow-inner overflow-x-auto">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.path);
@@ -91,32 +99,33 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
                   active
-                    ? 'bg-[#2d2927] text-[#ffb68c] font-semibold border border-[#ecc15a]/40 shadow-[inset_2px_0_0_0_#ffb68c]'
+                    ? 'bg-[#d97736] text-[#221f1d] font-bold shadow-[0_2px_10px_rgba(217,119,54,0.3)]'
                     : 'text-[#dbc1b4] hover:text-[#e9e1dd] hover:bg-[#282422]'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-[#ffb68c]' : 'text-[#a38c80]'}`} />
+                <Icon className={`w-3.5 h-3.5 ${active ? 'text-[#221f1d]' : 'text-[#a38c80]'}`} />
                 <span>{link.label}</span>
               </Link>
             );
           })}
         </div>
 
-        {/* Right Actions: Search, Create Vibe, User Auth */}
+        {/* Right Actions: Spotify-style Search Pill, Create Vibe, User Auth */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => navigate('/search')}
-            className="p-2 rounded bg-[#1e1b19] text-[#a38c80] hover:text-[#ffb68c] border border-[#554339]/40 hover:border-[#ecc15a]/40 transition-colors"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1e1b19] text-[#a38c80] hover:text-[#ffb68c] border border-[#554339]/40 hover:border-[#ecc15a]/40 transition-colors shadow-sm text-xs font-editorial"
             title="Search Vinyl, Singer & Memory Catalog..."
           >
-            <Search className="w-4 h-4" />
+            <Search className="w-3.5 h-3.5" />
+            <span className="hidden xl:inline">Search Catalog...</span>
           </button>
 
           <Link
             to="/create-vibe"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(217,119,54,0.3)] hover:brightness-110 active:scale-95 transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#d97736] text-[#221f1d] font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(217,119,54,0.3)] hover:brightness-110 active:scale-95 transition-all"
           >
             <PlusCircle className="w-3.5 h-3.5 fill-current" />
             <span>Drop Needle</span>
@@ -124,17 +133,16 @@ export const Navbar: React.FC = () => {
 
           {user ? (
             <div className="flex items-center gap-2 pl-2 border-l border-[#554339]/40">
-              <Link to="/profile" className="flex items-center gap-2 group">
+              <Link to="/profile" className="flex items-center gap-2 py-1 px-2 rounded-full bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/40 group transition-all">
                 <img
                   src={user.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'}
                   alt={user.name}
-                  className="w-7 h-7 rounded-full border border-[#ecc15a]/50 object-cover group-hover:border-[#ffb68c] transition-colors"
+                  className="w-6 h-6 rounded-full border border-[#ecc15a]/50 object-cover group-hover:border-[#ffb68c] transition-colors"
                 />
-                <div className="flex flex-col text-left hidden xl:flex">
+                <div className="flex flex-col text-left hidden xl:flex pr-1">
                   <span className="font-serif text-xs font-semibold text-[#e9e1dd] leading-tight">
                     {user.name.split(' ')[0]}
                   </span>
-                  <span className="font-mono-spec text-[9px] text-[#ecc15a] uppercase">Curator Tier</span>
                 </div>
               </Link>
               <button
@@ -142,7 +150,7 @@ export const Navbar: React.FC = () => {
                   logout();
                   navigate('/auth');
                 }}
-                className="p-1.5 rounded text-[#a38c80] hover:text-[#ffb4ab] hover:bg-[#93000a]/20 transition-colors"
+                className="p-1.5 rounded-full text-[#a38c80] hover:text-[#ffb4ab] hover:bg-[#93000a]/20 transition-colors"
                 title="Log Out (Lock Dashboard)"
               >
                 <LogOut className="w-4 h-4" />
@@ -151,7 +159,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link
               to="/auth"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold text-[#e9e1dd] bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/40 transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#e9e1dd] bg-[#1e1b19] hover:bg-[#282422] border border-[#554339]/40 transition-all"
             >
               <LogIn className="w-4 h-4" />
               <span>Sign In</span>

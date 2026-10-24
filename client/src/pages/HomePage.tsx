@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, ChevronRight, Shuffle, Disc, Flame, Heart, Search, Music, Zap, ChevronDown, ChevronUp, Disc3 } from 'lucide-react';
+import { Play, ChevronRight, Shuffle, Disc, Flame, Heart, Search, Music, Zap, ChevronDown, ChevronUp, Disc3, Clock } from 'lucide-react';
 import type { Artist, Song } from '../types';
 import { useAudio } from '../context/AudioContext';
 
 export const HomePage: React.FC = () => {
-  const { playSong, currentSong, toggleLike, isLiked } = useAudio();
+  const { playSong, currentSong, toggleLike, isLiked, isPlaying } = useAudio();
 
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
@@ -17,6 +17,15 @@ export const HomePage: React.FC = () => {
   const [showAllMasoom, setShowAllMasoom] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
+  const [spotifyFilterPill, setSpotifyFilterPill] = useState<string>('all');
+
+  // Dynamic Spotify-style Greeting
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
 
   // Mobile Wireframe State (Category, Recent Played 4 items, Playlists, Catalog search)
   const [recentPlayed, setRecentPlayed] = useState<Song[]>([]);
@@ -130,6 +139,15 @@ export const HomePage: React.FC = () => {
   const masoomDisplayList = showAllMasoom ? masoomSongs : masoomSongs.slice(0, 12);
 
   const renukaSong = allSongs.find((s) => s.artist.toLowerCase().includes('renuka') || s.title.toLowerCase().includes('52 gaj'));
+  const renukaArtist: Artist | undefined = renukaSong ? {
+    id: 'renuka-panwar',
+    name: 'Renuka Panwar',
+    avatarUrl: renukaSong.coverUrl,
+    genre: 'Haryanvi Folk Pop',
+    bio: 'The sensational voice behind 52 Gaj Ka Daman',
+    songCount: 1,
+    songs: [renukaSong]
+  } : undefined;
 
   const haryanviSongs = allSongs.filter((s) =>
     (s.genre?.includes('Haryanvi') ?? false) ||
@@ -271,6 +289,42 @@ export const HomePage: React.FC = () => {
         {/* 📱 MOBILE VIEW: PRECISE WIREFRAME FROM NOTEBOOK SKETCH        */}
         {/* ============================================================== */}
         <div className="block md:hidden space-y-6">
+
+          {/* Spotify Mobile Header: Greeting & Top Filter Pills */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h1 className="font-serif text-xl font-bold text-[#e9e1dd]">
+                {getGreeting()}
+              </h1>
+              <span className="font-mono-spec text-[9px] px-2 py-0.5 rounded-full bg-[#1e1b19] border border-[#554339]/40 text-[#ecc15a]">
+                585 Archival Cuts
+              </span>
+            </div>
+
+            {/* Mobile Filter Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-[11px]">
+              {[
+                { id: 'all', label: 'All' },
+                { id: 'pop', label: 'Global Pop' },
+                { id: 'masoom', label: 'Masoom Sharma' },
+                { id: 'drill', label: 'Desi Drill' },
+                { id: 'romance', label: 'Romance' },
+                { id: 'rock', label: 'Rock' },
+              ].map((pill) => (
+                <button
+                  key={pill.id}
+                  onClick={() => setMobileCategory(pill.id)}
+                  className={`px-3 py-1 rounded-full whitespace-nowrap transition-all border ${
+                    mobileCategory === pill.id
+                      ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c]'
+                      : 'bg-[#1e1b19] text-[#dbc1b4] border-[#554339]/40'
+                  }`}
+                >
+                  {pill.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* 1. CATEGORY CARD CONTAINER (Labeled 'category' with rounded cards: Pop-up, Rock, metal, etc.) */}
           <section className="bg-[#1e1b19] rounded-2xl p-4 border border-[#554339]/50 shadow-xl space-y-3">
@@ -515,323 +569,392 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* ============================================================== */}
-        {/* 💻 DESKTOP & TABLET VIEW: STITCH 5-CHAMBER EDITORIAL LAYOUT    */}
+        {/* 💻 DESKTOP & TABLET VIEW: SPOTIFY FORMATTED ARCHITECTURE       */}
         {/* ============================================================== */}
-        <div className="hidden md:block space-y-12">
-        
-        {/* TOP ATMOSPHERIC BANNER & EDITORIAL STATEMENT (STITCH WARM ANALOG RADIAL GROOVE) */}
-        <section className="relative w-full py-10 px-6 sm:px-10 rounded-xl bg-[#1e1b19] border border-[#554339]/40 overflow-hidden shadow-2xl">
-          {/* Concentric Vinyl Groove Radial Graphic */}
-          <div className="absolute -right-24 -top-24 w-[520px] h-[520px] opacity-25 pointer-events-none select-none flex items-center justify-center">
-            <svg className="w-full h-full stroke-[#ffb68c]" fill="none" viewBox="0 0 400 400">
-              <circle className="text-[#ffb68c]" cx="200" cy="200" r="190" stroke="currentColor" strokeWidth="1.5" />
-              <circle className="text-[#ecc15a]" cx="200" cy="200" r="160" stroke="currentColor" strokeDasharray="6 6" strokeWidth="1" />
-              <circle className="text-[#ffdbc9]" cx="200" cy="200" r="125" stroke="currentColor" strokeWidth="1.5" />
-              <circle className="text-[#ecc15a]" cx="200" cy="200" r="90" stroke="currentColor" strokeWidth="2" />
-              <circle className="text-[#ffb68c]" cx="200" cy="200" r="55" stroke="currentColor" strokeWidth="1" />
-              <circle className="text-[#ecc15a]/20" cx="200" cy="200" fill="currentColor" r="28" stroke="currentColor" strokeWidth="1.5" />
-              {/* Crosshairs */}
-              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="200" x2="200" y1="5" y2="40" />
-              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="200" x2="200" y1="360" y2="395" />
-              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="5" x2="40" y1="200" y2="200" />
-              <line className="text-[#ecc15a]" stroke="currentColor" strokeWidth="2" x1="360" x2="395" y1="200" y2="200" />
-            </svg>
+        <div className="hidden md:block space-y-10">
+
+          {/* 1. SPOTIFY TOP OPTION FILTER PILLS */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-editorial">
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'music', label: 'Music' },
+              { id: 'artists', label: 'Popular Artists' },
+              { id: '52gaj', label: '👑 52 Gaj Ka Daman' },
+              { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
+              { id: 'bieber', label: `🌎 Justin Bieber (${bieberSongs.length})` },
+              { id: 'arijit', label: `❤️ Arijit Singh (${arijitSongs.length})` },
+              { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },
+              { id: 'honey', label: `👑 Honey Singh` },
+              { id: 'playlists', label: 'Taste Playlists' },
+              { id: 'liked', label: '💖 Liked Pressings' },
+            ].map((pill) => (
+              <button
+                key={pill.id}
+                onClick={() => {
+                  setSpotifyFilterPill(pill.id);
+                  if (pill.id === 'masoom') {
+                    setSpotlightArtistId('masoom');
+                    setLibraryFilter('masoom');
+                  } else if (pill.id === 'bieber') {
+                    setSpotlightArtistId('bieber');
+                    setLibraryFilter('bieber');
+                  } else if (pill.id === 'arijit') {
+                    setSpotlightArtistId('arijit');
+                    setLibraryFilter('arijit');
+                  } else if (pill.id === 'dhanda') {
+                    setSpotlightArtistId('dhanda');
+                    setLibraryFilter('dhanda');
+                  } else if (pill.id === 'honey') {
+                    setSpotlightArtistId('honey');
+                    setLibraryFilter('honey');
+                  } else if (pill.id === '52gaj') {
+                    setLibraryFilter('haryanvi');
+                  } else if (pill.id === 'all') {
+                    setLibraryFilter('all');
+                  }
+                }}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all border ${
+                  spotifyFilterPill === pill.id
+                    ? 'bg-[#d97736] text-[#221f1d] font-bold border-[#ffb68c] shadow-[0_2px_12px_rgba(217,119,54,0.3)]'
+                    : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
+                }`}
+              >
+                {pill.label}
+              </button>
+            ))}
           </div>
 
-          <div className="relative z-10 max-w-4xl flex flex-col gap-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-2.5 py-0.5 rounded bg-[#383431] text-[#ecc15a] font-mono-spec text-[10px] uppercase tracking-widest font-bold">
-                SANCTUARY FREQUENCY • 432 Hz ALIGNED
+          {/* 2. SPOTIFY GREETING & SIGNATURE 6 QUICK-ACCESS CARDS (2x3 GRID) */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h1 className="font-serif text-3xl font-extrabold text-[#e9e1dd] tracking-tight">
+                {getGreeting()}
+              </h1>
+              <span className="font-mono-spec text-[10px] text-[#ecc15a] uppercase tracking-wider hidden sm:inline-block">
+                AUDIO SANCTUM • 33⅓ RPM • {allSongs.length} MASTER CUTS
               </span>
-              <span className="font-mono-spec text-[10px] text-[#a38c80]">
-                EDITION 09 // VALVE STATE ACTIVE • {allSongs.length} MASTER CUTS
+            </div>
+
+            {/* 6 Quick-Access Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              
+              {/* Quick Card 1: 52 Gaj Ka Daman */}
+              {renukaSong && (
+                <div
+                  onClick={() => playSong(renukaSong)}
+                  className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+                >
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <img src={renukaSong.coverUrl} alt="52 Gaj Ka Daman" className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0" />
+                    <div className="min-w-0 flex-1 pr-2">
+                      <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                        52 Gaj Ka Daman
+                      </span>
+                      <span className="text-xs text-[#a38c80] truncate block">
+                        Renuka Panwar • Historic Anthem
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); playSong(renukaSong); }}
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                    title="Play 52 Gaj Ka Daman"
+                  >
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              )}
+
+              {/* Quick Card 2: Masoom Sharma Anthems */}
+              <div
+                onClick={() => handlePlaySongList(masoomSongs, 0, false)}
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <img
+                    src={masoomSongs[0]?.coverUrl || 'https://c.saavncdn.com/978/Bahu-Kale-Ki-Haryanvi-2018-20230206124545-500x500.jpg'}
+                    alt="Masoom Sharma"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      Masoom Sharma Anthems
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      {masoomSongs.length} Complete Studio Cuts
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePlaySongList(masoomSongs, 0, false); }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                  title="Play Masoom Sharma Anthems"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </button>
+              </div>
+
+              {/* Quick Card 3: Justin Bieber Essentials */}
+              <div
+                onClick={() => handlePlaySongList(bieberSongs, 0, false)}
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <img
+                    src={bieberSongs[0]?.coverUrl || 'https://c.saavncdn.com/289/Justice-English-2021-20210319044234-500x500.jpg'}
+                    alt="Justin Bieber"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      Justin Bieber Essentials
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      {bieberSongs.length} Global Pop Anthems
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePlaySongList(bieberSongs, 0, false); }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                  title="Play Justin Bieber Essentials"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </button>
+              </div>
+
+              {/* Quick Card 4: Arijit Singh Melodies */}
+              <div
+                onClick={() => handlePlaySongList(arijitSongs, 0, false)}
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <img
+                    src={arijitSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80'}
+                    alt="Arijit Singh"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      Arijit Singh Melodies
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      {arijitSongs.length} Soulful Nocturne Cuts
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePlaySongList(arijitSongs, 0, false); }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                  title="Play Arijit Singh Melodies"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </button>
+              </div>
+
+              {/* Quick Card 5: Dhanda Nyoliwala Drill */}
+              <div
+                onClick={() => handlePlaySongList(dhandaSongs, 0, false)}
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <img
+                    src={dhandaSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80'}
+                    alt="Dhanda Nyoliwala"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      Dhanda Nyoliwala Drill
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      {dhandaSongs.length} Desi Drill Anthems
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePlaySongList(dhandaSongs, 0, false); }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                  title="Play Dhanda Nyoliwala Drill"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </button>
+              </div>
+
+              {/* Quick Card 6: Liked Songs Pressings */}
+              <Link
+                to="/liked-songs"
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#554339]/30 hover:border-[#ecc15a]/40"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#d97736] to-[#554339] flex items-center justify-center flex-shrink-0 shadow-md">
+                    <Heart className="w-8 h-8 text-[#221f1d] fill-current" />
+                  </div>
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      Liked Pressings
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      Your Saved Vinyl Collection
+                    </span>
+                  </div>
+                </div>
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0">
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </div>
+              </Link>
+
+            </div>
+          </section>
+
+          {/* 3. SPOTIFY SECTION: POPULAR ARTISTS (CIRCULAR CARDS WITH HOVER FLOATING PLAY) */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#e9e1dd] hover:underline cursor-pointer">
+                  Popular Artists
+                </h2>
+                <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
+                  Titans & Master Vocalists in the Sanctum
+                </p>
+              </div>
+              <Link to="/artists" className="font-mono-spec text-xs text-[#ecc15a] hover:underline flex items-center gap-1 font-bold">
+                <span>Show all</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {[
+                bieberArtist,
+                arijitArtist,
+                masoomArtist,
+                dhandaArtist,
+                honeySingh,
+                renukaArtist,
+              ].filter((a): a is Artist => Boolean(a)).map((artist) => {
+                const count = artist.name.includes('Bieber')
+                  ? bieberSongs.length
+                  : artist.name.includes('Arijit')
+                  ? arijitSongs.length
+                  : artist.name.toLowerCase().includes('masoom')
+                  ? masoomSongs.length
+                  : artist.name.includes('Dhanda')
+                  ? dhandaSongs.length
+                  : (artist.songCount || 1);
+                return (
+                  <div
+                    key={artist.id}
+                    onClick={() => handlePlayArtist(artist)}
+                    className="bg-[#1e1b19] hover:bg-[#282422] p-4 rounded-xl transition-all duration-300 group cursor-pointer relative shadow-lg border border-[#554339]/20 hover:border-[#ecc15a]/30 flex flex-col"
+                  >
+                    <div className="relative aspect-square w-full rounded-full overflow-hidden mb-3.5 bg-[#110e0c] shadow-lg border-2 border-[#554339]/40 group-hover:border-[#ecc15a]/60">
+                      <img
+                        src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
+                        alt={artist.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handlePlayArtist(artist); }}
+                        className="absolute bottom-2 right-2 w-11 h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95"
+                        title={`Play ${artist.name}`}
+                      >
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                      </button>
+                    </div>
+                    <h4 className="font-serif font-bold text-sm text-[#e9e1dd] truncate group-hover:text-[#ffb68c]">
+                      {artist.name}
+                    </h4>
+                    <p className="font-editorial text-xs text-[#a38c80] mt-1">
+                      Artist • {count} Cuts
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 4. SPOTIFY SECTION: MADE FOR YOU (SQUARE CARDS WITH HOVER FLOATING PLAY) */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#e9e1dd] hover:underline cursor-pointer">
+                  Made For You
+                </h2>
+                <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
+                  Archival Vinyl Sanctuaries & Mood Chambers
+                </p>
+              </div>
+              <span className="font-mono-spec text-[10px] text-[#ecc15a] uppercase tracking-wider">
+                RIAA 1954 EQUALIZATION
               </span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-[#ffb68c] tracking-tight leading-tight">
-              What frequency does your heart resonate with tonight?
-            </h1>
-
-            <p className="font-editorial text-base sm:text-lg text-[#dbc1b4] max-w-2xl font-normal leading-relaxed">
-              Choose an emotional sanctuary or let the stylus drift through analog tape saturation, nocturnal rain crackle, and uncompressed acoustic presence across 386 studio recordings.
-            </p>
-
-            {/* Analog Calibration HUD */}
-            <div className="flex flex-wrap items-center gap-6 pt-3 text-[#e9e1dd] font-mono-spec text-xs">
-              <div className="flex items-center gap-2">
-                <Disc className="w-3.5 h-3.5 text-[#ecc15a]" />
-                <span className="text-[#a38c80]">CALIBRATION:</span>
-                <span className="text-[#ecc15a] font-bold">RIAA CURVE 1954</span>
-              </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-[#554339]" />
-              <div className="flex items-center gap-2">
-                <Flame className="w-3.5 h-3.5 text-[#ffb68c]" />
-                <span className="text-[#a38c80]">STYLUS FORCE:</span>
-                <span className="text-[#ffb68c] font-bold">1.82 GRAMS</span>
-              </div>
-              <div className="w-1.5 h-1.5 rounded-full bg-[#554339]" />
-              <div className="flex items-center gap-2">
-                <Music className="w-3.5 h-3.5 text-[#b7cdb2]" />
-                <span className="text-[#a38c80]">ATMOSPHERIC DISSOLVE:</span>
-                <span className="text-[#b7cdb2] font-bold">94.6% EMBEDDED</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CHAMBER 01: EMOTIONAL SANCTUARY CHAMBERS (STITCH ASYMMETRICAL GATEFOLD CARDS) */}
-        <section className="space-y-5">
-          <div className="flex items-end justify-between border-b border-[#554339]/40 pb-3">
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2 font-mono-spec text-xs text-[#a38c80] uppercase tracking-widest">
-                <span>01</span>
-                <span className="text-[#554339]">/</span>
-                <span>ATMOSPHERIC SPECTRUM</span>
-              </div>
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#e9e1dd]">
-                Emotional Sanctuary Chambers
-              </h2>
-            </div>
-            <div className="hidden sm:flex items-center gap-2 font-mono-spec text-[10px] text-[#ecc15a]">
-              <span>TAP CHAMBER TO ENGAGE ROTATIONAL NEEDLE</span>
-              <div className="w-2 h-2 rounded-full bg-[#ecc15a] animate-ping" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Chamber I: Nostalgic Dusk (Arijit Singh & Soul) */}
-            <div
-              onClick={() => handlePlaySongList(arijitSongs, 0, true)}
-              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ecc15a]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
-            >
-              <div className="flex flex-col gap-3">
-                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
-                  <img
-                    src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80"
-                    alt="Nostalgic Dusk"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ecc15a] font-bold">
-                    CHAMBER I
-                  </span>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ffb68c] font-mono-spec text-[10px]">
-                    <span className="uppercase">FLUTTER: ±0.04%</span>
-                    <span className="text-[#a38c80]">33⅓ RPM</span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                {
+                  id: 'mix-arijit',
+                  title: 'Nostalgic Dusk',
+                  desc: 'Arijit Singh & Soulful Nocturne Cuts',
+                  cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80',
+                  action: () => handlePlaySongList(arijitSongs, 0, true),
+                },
+                {
+                  id: 'mix-bieber',
+                  title: 'Golden Reverie',
+                  desc: 'Justin Bieber & Global Multi-Platinum Pop',
+                  cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80',
+                  action: () => handlePlaySongList(bieberSongs, 0, true),
+                },
+                {
+                  id: 'mix-masoom',
+                  title: 'Desi Anthems',
+                  desc: 'Masoom Sharma & 198 Haryanvi Folk Masters',
+                  cover: masoomSongs[0]?.coverUrl || 'https://c.saavncdn.com/978/Bahu-Kale-Ki-Haryanvi-2018-20230206124545-500x500.jpg',
+                  action: () => handlePlaySongList(masoomSongs, 0, true),
+                },
+                {
+                  id: 'mix-dhanda',
+                  title: 'Midnight Solitude',
+                  desc: 'Dhanda Nyoliwala & Heavy 808 Desi Drill',
+                  cover: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80',
+                  action: () => handlePlaySongList(dhandaSongs, 0, true),
+                },
+                {
+                  id: 'mix-52gaj',
+                  title: '52 Gaj Celebration',
+                  desc: 'Renuka Panwar & Historic 3B+ Record',
+                  cover: renukaSong?.coverUrl || 'https://c.saavncdn.com/407/52-Gaj-Ka-Daman-Haryanvi-2020-20210625170012-500x500.jpg',
+                  action: () => renukaSong && playSong(renukaSong),
+                },
+              ].map((card) => (
+                <div
+                  key={card.id}
+                  onClick={card.action}
+                  className="bg-[#1e1b19] hover:bg-[#282422] p-4 rounded-xl transition-all duration-300 group cursor-pointer relative shadow-lg border border-[#554339]/20 hover:border-[#ecc15a]/30 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative aspect-square w-full rounded-lg overflow-hidden mb-3 bg-[#110e0c] shadow-md">
+                      <img src={card.cover} alt={card.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <button
+                        onClick={(e) => { e.stopPropagation(); card.action(); }}
+                        className="absolute bottom-2.5 right-2.5 w-11 h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95"
+                        title={`Play ${card.title}`}
+                      >
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                      </button>
+                    </div>
+                    <h4 className="font-serif font-bold text-sm text-[#e9e1dd] truncate group-hover:text-[#ffb68c]">
+                      {card.title}
+                    </h4>
+                    <p className="font-editorial text-xs text-[#a38c80] line-clamp-2 mt-1 leading-snug">
+                      {card.desc}
+                    </p>
                   </div>
                 </div>
-
-                <div className="flex flex-col mt-1">
-                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors">
-                    Nostalgic Dusk
-                  </h3>
-                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
-                    Warm sepia glow, gentle tape flutter, and Arijit Singh’s heartfelt nocturnal ivory romance anthems recorded in pure analog depth.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>CADENCE</span>
-                  <span className="text-[#e9e1dd]">64 BPM</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TEXTURE</span>
-                  <span className="text-[#ecc15a]">Heavy 1968 Crackle</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TONALITY</span>
-                  <span className="text-[#b7cdb2]">Bittersweet Stillness</span>
-                </div>
-                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
-                <div className="flex items-center justify-between">
-                  <span className="font-mono-spec text-[10px] text-[#ffb68c] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffb68c] animate-pulse" />
-                    {arijitSongs.length} Tracks
-                  </span>
-                  <button className="w-7 h-7 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
-                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
-
-            {/* Chamber II: Cathartic Drift (Diljit, Anuv Jain, Shubh) */}
-            <div
-              onClick={() => handlePlaySongList(allSongs.filter(s => s.genre?.includes('Punjabi') || s.artist.includes('Anuv')), 0, true)}
-              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#b7cdb2]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
-            >
-              <div className="flex flex-col gap-3">
-                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
-                  <img
-                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80"
-                    alt="Cathartic Drift"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#b7cdb2] font-bold">
-                    CHAMBER II
-                  </span>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#b7cdb2] font-mono-spec text-[10px]">
-                    <span className="uppercase">REVERB: 8.4s CATHEDRAL</span>
-                    <span className="text-[#a38c80]">QUADRAPHONIC</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col mt-1">
-                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#b7cdb2] transition-colors">
-                    Cathartic Drift
-                  </h3>
-                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
-                    Submerged plate reverbs, expansive acoustic piano echoes, and soothing indie vocals by Anuv Jain, Diljit Dosanjh, and Shubh dissolving into silence.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>CADENCE</span>
-                  <span className="text-[#e9e1dd]">52 BPM</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TEXTURE</span>
-                  <span className="text-[#b7cdb2]">Glacial Echo & Tape Bloom</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TONALITY</span>
-                  <span className="text-[#ecc15a]">Weightlessness & Calm</span>
-                </div>
-                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
-                <div className="flex items-center justify-between">
-                  <span className="font-mono-spec text-[10px] text-[#b7cdb2] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#b7cdb2] animate-pulse" />
-                    Soul Anthems
-                  </span>
-                  <button className="w-7 h-7 rounded-full bg-[#82977f] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
-                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Chamber III: Golden Reverie (Justin Bieber & Global Icons) */}
-            <div
-              onClick={() => handlePlaySongList(bieberSongs, 0, true)}
-              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ecc15a]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
-            >
-              <div className="flex flex-col gap-3">
-                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
-                  <img
-                    src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80"
-                    alt="Golden Reverie"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ecc15a] font-bold">
-                    CHAMBER III
-                  </span>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ecc15a] font-mono-spec text-[10px]">
-                    <span className="uppercase">TUBE BIAS: CLASS-A</span>
-                    <span className="text-[#a38c80]">DIRECT CUT</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col mt-1">
-                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ecc15a] transition-colors">
-                    Golden Reverie
-                  </h3>
-                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
-                    Warm acoustic wood grain, unhurried pop anthems, and Justin Bieber's multi-platinum masterpieces like Stay, Ghost, Peaches, and Love Yourself.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>CADENCE</span>
-                  <span className="text-[#e9e1dd]">78 BPM</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TEXTURE</span>
-                  <span className="text-[#ecc15a]">Silky Tube Saturation</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TONALITY</span>
-                  <span className="text-[#ffb68c]">Sunlit Contentment</span>
-                </div>
-                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
-                <div className="flex items-center justify-between">
-                  <span className="font-mono-spec text-[10px] text-[#ecc15a] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-pulse" />
-                    {bieberSongs.length} Tracks
-                  </span>
-                  <button className="w-7 h-7 rounded-full bg-[#8c6b01] text-[#fff3df] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
-                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Chamber IV: Midnight Solitude (Dhanda Nyoliwala & Drill) */}
-            <div
-              onClick={() => handlePlaySongList(dhandaSongs, 0, true)}
-              className="group relative rounded-xl bg-[#221f1d] p-5 flex flex-col justify-between border border-[#554339]/40 hover:border-[#ffb68c]/50 hover:bg-[#282422] transition-all cursor-pointer shadow-xl"
-            >
-              <div className="flex flex-col gap-3">
-                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#110e0c] shadow-inner">
-                  <img
-                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=500&q=80"
-                    alt="Midnight Solitude"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#110e0c] via-transparent to-transparent opacity-80" />
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110e0c]/90 font-mono-spec text-[10px] text-[#ffb68c] font-bold">
-                    CHAMBER IV
-                  </span>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[#ffb68c] font-mono-spec text-[10px]">
-                    <span className="uppercase">BASS CHANNEL: STEREO SUB</span>
-                    <span className="text-[#a38c80]">192 kHz</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col mt-1">
-                  <h3 className="font-serif text-lg font-bold text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors">
-                    Midnight Solitude
-                  </h3>
-                  <p className="font-editorial text-xs text-[#dbc1b4] line-clamp-2 mt-1 leading-relaxed">
-                    Heavy Desi 808 bass, drill ictus, and raw lyrical prowess from Dhanda Nyoliwala, Yo Yo Honey Singh, and Sidhu Moose Wala cutting through midnight rain.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 flex flex-col gap-2 pt-3 bg-[#1e1b19] p-3 rounded-lg border border-[#554339]/30">
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>CADENCE</span>
-                  <span className="text-[#e9e1dd]">58 BPM</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TEXTURE</span>
-                  <span className="text-[#ffb68c]">Sub Bass & Tape Saturation</span>
-                </div>
-                <div className="flex items-center justify-between font-mono-spec text-[10px] text-[#a38c80]">
-                  <span>TONALITY</span>
-                  <span className="text-[#b7cdb2]">Raw Adrenaline</span>
-                </div>
-                <div className="w-full h-px bg-[#554339]/30 my-0.5" />
-                <div className="flex items-center justify-between">
-                  <span className="font-mono-spec text-[10px] text-[#ffb68c] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffb68c] animate-pulse" />
-                    {dhandaSongs.length} Tracks
-                  </span>
-                  <button className="w-7 h-7 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md">
-                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
 
         {/* CHAMBER 02: FEATURED PHYSICAL CURATOR SLIPCASE (TITAN SPOTLIGHT - 7-COL + 5-COL ASYMMETRIC STITCH GATEFOLD) */}
         {activeSpotlight && (
@@ -1743,7 +1866,7 @@ export const HomePage: React.FC = () => {
               ))}
             </div>
 
-            {/* Grid of Songs (Stitch Editorial Record Back-Cover Format) */}
+            {/* Spotify Tracklist Table Format */}
             {filteredLibrarySongs.length === 0 ? (
               <div className="text-center py-12 space-y-2">
                 <Music className="w-10 h-10 text-[#554339] mx-auto" />
@@ -1756,49 +1879,86 @@ export const HomePage: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-[700px] overflow-y-auto pr-1 scrollbar-thin">
-                {filteredLibrarySongs.map((song, i) => {
-                  const isCurrent = currentSong?.id === song.id;
-                  return (
-                    <div
-                      key={song.id}
-                      onClick={() => playSong(song, undefined, filteredLibrarySongs)}
-                      className="flex items-center justify-between p-2.5 rounded-lg bg-[#221f1d] hover:bg-[#282422] border border-[#554339]/30 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <img src={song.coverUrl} alt="" className="w-9 h-9 rounded object-cover flex-shrink-0" />
-                        <div className="min-w-0 flex-1">
-                          <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
-                            {song.title}
-                          </h4>
-                          <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.artist}</p>
+              <div className="w-full">
+                {/* Spotify Table Header */}
+                <div className="grid grid-cols-12 gap-4 px-4 py-2 border-b border-[#554339]/40 font-mono-spec text-[11px] text-[#a38c80] uppercase tracking-wider">
+                  <div className="col-span-1 text-center">#</div>
+                  <div className="col-span-6 sm:col-span-5">Title</div>
+                  <div className="hidden sm:block sm:col-span-4">Album</div>
+                  <div className="col-span-5 sm:col-span-2 flex items-center justify-end pr-3 gap-3">
+                    <Clock className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                {/* Spotify Track Rows */}
+                <div className="divide-y divide-transparent space-y-1 mt-2 max-h-[720px] overflow-y-auto pr-1 scrollbar-thin">
+                  {filteredLibrarySongs.map((song, i) => {
+                    const isCurrent = currentSong?.id === song.id;
+                    return (
+                      <div
+                        key={song.id}
+                        onClick={() => playSong(song, undefined, filteredLibrarySongs)}
+                        className={`grid grid-cols-12 gap-4 px-3 sm:px-4 py-2.5 rounded-md hover:bg-[#282422]/70 cursor-pointer transition-colors group items-center ${
+                          isCurrent ? 'bg-[#221f1d] border-l-2 border-[#d97736]' : ''
+                        }`}
+                      >
+                        {/* Col 1: Index or Play icon / Animated Equalizer */}
+                        <div className="col-span-1 flex items-center justify-center font-mono-spec text-xs text-[#a38c80]">
+                          {isCurrent && isPlaying ? (
+                            <span className="flex items-end gap-0.5 h-3.5">
+                              <span className="w-0.5 bg-[#d97736] animate-pulse h-full" />
+                              <span className="w-0.5 bg-[#ecc15a] animate-pulse h-2" />
+                              <span className="w-0.5 bg-[#d97736] animate-pulse h-3" />
+                            </span>
+                          ) : (
+                            <>
+                              <span className="group-hover:hidden">{i + 1}</span>
+                              <Play className="w-3.5 h-3.5 fill-current text-[#ffb68c] hidden group-hover:block ml-0.5" />
+                            </>
+                          )}
+                        </div>
+
+                        {/* Col 2: Title with Thumbnail */}
+                        <div className="col-span-6 sm:col-span-5 flex items-center gap-3 min-w-0">
+                          <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0 shadow-sm" />
+                          <div className="min-w-0 flex-1">
+                            <h4 className={`font-serif text-sm font-semibold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                              {song.title}
+                            </h4>
+                            <p className="font-editorial text-xs text-[#a38c80] truncate mt-0.5 group-hover:text-[#dbc1b4]">
+                              {song.artist}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Col 3: Album */}
+                        <div className="hidden sm:block sm:col-span-4 min-w-0">
+                          <p className="font-editorial text-xs text-[#a38c80] truncate group-hover:text-[#e9e1dd]">
+                            {song.album || 'Single'}
+                          </p>
+                        </div>
+
+                        {/* Col 4: Like Heart & Duration */}
+                        <div className="col-span-5 sm:col-span-2 flex items-center justify-end gap-3 pr-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleLike(song.id);
+                            }}
+                            className="p-1 rounded-full hover:scale-110 active:scale-90 transition-all opacity-0 group-hover:opacity-100"
+                            style={{ opacity: isLiked(song.id) ? 1 : undefined }}
+                            title={isLiked(song.id) ? "Remove from Liked" : "Save to Liked"}
+                          >
+                            <Heart className={`w-4 h-4 transition-all ${isLiked(song.id) ? 'text-rose-500 fill-rose-500' : 'text-[#a38c80] hover:text-[#e9e1dd]'}`} />
+                          </button>
+                          <span className="font-mono-spec text-xs text-[#a38c80]">
+                            {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                          </span>
                         </div>
                       </div>
-
-                      <div className="flex items-center gap-2 ml-2">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleLike(song.id);
-                          }}
-                          className="p-1.5 rounded-full hover:bg-[#383431] active:scale-90 transition-all opacity-80 group-hover:opacity-100"
-                          title={isLiked(song.id) ? "Remove from Liked" : "Save to Liked"}
-                        >
-                          <Heart className={`w-3.5 h-3.5 transition-all ${isLiked(song.id) ? 'text-rose-500 fill-rose-500 scale-110' : 'text-[#a38c80] hover:text-rose-400'}`} />
-                        </button>
-                        <span className="font-mono-spec text-[9px] text-[#a38c80]">
-                          {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
-                        </span>
-                        <button className="p-1 rounded-full bg-[#110e0c] text-[#ffb68c] group-hover:bg-[#d97736] group-hover:text-[#221f1d] transition-colors">
-                          <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             )}
           </section>
