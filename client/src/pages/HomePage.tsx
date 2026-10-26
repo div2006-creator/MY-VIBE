@@ -378,7 +378,7 @@ export const HomePage: React.FC = () => {
                 {getGreeting()}
               </h1>
               <span className="font-mono-spec text-[9px] px-2 py-0.5 rounded-full bg-[#1e1b19] border border-[#554339]/40 text-[#ecc15a]">
-                {allSongs.length || 617} Archival Cuts
+                {allSongs.length || 619} Archival Cuts
               </span>
             </div>
 
