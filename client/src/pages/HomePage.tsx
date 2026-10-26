@@ -47,7 +47,13 @@ export const HomePage: React.FC = () => {
   }, []);
 
   const handlePlayArtist = (artist: Artist, shuffle = false) => {
-    const songs = artist.songs || allSongs.filter((s) => s.artist === artist.name);
+    const songs = (artist.songs && artist.songs.length > 0)
+      ? artist.songs
+      : allSongs.filter(
+          (s) =>
+            s.artist.toLowerCase().includes(artist.name.toLowerCase()) ||
+            artist.name.toLowerCase().includes(s.artist.toLowerCase())
+        );
     if (songs.length === 0) return;
 
     let playlist = [...songs];
@@ -227,6 +233,19 @@ export const HomePage: React.FC = () => {
   const hansrajArtist = artists.find((a) => a.name.includes('Hansraj'));
   const agamArtist = artists.find((a) => a.name.includes('Agam'));
   const shankarArtist = artists.find((a) => a.name.includes('Shankar Mahadevan'));
+  const shreyaSong = allSongs.find(
+    (s) => s.artist.toLowerCase().includes('shreya') || s.title.toLowerCase().includes('kalyani')
+  );
+  const foundShreya = artists.find((a) => a.name.includes('Shreya'));
+  const shreyaArtist: Artist | undefined = foundShreya || (shreyaSong ? {
+    id: 'shreya-ghoshal',
+    name: 'Shreya Ghoshal',
+    avatarUrl: 'https://c.saavncdn.com/artists/Shreya_Ghoshal_500x500.jpg',
+    genre: 'Indie Folk Fusion & Pop',
+    bio: 'Queen of Melody & Legendary Master Playback Vocalist',
+    songCount: 1,
+    songs: [shreyaSong],
+  } : undefined);
 
   // Sync Recent Played (4 items matching wireframe layout)
   useEffect(() => {
@@ -938,8 +957,9 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-11 gap-3 sm:gap-4">
               {[
+                shreyaArtist,
                 hariharanArtist,
                 hansrajArtist,
                 agamArtist,
@@ -951,7 +971,9 @@ export const HomePage: React.FC = () => {
                 honeySingh,
                 renukaArtist,
               ].filter((a): a is Artist => Boolean(a)).map((artist) => {
-                const count = artist.name.includes('Bieber')
+                const count = artist.name.includes('Shreya')
+                  ? 1
+                  : artist.name.includes('Bieber')
                   ? bieberSongs.length
                   : artist.name.includes('Arijit')
                   ? arijitSongs.length

@@ -45,7 +45,7 @@ export const AnalyticsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-32 max-w-7xl mx-auto px-4 md:px-8 pt-6 space-y-8">
-      
+
       {/* Page Header */}
       <div className="glass-panel p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-indigo-600/10">
         <div>
@@ -70,7 +70,7 @@ export const AnalyticsPage: React.FC = () => {
 
       {/* Top Quick Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        
+
         <div className="glass-panel p-5 rounded-2xl border border-white/10 flex items-center gap-4 bg-white/5">
           <div className="p-3 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
             <Clock className="w-6 h-6" />
@@ -115,7 +115,7 @@ export const AnalyticsPage: React.FC = () => {
 
       {/* Main Analytics Content: Top Songs & Weekly Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Top 5 Songs List */}
         <div className="lg:col-span-2 glass-panel p-6 rounded-3xl border border-white/10">
           <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -153,7 +153,7 @@ export const AnalyticsPage: React.FC = () => {
 
         {/* Top Artists & Weekly Listening chart */}
         <div className="space-y-6">
-          
+
           {/* Top Artists Card */}
           <div className="glass-panel p-6 rounded-3xl border border-white/10">
             <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">

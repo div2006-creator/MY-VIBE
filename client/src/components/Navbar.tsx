@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-40 bg-[#161311]/95 backdrop-blur-xl border-b border-[#554339]/40 px-4 lg:px-8 py-3 transition-all select-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        
+
         {/* Mobile View Left: Profile (Circular 'M' / Avatar as drawn in sketch) */}
         <div className="flex lg:hidden items-center gap-2.5">
           <Link
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
                 AURALIS
               </span>
               <span className="font-mono-spec text-[8.5px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
-                Spotify Format • 33⅓ RPM • 619 Master Cuts
+                Spotify Format • 33⅓ RPM • 620 Master Cuts
               </span>
             </div>
           </Link>
@@ -94,11 +94,10 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
-                  active
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${active
                     ? 'bg-[#d97736] text-[#221f1d] font-bold shadow-[0_2px_10px_rgba(217,119,54,0.3)]'
                     : 'text-[#dbc1b4] hover:text-[#e9e1dd] hover:bg-[#282422]'
-                }`}
+                  }`}
               >
                 <Icon className={`w-3.5 h-3.5 ${active ? 'text-[#221f1d]' : 'text-[#a38c80]'}`} />
                 <span>{link.label}</span>
@@ -182,11 +181,10 @@ export const Navbar: React.FC = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium ${
-                  active
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium ${active
                     ? 'bg-[#2d2927] text-[#ffb68c] border border-[#ecc15a]/40 font-semibold'
                     : 'text-[#dbc1b4] hover:bg-[#1e1b19]'
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4 text-[#ecc15a]" />
                 <span>{link.label}</span>
