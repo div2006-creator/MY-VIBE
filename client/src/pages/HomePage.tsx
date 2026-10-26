@@ -18,6 +18,8 @@ export const HomePage: React.FC = () => {
   const [librarySearch, setLibrarySearch] = useState<string>('');
   const [libraryFilter, setLibraryFilter] = useState<string>('all');
   const [spotifyFilterPill, setSpotifyFilterPill] = useState<string>('all');
+  const [devotionalTab, setDevotionalTab] = useState<'all' | 'krishna' | 'mahadev' | 'hanuman' | 'ram'>('all');
+  const [showAllDevotional, setShowAllDevotional] = useState<boolean>(false);
 
   // Dynamic Spotify-style Greeting
   const getGreeting = () => {
@@ -119,6 +121,8 @@ export const HomePage: React.FC = () => {
       matchesFilter = (s.genre?.includes('Punjabi') ?? false) && !s.artist.includes('Honey Singh');
     } else if (libraryFilter === 'bollywood') {
       matchesFilter = (s.genre?.includes('Bollywood') ?? false) || (s.genre?.includes('Romantic') ?? false) || (s.genre?.includes('Acoustic') ?? false);
+    } else if (libraryFilter === 'bhajan' || libraryFilter === 'devotional') {
+      matchesFilter = (s.genre?.includes('Devotional') ?? false) || (s.genre?.includes('Bhajan') ?? false);
     } else if (libraryFilter === 'pop') {
       matchesFilter = !s.artist.includes('Bieber') && (s.artist.includes('Weeknd') || s.artist.includes('Taylor') || s.artist.includes('Sheeran') || s.artist.includes('Coldplay'));
     }
@@ -155,6 +159,74 @@ export const HomePage: React.FC = () => {
     s.artist.toLowerCase().includes('dhanda') ||
     s.artist.toLowerCase().includes('renuka')
   );
+
+  const devotionalSongs = allSongs.filter(
+    (s) => (s.genre?.includes('Devotional') ?? false) || (s.genre?.includes('Bhajan') ?? false)
+  );
+
+  const krishnaSongs = devotionalSongs.filter(
+    (s) =>
+      (s.genre?.includes('Krishna') ?? false) ||
+      s.title.toLowerCase().includes('krishna') ||
+      s.title.toLowerCase().includes('radhe') ||
+      s.title.toLowerCase().includes('achyutam') ||
+      s.title.toLowerCase().includes('gopal') ||
+      s.title.toLowerCase().includes('kisna') ||
+      s.title.toLowerCase().includes('yashomati') ||
+      s.title.toLowerCase().includes('govind') ||
+      s.title.toLowerCase().includes('kunj bihari')
+  );
+
+  const mahadevSongs = devotionalSongs.filter(
+    (s) =>
+      (s.genre?.includes('Mahadev') ?? false) ||
+      s.title.toLowerCase().includes('shiv') ||
+      s.title.toLowerCase().includes('shamishan') ||
+      s.title.toLowerCase().includes('bhola') ||
+      s.title.toLowerCase().includes('shambhu') ||
+      s.title.toLowerCase().includes('bhairav') ||
+      s.title.toLowerCase().includes('tandav') ||
+      s.title.toLowerCase().includes('karpur') ||
+      s.title.toLowerCase().includes('mrityunjaya')
+  );
+
+  const hanumanSongs = devotionalSongs.filter(
+    (s) =>
+      (s.genre?.includes('Hanuman') ?? false) ||
+      s.title.toLowerCase().includes('hanuman') ||
+      s.title.toLowerCase().includes('bajrang') ||
+      s.title.toLowerCase().includes('sankatmochan') ||
+      s.title.toLowerCase().includes('gusai')
+  );
+
+  const ramSongs = devotionalSongs.filter(
+    (s) =>
+      (s.genre?.includes('Ram') ?? false) ||
+      (s.genre?.includes('Vedic') ?? false) ||
+      (s.genre?.includes('Ganesh') ?? false) ||
+      s.title.toLowerCase().includes('ram') ||
+      s.title.toLowerCase().includes('mangal') ||
+      s.title.toLowerCase().includes('gayatri') ||
+      s.title.toLowerCase().includes('ganesh')
+  );
+
+  const activeDevotionalList =
+    devotionalTab === 'krishna'
+      ? krishnaSongs
+      : devotionalTab === 'mahadev'
+      ? mahadevSongs
+      : devotionalTab === 'hanuman'
+      ? hanumanSongs
+      : devotionalTab === 'ram'
+      ? ramSongs
+      : devotionalSongs;
+
+  const devotionalDisplayList = showAllDevotional ? activeDevotionalList : activeDevotionalList.slice(0, 12);
+
+  const hariharanArtist = artists.find((a) => a.name.includes('Hariharan'));
+  const hansrajArtist = artists.find((a) => a.name.includes('Hansraj'));
+  const agamArtist = artists.find((a) => a.name.includes('Agam'));
+  const shankarArtist = artists.find((a) => a.name.includes('Shankar Mahadevan'));
 
   // Sync Recent Played (4 items matching wireframe layout)
   useEffect(() => {
@@ -200,8 +272,15 @@ export const HomePage: React.FC = () => {
     }
   }, [currentSong, allSongs]);
 
-  // Mobile Wireframe Playlists (6 Elevated Square Cards with Underneath Depth Shadows)
+  // Mobile Wireframe Playlists (Elevated Square Cards with Underneath Depth Shadows)
   const mobilePlaylists = [
+    {
+      id: 'pl-bhajan',
+      title: 'Sacred Bhajans',
+      badge: 'DIVINE',
+      cover: hanumanSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80',
+      songs: devotionalSongs.length > 0 ? devotionalSongs : allSongs.filter((s) => s.genre?.includes('Devotional')),
+    },
     {
       id: 'pl-52gaj',
       title: '52 Gaj Ka Daman',
@@ -248,11 +327,11 @@ export const HomePage: React.FC = () => {
 
   // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
   const mobileCategories = [
+    { id: 'bhajan', label: 'Bhajans', sub: `${devotionalSongs.length} Divine` },
     { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
     { id: 'masoom', label: 'Masoom', sub: `${masoomSongs.length} Cuts` },
     { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
     { id: 'romance', label: 'Romance', sub: 'Arijit & Soul' },
-    { id: 'rock', label: 'Rock', sub: 'Analog Riffs' },
     { id: 'all', label: 'All Cuts', sub: `${allSongs.length} Tracks` },
   ];
 
@@ -264,7 +343,9 @@ export const HomePage: React.FC = () => {
       (s.album && s.album.toLowerCase().includes(mobileSearch.toLowerCase()));
 
     let matchesCat = true;
-    if (mobileCategory === 'pop') {
+    if (mobileCategory === 'bhajan') {
+      matchesCat = (s.genre?.includes('Devotional') ?? false) || (s.genre?.includes('Bhajan') ?? false);
+    } else if (mobileCategory === 'pop') {
       matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
     } else if (mobileCategory === 'masoom') {
       matchesCat = s.artist.toLowerCase().includes('masoom');
@@ -297,7 +378,7 @@ export const HomePage: React.FC = () => {
                 {getGreeting()}
               </h1>
               <span className="font-mono-spec text-[9px] px-2 py-0.5 rounded-full bg-[#1e1b19] border border-[#554339]/40 text-[#ecc15a]">
-                585 Archival Cuts
+                {allSongs.length || 617} Archival Cuts
               </span>
             </div>
 
@@ -305,6 +386,7 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-[11px]">
               {[
                 { id: 'all', label: 'All' },
+                { id: 'bhajan', label: `🙏 Bhajans (${devotionalSongs.length})` },
                 { id: 'pop', label: 'Global Pop' },
                 { id: 'masoom', label: 'Masoom Sharma' },
                 { id: 'drill', label: 'Desi Drill' },
@@ -577,6 +659,7 @@ export const HomePage: React.FC = () => {
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-editorial">
             {[
               { id: 'all', label: 'All' },
+              { id: 'bhajan', label: `🙏 Bhajans (${devotionalSongs.length})` },
               { id: 'music', label: 'Music' },
               { id: 'artists', label: 'Popular Artists' },
               { id: '52gaj', label: '👑 52 Gaj Ka Daman' },
@@ -592,7 +675,9 @@ export const HomePage: React.FC = () => {
                 key={pill.id}
                 onClick={() => {
                   setSpotifyFilterPill(pill.id);
-                  if (pill.id === 'masoom') {
+                  if (pill.id === 'bhajan') {
+                    setLibraryFilter('bhajan');
+                  } else if (pill.id === 'masoom') {
                     setSpotlightArtistId('masoom');
                     setLibraryFilter('masoom');
                   } else if (pill.id === 'bieber') {
@@ -624,7 +709,7 @@ export const HomePage: React.FC = () => {
             ))}
           </div>
 
-          {/* 2. SPOTIFY GREETING & SIGNATURE 6 QUICK-ACCESS CARDS (2x3 GRID) */}
+          {/* 2. SPOTIFY GREETING & SIGNATURE QUICK-ACCESS CARDS */}
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <h1 className="font-serif text-3xl font-extrabold text-[#e9e1dd] tracking-tight">
@@ -635,10 +720,39 @@ export const HomePage: React.FC = () => {
               </span>
             </div>
 
-            {/* 6 Quick-Access Cards */}
+            {/* Quick-Access Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               
-              {/* Quick Card 1: 52 Gaj Ka Daman */}
+              {/* Quick Card 1: Sacred Bhajans & Stutis */}
+              <div
+                onClick={() => handlePlaySongList(devotionalSongs, 0, false)}
+                className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#ecc15a]/40 hover:border-[#ecc15a]/80"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <img
+                    src={hanumanSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80'}
+                    alt="Sacred Bhajans"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 pr-2">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#ecc15a] group-hover:text-[#ffb68c] transition-colors truncate block">
+                      🙏 Sacred Bhajans & Stutis
+                    </span>
+                    <span className="text-xs text-[#a38c80] truncate block">
+                      Krishna, Mahadev, Hanuman Chalisa ({devotionalSongs.length} Cuts)
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handlePlaySongList(devotionalSongs, 0, false); }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                  title="Play Sacred Bhajans"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                </button>
+              </div>
+
+              {/* Quick Card 2: 52 Gaj Ka Daman */}
               {renukaSong && (
                 <div
                   onClick={() => playSong(renukaSong)}
@@ -824,8 +938,12 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-3 sm:gap-4">
               {[
+                hariharanArtist,
+                hansrajArtist,
+                agamArtist,
+                shankarArtist,
                 bieberArtist,
                 arijitArtist,
                 masoomArtist,
@@ -841,6 +959,14 @@ export const HomePage: React.FC = () => {
                   ? masoomSongs.length
                   : artist.name.includes('Dhanda')
                   ? dhandaSongs.length
+                  : artist.name.includes('Hariharan')
+                  ? hanumanSongs.length + 1
+                  : artist.name.includes('Hansraj')
+                  ? 3
+                  : artist.name.includes('Agam')
+                  ? 3
+                  : artist.name.includes('Shankar')
+                  ? 1
                   : (artist.songCount || 1);
                 return (
                   <div
@@ -890,8 +1016,15 @@ export const HomePage: React.FC = () => {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
+                {
+                  id: 'mix-bhajan',
+                  title: 'Divine Sanctum',
+                  desc: 'Shree Hanuman Chalisa, Namami Shamishan & Krishna Bhajans',
+                  cover: hanumanSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80',
+                  action: () => handlePlaySongList(devotionalSongs, 0, true),
+                },
                 {
                   id: 'mix-arijit',
                   title: 'Nostalgic Dusk',
@@ -1336,6 +1469,138 @@ export const HomePage: React.FC = () => {
                     <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
                       {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
                     </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* ============================================================== */}
+        {/* 🪔 SECTION: 🙏 SACRED DEVOTIONAL SANCTUM (KRISHNA, MAHADEV, HANUMAN CHALISA, NAMAMI SHAMISHAN) */}
+        {/* ============================================================== */}
+        {selectedSingerId === 'all' && devotionalSongs.length > 0 && (
+          <section className="bg-[#1e1b19] rounded-2xl p-6 sm:p-8 border border-[#ecc15a]/40 shadow-2xl space-y-6 relative overflow-hidden">
+            {/* Subtle Divine Amber/Gold Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#ecc15a]/5 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Section Header */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#554339]/50 pb-5">
+              <div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#ecc15a]/20 text-[#ecc15a] font-mono-spec text-[10px] uppercase font-bold tracking-wider border border-[#ecc15a]/40 flex items-center gap-1.5">
+                    <span>🕉️</span>
+                    <span>SACRED AUDIO SANCTUM</span>
+                  </span>
+                  <span className="font-mono-spec text-[10px] text-[#ffb68c]">
+                    320kbps CD Masters • {activeDevotionalList.length} Tracks
+                  </span>
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-[#e9e1dd] flex items-center gap-2">
+                  <span>Sacred Bhajans, Stutis & Vedic Chants</span>
+                </h3>
+                <p className="font-editorial text-xs sm:text-sm text-[#dbc1b4] mt-1 max-w-2xl">
+                  Shree Hanuman Chalisa, Namami Shamishan (Rudrashtakam), Shiv Tandav, Achyutam Keshavam, Radhe Radhe & timeless spiritual anthems by Hariharan, Shankar Mahadevan, Agam Aggarwal, Hansraj Raghuwanshi & Lata Mangeshkar.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => handlePlaySongList(activeDevotionalList, 0, false)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-bold uppercase tracking-wider hover:brightness-110 active:scale-95 transition-all shadow-[0_0_15px_rgba(217,119,54,0.35)]"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Play All ({activeDevotionalList.length})</span>
+                </button>
+                <button
+                  onClick={() => handlePlaySongList(activeDevotionalList, 0, true)}
+                  className="p-2 rounded-lg bg-[#282422] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/50 transition-all"
+                  title="Shuffle Sacred Bhajans"
+                >
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setShowAllDevotional(!showAllDevotional)}
+                  className="flex items-center gap-1 px-3 py-2 rounded-lg bg-[#282422] hover:bg-[#322c2a] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/50 transition-colors"
+                >
+                  <span>{showAllDevotional ? 'Show Less' : `View All (${activeDevotionalList.length})`}</span>
+                  {showAllDevotional ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Deity Category Filter Tabs */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
+              {[
+                { id: 'all', label: `All Sacred Bhajans (${devotionalSongs.length})` },
+                { id: 'krishna', label: `🦚 Shri Krishna (${krishnaSongs.length})` },
+                { id: 'mahadev', label: `🔱 Mahadev & Shiva (${mahadevSongs.length})` },
+                { id: 'hanuman', label: `🚩 Hanuman Chalisa & Stuti (${hanumanSongs.length})` },
+                { id: 'ram', label: `🌸 Ram & Sacred Chants (${ramSongs.length})` },
+              ].map((tab) => {
+                const isSelected = devotionalTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setDevotionalTab(tab.id as any)}
+                    className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all border ${
+                      isSelected
+                        ? 'bg-[#ecc15a] text-[#221f1d] font-bold border-[#fff3df] shadow-md'
+                        : 'bg-[#221f1d] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Track Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {devotionalDisplayList.map((song, i) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    onClick={() => playSong(song, undefined, activeDevotionalList)}
+                    className={`flex items-center justify-between p-3 rounded-xl bg-[#221f1d] hover:bg-[#282422] border transition-all group cursor-pointer shadow-md ${
+                      isCurrent
+                        ? 'border-[#ecc15a] bg-[#282422] shadow-[0_0_15px_rgba(236,193,90,0.15)]'
+                        : 'border-[#554339]/40 hover:border-[#ecc15a]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right font-bold">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="relative w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 border border-[#554339]/50 bg-[#110e0c]">
+                        <img
+                          src={song.coverUrl}
+                          alt={song.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <Play className="w-4 h-4 fill-white text-white ml-0.5" />
+                        </div>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ecc15a]' : 'text-[#e9e1dd] group-hover:text-[#ecc15a]'}`}>
+                          {song.title}
+                        </h4>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">
+                          {song.artist}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end ml-2 flex-shrink-0">
+                      <span className="font-mono-spec text-[10px] text-[#a38c80]">
+                        {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                      </span>
+                      {isCurrent && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#ecc15a] animate-ping mt-1" />
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -1842,6 +2107,7 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none font-mono-spec text-xs">
               {[
                 { id: 'all', label: `All Cuts (${allSongs.length})` },
+                { id: 'bhajan', label: `🙏 Sacred Bhajans (${devotionalSongs.length})` },
                 { id: 'haryanvi', label: `🌾 52 Gaj & Haryanvi (${haryanviSongs.length})` },
                 { id: 'masoom', label: `🌾 Masoom Sharma (${masoomSongs.length})` },
                 { id: 'dhanda', label: `🔥 Dhanda Nyoliwala (${dhandaSongs.length})` },

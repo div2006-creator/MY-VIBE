@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
                 RESONANCE <span className="text-[#ecc15a] font-normal text-xs">/ VIBE</span>
               </span>
               <span className="font-mono-spec text-[8.5px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
-                Spotify Format • 33⅓ RPM • 585 Cuts
+                Spotify Format • 33⅓ RPM • 617 Master Cuts
               </span>
             </div>
           </Link>
