@@ -27,7 +27,7 @@ export const AuthPage: React.FC = () => {
       }
 
       await login(loginId.trim(), password);
-      setSuccessMsg('Authentication successful! Welcome to VIBE.');
+      setSuccessMsg('Authentication successful! Welcome to Auralis.');
       setTimeout(() => {
         navigate('/home');
       }, 400);
@@ -52,7 +52,7 @@ export const AuthPage: React.FC = () => {
           <div className="relative inline-block">
             <img
               src="/vibe-logo.png"
-              alt="VIBE Logo"
+              alt="Auralis Logo"
               className="h-16 w-auto mx-auto rounded-2xl shadow-2xl border border-amber-500/40 object-contain"
             />
             <span className="absolute -bottom-2 -right-2 p-1.5 rounded-full bg-amber-500 text-neutral-950 shadow-md">
@@ -62,7 +62,7 @@ export const AuthPage: React.FC = () => {
           
           <div>
             <h1 className="text-3xl font-extrabold font-serif text-white tracking-wider">
-              VIBE Access
+              Auralis Access
             </h1>
             <p className="text-xs text-neutral-400 mt-1">
               Sign in to unlock your music timeline and memory journal.

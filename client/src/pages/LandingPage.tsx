@@ -130,7 +130,7 @@ export const LandingPage: React.FC = () => {
             Every song has a story.
           </h2>
           <p className="max-w-2xl mx-auto text-neutral-300 text-base md:text-lg font-light leading-relaxed mb-12">
-            VIBE is not just a streaming app. It is your personal time capsule. Revisit college trips, late night coding sessions, rainy monsoon mornings, and late night beach bonfires with the exact songs that defined them.
+            Auralis is not just a streaming app. It is your personal time capsule. Revisit college trips, late night coding sessions, rainy monsoon mornings, and late night beach bonfires with the exact songs that defined them.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

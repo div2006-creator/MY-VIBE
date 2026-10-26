@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
           </Link>
           <Link to="/" className="flex flex-col">
             <span className="font-serif font-bold text-base tracking-wider text-[#ffb68c]">
-              RESONANCE
+              AURALIS
             </span>
           </Link>
         </div>
@@ -69,14 +69,14 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <img
                 src="/vibe-logo.png"
-                alt="VIBE Resonance"
+                alt="Auralis"
                 className="h-8 w-auto rounded-lg shadow-md border border-[#ecc15a]/30 group-hover:scale-105 transition-transform duration-300 object-contain bg-[#110e0c]"
               />
               <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#ecc15a] border-2 border-[#161311] animate-pulse" />
             </div>
             <div className="flex flex-col">
               <span className="font-serif font-extrabold text-lg tracking-wider text-[#ffb68c]">
-                RESONANCE <span className="text-[#ecc15a] font-normal text-xs">/ VIBE</span>
+                AURALIS
               </span>
               <span className="font-mono-spec text-[8.5px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
                 Spotify Format • 33⅓ RPM • 619 Master Cuts

@@ -296,7 +296,7 @@ export const SearchPage: React.FC = () => {
                                   ? 'bg-neutral-800 text-neutral-400 cursor-default'
                                   : 'bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 hover:scale-105 shadow-md'
                               }`}
-                              title={isImported ? 'Already in VIBE Library' : 'Import to SQLite Library'}
+                              title={isImported ? 'Already in Auralis Library' : 'Import to SQLite Library'}
                             >
                               {isImported ? (
                                 <>
@@ -326,7 +326,7 @@ export const SearchPage: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-xl font-bold font-serif text-white flex items-center gap-2">
                   <Music className="w-5 h-5 text-amber-400" />
-                  <span>VIBE Library Songs ({results.songs.length})</span>
+                  <span>Auralis Library Songs ({results.songs.length})</span>
                 </h3>
                 <div className="space-y-2">
                   {results.songs.map((song) => {

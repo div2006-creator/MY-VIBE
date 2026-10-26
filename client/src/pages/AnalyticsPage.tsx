@@ -53,7 +53,7 @@ export const AnalyticsPage: React.FC = () => {
             <Trophy className="w-5 h-5 text-amber-400" />
             <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">Your Audio Memory Insights</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white">VIBE Analytics & Wrapped</h1>
+          <h1 className="text-3xl font-extrabold text-white">Auralis Analytics & Wrapped</h1>
           <p className="text-xs md:text-sm text-neutral-300 mt-1">
             Deep dive into your musical moods, top tracks, and listening habits.
           </p>

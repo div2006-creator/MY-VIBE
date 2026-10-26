@@ -340,7 +340,7 @@ export const LyricsModal: React.FC = () => {
         {/* Footer info */}
         <div className="px-6 py-4 border-t border-white/10 bg-black/40 flex items-center justify-between text-xs text-neutral-400">
           <span>Track Duration: {Math.floor(currentSong.durationSec / 60)}:{(currentSong.durationSec % 60).toString().padStart(2, '0')}</span>
-          <span className="text-amber-400/80 font-medium">VIBE Audio Studio</span>
+          <span className="text-amber-400/80 font-medium">Auralis Audio Studio</span>
         </div>
       </div>
     </div>

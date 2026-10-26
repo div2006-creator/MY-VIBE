@@ -1,8 +1,8 @@
-# VIBE 🎵✨
+# Auralis 🎵✨
 
 > **“Every song has a story. Turn your memories into soundtracks.”**
 
-VIBE is a modern music and memory journaling platform. Unlike traditional streaming services, VIBE connects music with your personal memories, journeys, places, people, dates, photos, moods, and stories.
+Auralis is a modern music and memory journaling platform. Unlike traditional streaming services, Auralis connects music with your personal memories, journeys, places, people, dates, photos, moods, and stories.
 
 ---
 

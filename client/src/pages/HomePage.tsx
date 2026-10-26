@@ -1220,7 +1220,7 @@ export const HomePage: React.FC = () => {
                           {/* Record Center Paper Label */}
                           <div className="w-[36%] h-[36%] rounded-full bg-[#8c6b01] flex items-center justify-center text-center p-1 shadow-inner">
                             <span className="font-mono-spec text-[6px] text-[#fff3df] uppercase tracking-tighter">
-                              RESONANCE
+                              AURALIS
                             </span>
                           </div>
                         </div>

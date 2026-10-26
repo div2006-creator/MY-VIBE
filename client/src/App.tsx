@@ -34,14 +34,14 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     return (
       <div className="min-h-screen bg-[#0b0a0e] text-white flex flex-col items-center justify-center space-y-4">
         <div className="relative">
-          <img src="/vibe-logo.png" alt="VIBE" className="w-16 h-16 rounded-2xl animate-pulse" />
+          <img src="/vibe-logo.png" alt="Auralis" className="w-16 h-16 rounded-2xl animate-pulse" />
           <div className="absolute inset-0 rounded-2xl border-2 border-amber-500/40 animate-ping pointer-events-none" />
         </div>
         <div className="text-center space-y-1">
           <h2 className="text-sm font-bold text-amber-400 uppercase tracking-widest">
             Verifying Master Credentials...
           </h2>
-          <p className="text-xs text-neutral-500">Connecting to secure VIBE server</p>
+          <p className="text-xs text-neutral-500">Connecting to secure Auralis server</p>
         </div>
       </div>
     );
