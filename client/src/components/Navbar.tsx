@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
                 AURALIS
               </span>
               <span className="font-mono-spec text-[8.5px] uppercase tracking-widest text-[#a38c80] -mt-0.5">
-                Spotify Format • 33⅓ RPM • 620 Master Cuts
+                Spotify Format • 33⅓ RPM • 694 Master Cuts
               </span>
             </div>
           </Link>

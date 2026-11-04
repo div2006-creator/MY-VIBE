@@ -10,9 +10,10 @@ export const HomePage: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [allSongs, setAllSongs] = useState<Song[]>([]);
   const [selectedSingerId, setSelectedSingerId] = useState<string>('all');
-  const [spotlightArtistId, setSpotlightArtistId] = useState<'bieber' | 'arijit' | 'dhanda' | 'honey' | 'masoom'>('bieber');
+  const [spotlightArtistId, setSpotlightArtistId] = useState<'bieber' | 'arijit' | 'atif' | 'dhanda' | 'honey' | 'masoom'>('bieber');
   const [showAllBieber, setShowAllBieber] = useState<boolean>(false);
   const [showAllArijit, setShowAllArijit] = useState<boolean>(false);
+  const [showAllAtif, setShowAllAtif] = useState<boolean>(false);
   const [showAllDhanda, setShowAllDhanda] = useState<boolean>(false);
   const [showAllMasoom, setShowAllMasoom] = useState<boolean>(false);
   const [librarySearch, setLibrarySearch] = useState<string>('');
@@ -77,6 +78,7 @@ export const HomePage: React.FC = () => {
   // Major Discography Artists
   const bieberArtist = artists.find((a) => a.name.includes('Bieber'));
   const arijitArtist = artists.find((a) => a.name.includes('Arijit'));
+  const atifArtist = artists.find((a) => a.name.toLowerCase().includes('atif'));
   const dhandaArtist = artists.find((a) => a.name.toLowerCase().includes('dhanda'));
   const honeySingh = artists.find((a) => a.name.includes('Honey Singh'));
   const masoomArtist = artists.find((a) => a.name.toLowerCase().includes('masoom'));
@@ -84,6 +86,8 @@ export const HomePage: React.FC = () => {
   let activeSpotlight: Artist | undefined = bieberArtist || arijitArtist || artists[0];
   if (spotlightArtistId === 'bieber' && bieberArtist) {
     activeSpotlight = bieberArtist;
+  } else if (spotlightArtistId === 'atif' && atifArtist) {
+    activeSpotlight = atifArtist;
   } else if (spotlightArtistId === 'dhanda' && dhandaArtist) {
     activeSpotlight = dhandaArtist;
   } else if (spotlightArtistId === 'masoom' && masoomArtist) {
@@ -117,6 +121,8 @@ export const HomePage: React.FC = () => {
       matchesFilter = s.artist.includes('Bieber');
     } else if (libraryFilter === 'arijit') {
       matchesFilter = s.artist.includes('Arijit');
+    } else if (libraryFilter === 'atif') {
+      matchesFilter = s.artist.toLowerCase().includes('atif');
     } else if (libraryFilter === 'dhanda') {
       matchesFilter = s.artist.includes('Dhanda');
     } else if (libraryFilter === 'masoom') {
@@ -141,6 +147,9 @@ export const HomePage: React.FC = () => {
 
   const arijitSongs = allSongs.filter((s) => s.artist.includes('Arijit'));
   const arijitDisplayList = showAllArijit ? arijitSongs : arijitSongs.slice(0, 12);
+
+  const atifSongs = allSongs.filter((s) => s.artist.toLowerCase().includes('atif'));
+  const atifDisplayList = showAllAtif ? atifSongs : atifSongs.slice(0, 12);
 
   const dhandaSongs = allSongs.filter((s) => s.artist.includes('Dhanda') || s.genre?.includes('Haryanvi'));
   const dhandaDisplayList = showAllDhanda ? dhandaSongs : dhandaSongs.slice(0, 12);
@@ -301,6 +310,13 @@ export const HomePage: React.FC = () => {
       songs: devotionalSongs.length > 0 ? devotionalSongs : allSongs.filter((s) => s.genre?.includes('Devotional')),
     },
     {
+      id: 'pl-atif',
+      title: 'Atif Aslam Classics',
+      badge: 'ATIF',
+      cover: atifSongs[0]?.coverUrl || 'https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg',
+      songs: atifSongs.length > 0 ? atifSongs : allSongs.filter((s) => s.artist.toLowerCase().includes('atif')),
+    },
+    {
       id: 'pl-52gaj',
       title: '52 Gaj Ka Daman',
       badge: 'RENUKA',
@@ -347,6 +363,7 @@ export const HomePage: React.FC = () => {
   // Mobile Wireframe Category Cards (Pop-up, Rock, metal, etc. as labeled in notebook sketch)
   const mobileCategories = [
     { id: 'bhajan', label: 'Bhajans', sub: `${devotionalSongs.length} Divine` },
+    { id: 'atif', label: 'Atif Aslam', sub: `${atifSongs.length} Cuts` },
     { id: 'pop', label: 'Pop-up', sub: 'Global Hits' },
     { id: 'masoom', label: 'Masoom', sub: `${masoomSongs.length} Cuts` },
     { id: 'drill', label: 'Desi Drill', sub: 'Dhanda & Bass' },
@@ -364,6 +381,8 @@ export const HomePage: React.FC = () => {
     let matchesCat = true;
     if (mobileCategory === 'bhajan') {
       matchesCat = (s.genre?.includes('Devotional') ?? false) || (s.genre?.includes('Bhajan') ?? false);
+    } else if (mobileCategory === 'atif') {
+      matchesCat = s.artist.toLowerCase().includes('atif');
     } else if (mobileCategory === 'pop') {
       matchesCat = s.artist.includes('Bieber') || (s.genre?.includes('Pop') ?? false) || s.artist.includes('Weeknd') || s.artist.includes('Taylor');
     } else if (mobileCategory === 'masoom') {
@@ -679,6 +698,7 @@ export const HomePage: React.FC = () => {
             {[
               { id: 'all', label: 'All' },
               { id: 'bhajan', label: `🙏 Bhajans (${devotionalSongs.length})` },
+              { id: 'atif', label: `✨ Atif Aslam (${atifSongs.length})` },
               { id: 'music', label: 'Music' },
               { id: 'artists', label: 'Popular Artists' },
               { id: '52gaj', label: '👑 52 Gaj Ka Daman' },
@@ -696,6 +716,9 @@ export const HomePage: React.FC = () => {
                   setSpotifyFilterPill(pill.id);
                   if (pill.id === 'bhajan') {
                     setLibraryFilter('bhajan');
+                  } else if (pill.id === 'atif') {
+                    setSpotlightArtistId('atif');
+                    setLibraryFilter('atif');
                   } else if (pill.id === 'masoom') {
                     setSpotlightArtistId('masoom');
                     setLibraryFilter('masoom');
@@ -885,6 +908,37 @@ export const HomePage: React.FC = () => {
                 </button>
               </div>
 
+              {/* Quick Card: Atif Aslam Classics */}
+              {atifSongs.length > 0 && (
+                <div
+                  onClick={() => handlePlaySongList(atifSongs, 0, false)}
+                  className="flex items-center justify-between bg-[#1e1b19] hover:bg-[#282422] rounded-md overflow-hidden transition-all duration-200 group cursor-pointer shadow-md border border-[#ecc15a]/30 hover:border-[#ecc15a]/70"
+                >
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <img
+                      src={atifSongs[0]?.coverUrl || 'https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg'}
+                      alt="Atif Aslam"
+                      className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
+                    />
+                    <div className="min-w-0 flex-1 pr-2">
+                      <span className="font-serif font-bold text-sm sm:text-base text-[#e9e1dd] group-hover:text-[#ffb68c] transition-colors truncate block">
+                        Atif Aslam Classics
+                      </span>
+                      <span className="text-xs text-[#a38c80] truncate block">
+                        {atifSongs.length} Romantic & Sufi Masters
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handlePlaySongList(atifSongs, 0, false); }}
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#d97736] text-[#221f1d] flex items-center justify-center mr-3 shadow-xl opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 hover:scale-105 active:scale-95 flex-shrink-0"
+                    title="Play Atif Aslam Classics"
+                  >
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                  </button>
+                </div>
+              )}
+
               {/* Quick Card 5: Dhanda Nyoliwala Drill */}
               <div
                 onClick={() => handlePlaySongList(dhandaSongs, 0, false)}
@@ -957,8 +1011,9 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-11 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12 gap-3 sm:gap-4">
               {[
+                atifArtist,
                 shreyaArtist,
                 hariharanArtist,
                 hansrajArtist,
@@ -971,7 +1026,9 @@ export const HomePage: React.FC = () => {
                 honeySingh,
                 renukaArtist,
               ].filter((a): a is Artist => Boolean(a)).map((artist) => {
-                const count = artist.name.includes('Shreya')
+                const count = artist.name.toLowerCase().includes('atif')
+                  ? atifSongs.length
+                  : artist.name.includes('Shreya')
                   ? 1
                   : artist.name.includes('Bieber')
                   ? bieberSongs.length
@@ -1038,7 +1095,7 @@ export const HomePage: React.FC = () => {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
               {[
                 {
                   id: 'mix-bhajan',
@@ -1046,6 +1103,13 @@ export const HomePage: React.FC = () => {
                   desc: 'Shree Hanuman Chalisa, Namami Shamishan & Krishna Bhajans',
                   cover: hanumanSongs[0]?.coverUrl || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80',
                   action: () => handlePlaySongList(devotionalSongs, 0, true),
+                },
+                {
+                  id: 'mix-atif',
+                  title: 'Soulful Serenade',
+                  desc: 'Atif Aslam & 74 Timeless Romantic Masters',
+                  cover: atifSongs[0]?.coverUrl || 'https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg',
+                  action: () => handlePlaySongList(atifSongs, 0, true),
                 },
                 {
                   id: 'mix-arijit',
@@ -1160,6 +1224,21 @@ export const HomePage: React.FC = () => {
                   </span>
                 </button>
               )}
+              {atifArtist && (
+                <button
+                  onClick={() => setSpotlightArtistId('atif')}
+                  className={`px-3 py-1.5 rounded font-mono-spec text-xs font-bold transition-all flex items-center gap-1.5 border ${
+                    spotlightArtistId === 'atif'
+                      ? 'bg-[#d97736] text-[#221f1d] border-[#ffb68c] shadow-[0_0_12px_rgba(217,119,54,0.4)]'
+                      : 'bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] border-[#554339]/40'
+                  }`}
+                >
+                  <span>✨ Atif Aslam</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/30">
+                    {atifSongs.length} Cuts
+                  </span>
+                </button>
+              )}
               {dhandaArtist && (
                 <button
                   onClick={() => setSpotlightArtistId('dhanda')}
@@ -1256,10 +1335,10 @@ export const HomePage: React.FC = () => {
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <span className="px-2 py-0.5 rounded bg-[#82977f]/20 text-[#b7cdb2] font-mono-spec text-[9px] uppercase font-bold">
-                        {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : activeSpotlight.name.toLowerCase().includes('masoom') ? '🌾 King of Haryanvi' : '👑 King of Hits'}
+                        {activeSpotlight.name.includes('Bieber') ? '🌎 Global Pop Icon' : activeSpotlight.name.includes('Arijit') ? '❤️ King of Soul' : activeSpotlight.name.toLowerCase().includes('atif') ? '✨ Master Romantic & Sufi Vocalist' : activeSpotlight.name.includes('Dhanda') ? '🔥 Drill Sensation' : activeSpotlight.name.toLowerCase().includes('masoom') ? '🌾 King of Haryanvi' : '👑 King of Hits'}
                       </span>
                       <span className="font-mono-spec text-[10px] text-[#a38c80]">
-                        • {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.name.toLowerCase().includes('masoom') ? masoomSongs.length : dhandaSongs.length)} Master Tracks
+                        • {activeSpotlight.songCount || (activeSpotlight.name.includes('Bieber') ? bieberSongs.length : activeSpotlight.name.includes('Arijit') ? arijitSongs.length : activeSpotlight.name.toLowerCase().includes('atif') ? atifSongs.length : activeSpotlight.name.toLowerCase().includes('masoom') ? masoomSongs.length : dhandaSongs.length)} Master Tracks
                       </span>
                     </div>
 
@@ -1272,6 +1351,8 @@ export const HomePage: React.FC = () => {
                         ? 'Grammy-winning global pop superstar with over 150 million records sold. Stream all 151 monumental anthems across Baby, Sorry, Love Yourself, Peaches, STAY, Ghost, Intentions, Beauty And A Beat, and more.'
                         : activeSpotlight.name.includes('Arijit')
                         ? 'The undisputed voice of Indian romance. Stream 120 heartfelt anthems including Tum Hi Ho, Channa Mereya, Kesariya, Agar Tum Saath Ho, Apna Bana Le, Gerua, and Kalank.'
+                        : activeSpotlight.name.toLowerCase().includes('atif')
+                        ? 'Legendary vocal powerhouse renowned across South Asia for timeless romantic masterpieces like Tu Jaane Na, Pehli Nazar Mein, Tera Hone Laga Hoon, Tere Sang Yaara, Jeena Jeena, Aadat, and Tajdar-e-Haram.'
                         : activeSpotlight.name.includes('Dhanda')
                         ? 'The powerhouse behind Desi Drill & Haryanvi Hip Hop. Stream all 66 anthems including Russian Bandana, Up To U, Boom Shaka, Not Guilty, and Maruti.'
                         : activeSpotlight.name.toLowerCase().includes('masoom')
@@ -1329,6 +1410,8 @@ export const HomePage: React.FC = () => {
                     ? bieberSongs
                     : activeSpotlight.name.includes('Arijit')
                     ? arijitSongs
+                    : activeSpotlight.name.toLowerCase().includes('atif')
+                    ? atifSongs
                     : activeSpotlight.name.toLowerCase().includes('masoom')
                     ? masoomSongs
                     : dhandaSongs).slice(0, 5).map((song, idx) => {
@@ -1339,6 +1422,8 @@ export const HomePage: React.FC = () => {
                       ? bieberSongs
                       : activeSpotlight.name.includes('Arijit')
                       ? arijitSongs
+                      : activeSpotlight.name.toLowerCase().includes('atif')
+                      ? atifSongs
                       : activeSpotlight.name.toLowerCase().includes('masoom')
                       ? masoomSongs
                       : dhandaSongs;
@@ -1797,6 +1882,93 @@ export const HomePage: React.FC = () => {
                   className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
                 >
                   <span>Show All {arijitSongs.length} Songs by Arijit Singh</span>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* SECTION: ✨ ATIF ASLAM COMPLETE SOULFUL DISCOGRAPHY (74 TRACKS) */}
+        {selectedSingerId === 'all' && atifSongs.length > 0 && (
+          <section className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#554339]/40 pb-3">
+              <div className="flex items-center gap-2.5">
+                <Disc3 className="w-6 h-6 text-[#ecc15a]" />
+                <div>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-[#e9e1dd] flex items-center gap-2">
+                    <span>Atif Aslam — Master Romantic & Sufi Vocalist</span>
+                    <span className="px-2 py-0.5 rounded font-mono-spec text-[10px] bg-[#d97736]/20 text-[#ffb68c] border border-[#d97736]/40">
+                      {atifSongs.length} Tracks
+                    </span>
+                  </h3>
+                  <p className="font-editorial text-xs text-[#a38c80] mt-0.5">
+                    Tu Jaane Na, Tera Hone Laga Hoon, Pehli Nazar Mein, Tere Sang Yaara, Jeena Jeena, Aadat, Kuch Is Tarah & More
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handlePlaySongList(atifSongs, 0, false)}
+                  className="flex items-center gap-1.5 px-4 py-1.5 rounded bg-[#d97736] text-[#221f1d] font-mono-spec text-[11px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Play All ({atifSongs.length})</span>
+                </button>
+                <button
+                  onClick={() => handlePlaySongList(atifSongs, 0, true)}
+                  className="p-1.5 rounded bg-[#1e1b19] text-[#e9e1dd] hover:text-[#ffb68c] border border-[#554339]/40"
+                  title="Shuffle Atif Tracks"
+                >
+                  <Shuffle className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setShowAllAtif(!showAllAtif)}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#dbc1b4] font-mono-spec text-xs border border-[#554339]/40 transition-colors"
+                >
+                  <span>{showAllAtif ? 'Show Less' : `View All ${atifSongs.length}`}</span>
+                  {showAllAtif ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+              {atifDisplayList.map((song, i) => {
+                const isCurrent = currentSong?.id === song.id;
+                return (
+                  <div
+                    key={song.id}
+                    onClick={() => playSong(song, undefined, atifSongs)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-[#1e1b19] hover:bg-[#221f1d] border border-[#554339]/40 hover:border-[#ecc15a]/40 cursor-pointer transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <span className="font-mono-spec text-[10px] text-[#a38c80] w-4 text-right">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <img src={song.coverUrl} alt="" className="w-10 h-10 rounded object-cover flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-serif text-xs font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                          {song.title}
+                        </h4>
+                        <p className="font-editorial text-[11px] text-[#a38c80] truncate mt-0.5">{song.album || 'Single'}</p>
+                      </div>
+                    </div>
+                    <span className="font-mono-spec text-[10px] text-[#a38c80] ml-2">
+                      {Math.floor(song.durationSec / 60)}:{(song.durationSec % 60).toString().padStart(2, '0')}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {!showAllAtif && atifSongs.length > 12 && (
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setShowAllAtif(true)}
+                  className="px-5 py-2 rounded bg-[#1e1b19] hover:bg-[#282422] text-[#ffb68c] border border-[#554339]/50 font-mono-spec text-xs font-bold transition-all inline-flex items-center gap-2"
+                >
+                  <span>Show All {atifSongs.length} Songs by Atif Aslam</span>
                   <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
