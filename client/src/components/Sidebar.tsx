@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Library, Plus, Heart, Clock, Compass, Radio, BarChart3, Users, Disc3, Play } from 'lucide-react';
 import type { Artist } from '../types';
 import { useAudio } from '../context/AudioContext';
+import { handleArtistImgError } from '../utils/mediaFallback';
 
 export const Sidebar: React.FC = () => {
   const location = useLocation();
@@ -202,6 +203,7 @@ export const Sidebar: React.FC = () => {
                       <img
                         src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
                         alt={artist.name}
+                        onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
                         className="w-full h-full object-cover"
                       />
                       <button

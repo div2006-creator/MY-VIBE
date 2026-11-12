@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Play, Pause, Heart, UserPlus, Check, Disc, Music, BadgeCheck, Clock } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import type { Song, Album, Artist } from '../types';
+import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 interface ArtistDetailData {
   id: string;
@@ -121,11 +122,7 @@ export const ArtistDetailPage: React.FC = () => {
         <img
           src={artist.avatarUrl || artist.songs[0]?.coverUrl}
           alt={artist.name}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              artist.songs[0]?.coverUrl ||
-              'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80';
-          }}
+          onError={(e) => handleArtistImgError(e, artist.songs[0]?.coverUrl)}
           className="w-full h-full object-cover filter brightness-[0.42] scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/45 to-transparent" />
@@ -135,11 +132,7 @@ export const ArtistDetailPage: React.FC = () => {
             <img
               src={artist.avatarUrl || artist.songs[0]?.coverUrl}
               alt={artist.name}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  artist.songs[0]?.coverUrl ||
-                  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-              }}
+              onError={(e) => handleArtistImgError(e, artist.songs[0]?.coverUrl)}
               className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover shadow-2xl bg-[#282828]"
             />
             <div>
@@ -243,7 +236,7 @@ export const ArtistDetailPage: React.FC = () => {
                   </div>
 
                   <div className="col-span-8 sm:col-span-6 flex items-center gap-3 min-w-0">
-                    <img src={song.coverUrl} alt={song.title} className="w-10 h-10 rounded object-cover shrink-0" />
+                    <img src={song.coverUrl} alt={song.title} onError={handleTrackImgError} className="w-10 h-10 rounded object-cover shrink-0 bg-[#282828]" />
                     <div className="min-w-0 flex-1">
                       <h4 className={`text-sm font-semibold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'}`}>
                         {song.title}

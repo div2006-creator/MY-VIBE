@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import type { Song, Vibe, Artist } from '../types';
 import { useAudio } from '../context/AudioContext';
+import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 interface ExternalTrack {
   id: string;
@@ -223,7 +224,8 @@ export const SearchPage: React.FC = () => {
                             <img
                               src={song.coverUrl}
                               alt=""
-                              className="w-11 h-11 rounded object-cover shrink-0"
+                              onError={handleTrackImgError}
+                              className="w-11 h-11 rounded object-cover shrink-0 bg-[#282828]"
                             />
                             <div className="min-w-0">
                               <p
@@ -270,12 +272,10 @@ export const SearchPage: React.FC = () => {
                         className="bg-[#181818] hover:bg-[#282828] p-4 rounded-lg text-center cursor-pointer transition-all"
                       >
                         <img
-                          src={
-                            art.avatarUrl ||
-                            'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80'
-                          }
+                          src={art.avatarUrl || art.songs?.[0]?.coverUrl}
                           alt={art.name}
-                          className="w-24 h-24 rounded-full mx-auto object-cover mb-3 shadow-lg"
+                          onError={(e) => handleArtistImgError(e, art.songs?.[0]?.coverUrl)}
+                          className="w-24 h-24 rounded-full mx-auto object-cover mb-3 shadow-lg bg-[#282828]"
                         />
                         <h4 className="font-bold text-sm text-white truncate">
                           {art.name}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Mic2, Play, Pause, Search, ChevronRight, Shuffle, BadgeCheck } from 'lucide-react';
 import type { Artist } from '../types';
 import { useAudio } from '../context/AudioContext';
+import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 export const ArtistsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -86,11 +87,7 @@ export const ArtistsPage: React.FC = () => {
                 <img
                   src={featuredArtist.avatarUrl || featuredArtist.songs?.[0]?.coverUrl}
                   alt={featuredArtist.name}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      featuredArtist.songs?.[0]?.coverUrl ||
-                      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80';
-                  }}
+                  onError={(e) => handleArtistImgError(e, featuredArtist.songs?.[0]?.coverUrl)}
                   className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-2xl bg-[#282828] shrink-0"
                 />
 
@@ -147,7 +144,7 @@ export const ArtistsPage: React.FC = () => {
                         onClick={() => playSong(song, undefined, featuredArtist.songs)}
                         className="p-2.5 rounded-lg bg-[#232323] hover:bg-[#2a2a2a] cursor-pointer transition-all flex items-center gap-2.5 group"
                       >
-                        <img src={song.coverUrl} alt="" className="w-9 h-9 rounded object-cover shrink-0" />
+                        <img src={song.coverUrl} alt="" onError={handleTrackImgError} className="w-9 h-9 rounded object-cover shrink-0 bg-[#282828]" />
                         <div className="min-w-0 flex-1">
                           <p className={`text-xs font-bold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'}`}>
                             {song.title}
@@ -199,11 +196,7 @@ export const ArtistsPage: React.FC = () => {
                     <img
                       src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
                       alt={artist.name}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          artist.songs?.[0]?.coverUrl ||
-                          'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-                      }}
+                      onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
                       onClick={() => navigate(`/artist/${artist.id}`)}
                       className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-lg cursor-pointer hover:scale-105 transition-transform shrink-0 bg-[#282828]"
                     />
@@ -255,7 +248,7 @@ export const ArtistsPage: React.FC = () => {
                         >
                           <div className="flex items-center gap-3 min-w-0 flex-1">
                             <div className="relative w-11 h-11 rounded overflow-hidden shrink-0">
-                              <img src={song.coverUrl} alt="" className="w-full h-full object-cover" />
+                              <img src={song.coverUrl} alt="" onError={handleTrackImgError} className="w-full h-full object-cover bg-[#282828]" />
                               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
                                 {isCurrent && isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
                               </div>

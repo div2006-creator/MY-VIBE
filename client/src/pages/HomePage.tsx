@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import type { Artist, Song } from '../types';
 import { useAudio } from '../context/AudioContext';
+import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -70,10 +71,10 @@ export const HomePage: React.FC = () => {
       artist.songs && artist.songs.length > 0
         ? artist.songs
         : allSongs.filter(
-            (s) =>
-              s.artist.toLowerCase().includes(artist.name.toLowerCase()) ||
-              artist.name.toLowerCase().includes(s.artist.toLowerCase())
-          );
+          (s) =>
+            s.artist.toLowerCase().includes(artist.name.toLowerCase()) ||
+            artist.name.toLowerCase().includes(s.artist.toLowerCase())
+        );
     if (songs.length === 0) return;
 
     let playlist = [...songs];
@@ -200,14 +201,14 @@ export const HomePage: React.FC = () => {
   );
   const renukaArtist: Artist | undefined = renukaSong
     ? {
-        id: 'renuka-panwar',
-        name: 'Renuka Panwar',
-        avatarUrl: renukaSong.coverUrl,
-        genre: 'Haryanvi Folk Pop',
-        bio: 'The sensational voice behind 52 Gaj Ka Daman',
-        songCount: 1,
-        songs: [renukaSong],
-      }
+      id: 'renuka-panwar',
+      name: 'Renuka Panwar',
+      avatarUrl: renukaSong.coverUrl,
+      genre: 'Haryanvi Folk Pop',
+      bio: 'The sensational voice behind 52 Gaj Ka Daman',
+      songCount: 1,
+      songs: [renukaSong],
+    }
     : undefined;
 
   const haryanviSongs = allSongs.filter(
@@ -274,12 +275,12 @@ export const HomePage: React.FC = () => {
     devotionalTab === 'krishna'
       ? krishnaSongs
       : devotionalTab === 'mahadev'
-      ? mahadevSongs
-      : devotionalTab === 'hanuman'
-      ? hanumanSongs
-      : devotionalTab === 'ram'
-      ? ramSongs
-      : devotionalSongs;
+        ? mahadevSongs
+        : devotionalTab === 'hanuman'
+          ? hanumanSongs
+          : devotionalTab === 'ram'
+            ? ramSongs
+            : devotionalSongs;
 
   const devotionalDisplayList = showAllDevotional
     ? activeDevotionalList
@@ -299,14 +300,14 @@ export const HomePage: React.FC = () => {
     foundShreya ||
     (shreyaSong
       ? {
-          id: 'shreya-ghoshal',
-          name: 'Shreya Ghoshal',
-          avatarUrl: 'https://c.saavncdn.com/artists/Shreya_Ghoshal_500x500.jpg',
-          genre: 'Indie Folk Fusion & Pop',
-          bio: 'Queen of Melody & Legendary Master Playback Vocalist',
-          songCount: 1,
-          songs: [shreyaSong],
-        }
+        id: 'shreya-ghoshal',
+        name: 'Shreya Ghoshal',
+        avatarUrl: 'https://c.saavncdn.com/artists/Shreya_Ghoshal_500x500.jpg',
+        genre: 'Indie Folk Fusion & Pop',
+        bio: 'Queen of Melody & Legendary Master Playback Vocalist',
+        songCount: 1,
+        songs: [shreyaSong],
+      }
       : undefined);
 
   useEffect(() => {
@@ -469,14 +470,14 @@ export const HomePage: React.FC = () => {
     activeSpotlight?.songs && activeSpotlight.songs.length > 0
       ? activeSpotlight.songs
       : activeSpotlight?.name.includes('Bieber')
-      ? bieberSongs
-      : activeSpotlight?.name.includes('Arijit')
-      ? arijitSongs
-      : activeSpotlight?.name.toLowerCase().includes('atif')
-      ? atifSongs
-      : activeSpotlight?.name.toLowerCase().includes('masoom')
-      ? masoomSongs
-      : dhandaSongs;
+        ? bieberSongs
+        : activeSpotlight?.name.includes('Arijit')
+          ? arijitSongs
+          : activeSpotlight?.name.toLowerCase().includes('atif')
+            ? atifSongs
+            : activeSpotlight?.name.toLowerCase().includes('masoom')
+              ? masoomSongs
+              : dhandaSongs;
 
   const renderTrackCardGrid = (list: Song[], fullQueue: Song[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -486,17 +487,15 @@ export const HomePage: React.FC = () => {
           <div
             key={song.id}
             onClick={() => playSong(song, undefined, fullQueue)}
-            className={`flex items-center justify-between p-2.5 rounded-lg transition-all group cursor-pointer ${
-              isCurrent
+            className={`flex items-center justify-between p-2.5 rounded-lg transition-all group cursor-pointer ${isCurrent
                 ? 'bg-[#282828] ring-1 ring-[#1ed760]/60'
                 : 'bg-[#181818] hover:bg-[#282828]'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-3 min-w-0 flex-1">
               <span
-                className={`text-xs w-5 text-center font-semibold tabular-nums ${
-                  isCurrent ? 'text-[#1ed760]' : 'text-[#a7a7a7]'
-                }`}
+                className={`text-xs w-5 text-center font-semibold tabular-nums ${isCurrent ? 'text-[#1ed760]' : 'text-[#a7a7a7]'
+                  }`}
               >
                 {isCurrent && isPlaying ? '▶' : i + 1}
               </span>
@@ -504,6 +503,7 @@ export const HomePage: React.FC = () => {
                 <img
                   src={song.coverUrl}
                   alt={song.title}
+                  onError={handleTrackImgError}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -512,9 +512,8 @@ export const HomePage: React.FC = () => {
               </div>
               <div className="min-w-0 flex-1">
                 <h4
-                  className={`text-sm font-semibold truncate leading-tight ${
-                    isCurrent ? 'text-[#1ed760]' : 'text-white'
-                  }`}
+                  className={`text-sm font-semibold truncate leading-tight ${isCurrent ? 'text-[#1ed760]' : 'text-white'
+                    }`}
                 >
                   {song.title}
                 </h4>
@@ -529,19 +528,17 @@ export const HomePage: React.FC = () => {
                   e.stopPropagation();
                   toggleLike(song.id);
                 }}
-                className={`p-1 transition-all ${
-                  isLiked(song.id)
+                className={`p-1 transition-all ${isLiked(song.id)
                     ? 'opacity-100'
                     : 'opacity-0 group-hover:opacity-100'
-                }`}
+                  }`}
                 title={isLiked(song.id) ? 'Remove from Liked Songs' : 'Like'}
               >
                 <Heart
-                  className={`w-3.5 h-3.5 ${
-                    isLiked(song.id)
+                  className={`w-3.5 h-3.5 ${isLiked(song.id)
                       ? 'text-[#1ed760] fill-[#1ed760]'
                       : 'text-[#b3b3b3] hover:text-white'
-                  }`}
+                    }`}
                 />
               </button>
               <span className="text-xs text-[#a7a7a7] tabular-nums">
@@ -585,11 +582,10 @@ export const HomePage: React.FC = () => {
                 <button
                   key={pill.id}
                   onClick={() => setMobileCategory(pill.id)}
-                  className={`px-3.5 py-1.5 rounded-full font-semibold whitespace-nowrap transition-all ${
-                    mobileCategory === pill.id
+                  className={`px-3.5 py-1.5 rounded-full font-semibold whitespace-nowrap transition-all ${mobileCategory === pill.id
                       ? 'bg-[#1ed760] text-black'
                       : 'bg-white/10 text-white'
-                  }`}
+                    }`}
                 >
                   {pill.label}
                 </button>
@@ -614,9 +610,8 @@ export const HomePage: React.FC = () => {
                   />
                   <div className="min-w-0 flex-1 pr-2">
                     <h4
-                      className={`text-xs font-bold truncate ${
-                        isCurrent ? 'text-[#1ed760]' : 'text-white'
-                      }`}
+                      className={`text-xs font-bold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'
+                        }`}
                     >
                       {song.title}
                     </h4>
@@ -703,9 +698,8 @@ export const HomePage: React.FC = () => {
                         />
                         <div className="min-w-0 flex-1">
                           <h5
-                            className={`text-xs font-bold truncate ${
-                              isCurrent ? 'text-[#1ed760]' : 'text-white'
-                            }`}
+                            className={`text-xs font-bold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'
+                              }`}
                           >
                             {song.title}
                           </h5>
@@ -722,11 +716,10 @@ export const HomePage: React.FC = () => {
                         className="p-2"
                       >
                         <Heart
-                          className={`w-4 h-4 ${
-                            isLiked(song.id)
+                          className={`w-4 h-4 ${isLiked(song.id)
                               ? 'text-[#1ed760] fill-[#1ed760]'
                               : 'text-[#b3b3b3]'
-                          }`}
+                            }`}
                         />
                       </button>
                     </div>
@@ -784,11 +777,10 @@ export const HomePage: React.FC = () => {
                     setLibraryFilter('all');
                   }
                 }}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  activeFilterPill === pill.id
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${activeFilterPill === pill.id
                     ? 'bg-white text-black'
                     : 'bg-white/10 hover:bg-white/15 text-white'
-                }`}
+                  }`}
               >
                 {pill.label}
               </button>
@@ -872,7 +864,8 @@ export const HomePage: React.FC = () => {
                         'https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg'
                       }
                       alt="Atif Aslam"
-                      className="w-16 h-16 object-cover shrink-0"
+                      onError={handleTrackImgError}
+                      className="w-16 h-16 object-cover shrink-0 bg-[#282828]"
                     />
                     <div className="min-w-0 flex-1 pr-2">
                       <span className="font-bold text-sm text-white truncate block">
@@ -1089,24 +1082,24 @@ export const HomePage: React.FC = () => {
                   const count = artist.name.toLowerCase().includes('atif')
                     ? atifSongs.length
                     : artist.name.includes('Shreya')
-                    ? 1
-                    : artist.name.includes('Bieber')
-                    ? bieberSongs.length
-                    : artist.name.includes('Arijit')
-                    ? arijitSongs.length
-                    : artist.name.toLowerCase().includes('masoom')
-                    ? masoomSongs.length
-                    : artist.name.includes('Dhanda')
-                    ? dhandaSongs.length
-                    : artist.name.includes('Hariharan')
-                    ? hanumanSongs.length + 1
-                    : artist.name.includes('Hansraj')
-                    ? 3
-                    : artist.name.includes('Agam')
-                    ? 3
-                    : artist.name.includes('Shankar')
-                    ? 1
-                    : artist.songCount || 1;
+                      ? 1
+                      : artist.name.includes('Bieber')
+                        ? bieberSongs.length
+                        : artist.name.includes('Arijit')
+                          ? arijitSongs.length
+                          : artist.name.toLowerCase().includes('masoom')
+                            ? masoomSongs.length
+                            : artist.name.includes('Dhanda')
+                              ? dhandaSongs.length
+                              : artist.name.includes('Hariharan')
+                                ? hanumanSongs.length + 1
+                                : artist.name.includes('Hansraj')
+                                  ? 3
+                                  : artist.name.includes('Agam')
+                                    ? 3
+                                    : artist.name.includes('Shankar')
+                                      ? 1
+                                      : artist.songCount || 1;
                   return (
                     <div
                       key={artist.id}
@@ -1117,6 +1110,7 @@ export const HomePage: React.FC = () => {
                         <img
                           src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
                           alt={artist.name}
+                          onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <button
@@ -1229,6 +1223,7 @@ export const HomePage: React.FC = () => {
                       <img
                         src={card.cover}
                         alt={card.title}
+                        onError={handleTrackImgError}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <button
@@ -1275,11 +1270,10 @@ export const HomePage: React.FC = () => {
                       <button
                         key={item.id}
                         onClick={() => setSpotlightArtistId(item.id)}
-                        className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                          spotlightArtistId === item.id
+                        className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${spotlightArtistId === item.id
                             ? 'bg-[#1ed760] text-black font-bold'
                             : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
-                        }`}
+                          }`}
                       >
                         {item.label}
                       </button>
@@ -1297,11 +1291,7 @@ export const HomePage: React.FC = () => {
                         activeSpotlight.songs?.[0]?.coverUrl
                       }
                       alt={activeSpotlight.name}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          activeSpotlight?.songs?.[0]?.coverUrl ||
-                          'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
-                      }}
+                      onError={(e) => handleArtistImgError(e, activeSpotlight?.songs?.[0]?.coverUrl)}
                       className="w-40 h-40 rounded-lg object-cover shadow-2xl shrink-0 bg-[#282828]"
                     />
                     <div className="flex-1 text-center sm:text-left">
@@ -1364,22 +1354,21 @@ export const HomePage: React.FC = () => {
                         >
                           <div className="flex items-center gap-3 min-w-0 flex-1">
                             <span
-                              className={`text-xs w-4 text-center tabular-nums ${
-                                isCurrent ? 'text-[#1ed760] font-bold' : 'text-[#b3b3b3]'
-                              }`}
+                              className={`text-xs w-4 text-center tabular-nums ${isCurrent ? 'text-[#1ed760] font-bold' : 'text-[#b3b3b3]'
+                                }`}
                             >
                               {idx + 1}
                             </span>
                             <img
                               src={song.coverUrl}
                               alt=""
-                              className="w-10 h-10 rounded object-cover shrink-0"
+                              onError={handleTrackImgError}
+                              className="w-10 h-10 rounded object-cover shrink-0 bg-[#282828]"
                             />
                             <div className="min-w-0 flex-1">
                               <p
-                                className={`text-sm font-semibold truncate ${
-                                  isCurrent ? 'text-[#1ed760]' : 'text-white'
-                                }`}
+                                className={`text-sm font-semibold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'
+                                  }`}
                               >
                                 {song.title}
                               </p>
@@ -1419,11 +1408,10 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
               <button
                 onClick={() => setSelectedSingerId('all')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                  selectedSingerId === 'all'
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${selectedSingerId === 'all'
                     ? 'bg-[#1ed760] text-black'
                     : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
-                }`}
+                  }`}
               >
                 <Disc className="w-3.5 h-3.5" />
                 <span>All Artists ({allSongs.length})</span>
@@ -1435,22 +1423,21 @@ export const HomePage: React.FC = () => {
                   <button
                     key={artist.id}
                     onClick={() => setSelectedSingerId(artist.id)}
-                    className={`flex items-center gap-2 pl-1.5 pr-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                      isSelected
+                    className={`flex items-center gap-2 pl-1.5 pr-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${isSelected
                         ? 'bg-[#1ed760] text-black font-bold'
                         : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
-                    }`}
+                      }`}
                   >
                     <img
                       src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
                       alt={artist.name}
+                      onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
                       className="w-6 h-6 rounded-full object-cover bg-[#121212]"
                     />
                     <span>{artist.name}</span>
                     <span
-                      className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                        isSelected ? 'bg-black/20 text-black' : 'bg-black/40 text-[#b3b3b3]'
-                      }`}
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full ${isSelected ? 'bg-black/20 text-black' : 'bg-black/40 text-[#b3b3b3]'
+                        }`}
                     >
                       {artist.songCount}
                     </span>
@@ -1471,6 +1458,7 @@ export const HomePage: React.FC = () => {
                       selectedSinger.songs?.[0]?.coverUrl
                     }
                     alt={selectedSinger.name}
+                    onError={(e) => handleArtistImgError(e, selectedSinger.songs?.[0]?.coverUrl)}
                     className="w-16 h-16 rounded-full object-cover shadow-lg bg-[#282828]"
                   />
                   <div>
@@ -1565,11 +1553,10 @@ export const HomePage: React.FC = () => {
                   <button
                     key={tab.id}
                     onClick={() => setDevotionalTab(tab.id as any)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                      devotionalTab === tab.id
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${devotionalTab === tab.id
                         ? 'bg-white text-black'
                         : 'bg-white/10 hover:bg-white/15 text-white'
-                    }`}
+                      }`}
                   >
                     {tab.label}
                   </button>
@@ -1959,11 +1946,10 @@ export const HomePage: React.FC = () => {
                   <button
                     key={pill.id}
                     onClick={() => setLibraryFilter(pill.id)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                      libraryFilter === pill.id
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${libraryFilter === pill.id
                         ? 'bg-white text-black'
                         : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
-                    }`}
+                      }`}
                   >
                     {pill.label}
                   </button>
@@ -2004,9 +1990,8 @@ export const HomePage: React.FC = () => {
                         <div
                           key={song.id}
                           onClick={() => playSong(song, undefined, filteredLibrarySongs)}
-                          className={`grid grid-cols-12 gap-4 px-3 sm:px-4 py-2 rounded-md hover:bg-white/10 cursor-pointer transition-colors group items-center ${
-                            isCurrent ? 'bg-white/10' : ''
-                          }`}
+                          className={`grid grid-cols-12 gap-4 px-3 sm:px-4 py-2 rounded-md hover:bg-white/10 cursor-pointer transition-colors group items-center ${isCurrent ? 'bg-white/10' : ''
+                            }`}
                         >
                           <div className="col-span-1 flex items-center justify-center text-sm text-[#b3b3b3] tabular-nums">
                             {isCurrent && isPlaying ? (
@@ -2018,9 +2003,8 @@ export const HomePage: React.FC = () => {
                             ) : (
                               <>
                                 <span
-                                  className={`group-hover:hidden ${
-                                    isCurrent ? 'text-[#1ed760] font-bold' : ''
-                                  }`}
+                                  className={`group-hover:hidden ${isCurrent ? 'text-[#1ed760] font-bold' : ''
+                                    }`}
                                 >
                                   {i + 1}
                                 </span>
@@ -2033,13 +2017,13 @@ export const HomePage: React.FC = () => {
                             <img
                               src={song.coverUrl}
                               alt=""
-                              className="w-10 h-10 rounded object-cover shrink-0 shadow-sm"
+                              onError={handleTrackImgError}
+                              className="w-10 h-10 rounded object-cover shrink-0 shadow-sm bg-[#282828]"
                             />
                             <div className="min-w-0 flex-1">
                               <h4
-                                className={`text-sm font-semibold truncate leading-tight ${
-                                  isCurrent ? 'text-[#1ed760]' : 'text-white'
-                                }`}
+                                className={`text-sm font-semibold truncate leading-tight ${isCurrent ? 'text-[#1ed760]' : 'text-white'
+                                  }`}
                               >
                                 {song.title}
                               </h4>
@@ -2061,11 +2045,10 @@ export const HomePage: React.FC = () => {
                                 e.stopPropagation();
                                 toggleLike(song.id);
                               }}
-                              className={`p-1 rounded-full hover:scale-110 active:scale-90 transition-all ${
-                                isLiked(song.id)
+                              className={`p-1 rounded-full hover:scale-110 active:scale-90 transition-all ${isLiked(song.id)
                                   ? 'opacity-100'
                                   : 'opacity-0 group-hover:opacity-100'
-                              }`}
+                                }`}
                               title={
                                 isLiked(song.id)
                                   ? 'Remove from Liked Songs'
@@ -2073,11 +2056,10 @@ export const HomePage: React.FC = () => {
                               }
                             >
                               <Heart
-                                className={`w-4 h-4 ${
-                                  isLiked(song.id)
+                                className={`w-4 h-4 ${isLiked(song.id)
                                     ? 'text-[#1ed760] fill-[#1ed760]'
                                     : 'text-[#b3b3b3] hover:text-white'
-                                }`}
+                                  }`}
                               />
                             </button>
                             <span className="text-xs text-[#b3b3b3] tabular-nums">
