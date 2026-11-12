@@ -43,7 +43,7 @@ export const VibesTimelinePage: React.FC = () => {
   const years = Object.keys(groupedVibes).sort((a, b) => b.localeCompare(a));
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 pb-32 px-4 lg:px-8 pt-8">
+    <div className="min-h-full bg-[#121212] text-white pb-28 lg:pb-12 px-4 lg:px-8 pt-6">
       <div className="max-w-5xl mx-auto space-y-10">
         
         {/* Top Header */}

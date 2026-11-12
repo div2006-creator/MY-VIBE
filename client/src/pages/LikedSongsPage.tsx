@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Heart, Play, Pause, Disc, Shuffle, ArrowLeft } from 'lucide-react';
+import { Heart, Play, Pause, Disc, Shuffle, ArrowLeft, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Song } from '../types';
 import { useAudio } from '../context/AudioContext';
@@ -25,11 +25,10 @@ export const LikedSongsPage: React.FC = () => {
         setLoading(false);
         return;
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
 
-    // Match likedSongIds against all songs catalog
     try {
       const allRes = await fetch('/api/songs');
       const all: Song[] = await allRes.json();
@@ -45,118 +44,98 @@ export const LikedSongsPage: React.FC = () => {
   };
 
   const formatTime = (secs: number) => {
-    if (isNaN(secs)) return '00:00';
+    if (isNaN(secs)) return '0:00';
     const m = Math.floor(secs / 60);
     const s = Math.floor(secs % 60);
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div className="min-h-screen bg-[#161311] text-[#e9e1dd] pb-36 px-4 md:px-8 pt-6 select-none font-editorial">
-      <div className="max-w-6xl mx-auto space-y-8">
-        
-        {/* Navigation Breadcrumb */}
-        <div className="flex items-center gap-2">
-          <Link
-            to="/home"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1e1b19] border border-[#554339]/50 text-xs font-mono-spec text-[#a38c80] hover:text-[#ffb68c] transition-all"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>RETURN TO SANCTUARY</span>
-          </Link>
+    <div className="min-h-full bg-gradient-to-b from-[#5038a0]/70 via-[#121212] to-[#121212] text-white pb-28 lg:pb-12 select-none">
+      {/* Playlist Header */}
+      <div className="px-4 md:px-8 pt-6 pb-8 space-y-6">
+        <Link
+          to="/home"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 hover:bg-black/50 text-xs font-semibold text-[#b3b3b3] hover:text-white transition-all"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Back to Home</span>
+        </Link>
+
+        <div className="flex flex-col md:flex-row md:items-end gap-6">
+          <div className="w-36 h-36 md:w-52 md:h-52 rounded-lg bg-gradient-to-br from-[#450af5] via-[#6b4df9] to-[#c4efd9] shadow-2xl flex items-center justify-center shrink-0">
+            <Heart className="w-16 h-16 md:w-24 md:h-24 text-white fill-white" />
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-white/90">
+              Playlist
+            </span>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+              Liked Songs
+            </h1>
+            <p className="text-sm text-[#b3b3b3]">
+              {likedSongs.length} {likedSongs.length === 1 ? 'song' : 'songs'} in your collection
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* Top Atmospheric Header: Warm Analog Editorial Gatefold */}
-        <section className="relative w-full py-8 px-6 sm:px-10 rounded-2xl bg-[#1e1b19] border border-[#554339]/50 overflow-hidden shadow-2xl">
-          {/* Radial Groove Background Watermark */}
-          <div className="absolute -right-20 -top-20 w-80 h-80 opacity-20 pointer-events-none select-none">
-            <svg className="w-full h-full stroke-[#ffb68c]" fill="none" viewBox="0 0 200 200">
-              <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="100" cy="100" r="70" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1" />
-              <circle cx="100" cy="100" r="50" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="100" cy="100" r="30" stroke="currentColor" strokeWidth="1" />
-            </svg>
+      {/* Action Controls + Table */}
+      <div className="bg-black/25 px-4 md:px-8 py-6 space-y-6 min-h-[400px]">
+        {likedSongs.length > 0 && (
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => playSong(likedSongs[0], undefined, likedSongs)}
+              className="w-14 h-14 rounded-full bg-[#1ed760] hover:bg-[#3be477] text-black flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              title="Play Liked Songs"
+            >
+              <Play className="w-6 h-6 fill-black ml-0.5" />
+            </button>
+            <button
+              onClick={() => {
+                const shuffled = [...likedSongs].sort(() => Math.random() - 0.5);
+                playSong(shuffled[0], undefined, shuffled);
+              }}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all cursor-pointer"
+            >
+              <Shuffle className="w-4 h-4" />
+              <span>Shuffle</span>
+            </button>
           </div>
+        )}
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-center gap-5">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-tr from-[#d97736] via-[#ecc15a] to-rose-600 p-0.5 shadow-2xl flex-shrink-0">
-                <div className="w-full h-full bg-[#110e0c] rounded-[14px] flex items-center justify-center">
-                  <Heart className="w-10 h-10 text-rose-500 fill-current" />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 font-mono-spec text-[10px] text-[#ecc15a] uppercase tracking-widest font-bold">
-                  <span>PERSONAL ARCHIVE</span>
-                  <span className="text-[#554339]">•</span>
-                  <span>SANCTUARY FREQUENCY</span>
-                </div>
-                <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-[#ffb68c] tracking-tight">
-                  Liked Pressings
-                </h1>
-                <p className="font-editorial text-xs sm:text-sm text-[#dbc1b4]">
-                  {likedSongs.length} timeless cuts saved to your analog memory collection.
-                </p>
-              </div>
-            </div>
-
-            {likedSongs.length > 0 && (
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => playSong(likedSongs[0], undefined, likedSongs)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-bold uppercase tracking-wider shadow-lg hover:brightness-110 active:scale-95 transition-all"
-                >
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
-                  <span>Play All Cuts</span>
-                </button>
-                <button
-                  onClick={() => {
-                    const shuffled = [...likedSongs].sort(() => Math.random() - 0.5);
-                    playSong(shuffled[0], undefined, shuffled);
-                  }}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#221f1d] border border-[#554339]/60 text-[#dbc1b4] font-mono-spec text-xs font-bold uppercase tracking-wider hover:text-[#ffb68c] hover:border-[#ecc15a]/50 transition-all active:scale-95"
-                  title="Shuffle Liked Pressings"
-                >
-                  <Shuffle className="w-3.5 h-3.5" />
-                  <span>Shuffle</span>
-                </button>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Songs List */}
         {likedSongs.length === 0 && !loading ? (
-          <div className="bg-[#1e1b19] p-12 rounded-2xl text-center border border-[#554339]/40 space-y-4 shadow-xl">
-            <div className="w-16 h-16 rounded-full bg-[#110e0c] border border-[#554339]/60 flex items-center justify-center mx-auto text-rose-500 shadow-inner">
-              <Heart className="w-8 h-8 fill-current opacity-70" />
+          <div className="bg-[#181818] p-12 rounded-xl text-center border border-white/5 space-y-4">
+            <div className="w-16 h-16 rounded-full bg-[#282828] flex items-center justify-center mx-auto text-[#1ed760]">
+              <Heart className="w-8 h-8" />
             </div>
             <div>
-              <h3 className="font-serif text-xl font-bold text-[#e9e1dd]">Your Crate is Quiet</h3>
-              <p className="font-editorial text-sm text-[#a38c80] max-w-md mx-auto mt-1 leading-relaxed">
-                Click the heart icon on any music cut across the sanctuary or in the playback bar to archive it into your personal memory collection.
+              <h3 className="text-xl font-bold text-white">Songs you like will appear here</h3>
+              <p className="text-sm text-[#b3b3b3] max-w-md mx-auto mt-1">
+                Save songs by tapping the heart icon anywhere in Auralis.
               </p>
             </div>
             <Link
               to="/home"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#d97736] text-[#221f1d] font-mono-spec text-xs font-bold uppercase tracking-wider shadow-md hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black text-xs font-bold hover:scale-105 transition-transform"
             >
               <Disc className="w-4 h-4" />
-              <span>Explore 386 Studio Cuts</span>
+              <span>Find songs</span>
             </Link>
           </div>
         ) : (
-          <div className="bg-[#1e1b19] rounded-2xl p-4 sm:p-6 border border-[#554339]/40 space-y-2.5 shadow-xl">
-            <div className="flex items-center justify-between border-b border-[#554339]/40 pb-3 font-mono-spec text-[10px] text-[#a38c80] uppercase tracking-wider">
-              <span>TRACK & ARTIST</span>
-              <div className="flex items-center gap-8 mr-2">
-                <span>DURATION</span>
-                <span>STATUS</span>
+          <div className="w-full">
+            <div className="grid grid-cols-12 gap-4 px-4 py-2 border-b border-white/10 text-xs font-semibold text-[#b3b3b3] uppercase tracking-wider">
+              <div className="col-span-1 text-center">#</div>
+              <div className="col-span-6 sm:col-span-5">Title</div>
+              <div className="hidden sm:block sm:col-span-4">Album</div>
+              <div className="col-span-5 sm:col-span-2 flex items-center justify-end pr-3">
+                <Clock className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="space-y-2 pt-1">
+            <div className="space-y-0.5 mt-2">
               {likedSongs.map((song, idx) => {
                 const isCurrent = currentSong?.id === song.id;
                 return (
@@ -166,58 +145,49 @@ export const LikedSongsPage: React.FC = () => {
                       if (isCurrent) togglePlay();
                       else playSong(song, undefined, likedSongs);
                     }}
-                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer group ${
-                      isCurrent
-                        ? 'bg-[#282422] border-[#ecc15a]/60 shadow-md'
-                        : 'bg-[#221f1d] hover:bg-[#282422] border-[#554339]/30 hover:border-[#ecc15a]/40'
+                    className={`grid grid-cols-12 gap-4 px-3 sm:px-4 py-2 rounded-md hover:bg-white/10 cursor-pointer transition-colors group items-center ${
+                      isCurrent ? 'bg-white/10' : ''
                     }`}
                   >
-                    <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                      <span className="font-mono-spec text-xs text-[#a38c80] w-6 text-right">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
+                    <div className="col-span-1 flex items-center justify-center text-sm text-[#b3b3b3] tabular-nums">
+                      {isCurrent && isPlaying ? (
+                        <Pause className="w-4 h-4 text-[#1ed760] fill-current" />
+                      ) : (
+                        <>
+                          <span className={`group-hover:hidden ${isCurrent ? 'text-[#1ed760] font-bold' : ''}`}>
+                            {idx + 1}
+                          </span>
+                          <Play className="w-3.5 h-3.5 fill-white text-white hidden group-hover:block ml-0.5" />
+                        </>
+                      )}
+                    </div>
 
-                      <div className="relative w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 border border-[#554339]/60 shadow-inner bg-[#110e0c]">
-                        <img
-                          src={song.coverUrl}
-                          alt={song.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${isCurrent ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
-                          {isCurrent && isPlaying ? (
-                            <Pause className="w-4 h-4 text-[#ffb68c] fill-current" />
-                          ) : (
-                            <Play className="w-4 h-4 text-[#ffb68c] fill-current ml-0.5" />
-                          )}
-                        </div>
-                      </div>
-
+                    <div className="col-span-6 sm:col-span-5 flex items-center gap-3 min-w-0">
+                      <img src={song.coverUrl} alt={song.title} className="w-10 h-10 rounded object-cover shrink-0" />
                       <div className="min-w-0 flex-1">
-                        <h4 className={`font-serif text-sm font-bold truncate leading-tight ${isCurrent ? 'text-[#ffb68c]' : 'text-[#e9e1dd] group-hover:text-[#ffb68c]'}`}>
+                        <h4 className={`text-sm font-semibold truncate ${isCurrent ? 'text-[#1ed760]' : 'text-white'}`}>
                           {song.title}
                         </h4>
-                        <p className="font-editorial text-xs text-[#a38c80] truncate mt-0.5">
-                          {song.artist} {song.album ? `• ${song.album}` : ''}
-                        </p>
+                        <p className="text-xs text-[#b3b3b3] truncate">{song.artist}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-5 ml-4">
-                      <span className="font-mono-spec text-xs text-[#a38c80]">
-                        {formatTime(song.durationSec)}
-                      </span>
+                    <div className="hidden sm:block sm:col-span-4 min-w-0">
+                      <p className="text-xs text-[#b3b3b3] truncate">{song.album || 'Single'}</p>
+                    </div>
 
-                      {/* Heart Like Toggle Button */}
+                    <div className="col-span-5 sm:col-span-2 flex items-center justify-end gap-3 pr-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleLike(song.id);
                         }}
-                        className="p-2 text-rose-500 hover:text-rose-400 active:scale-90 transition-all rounded-full hover:bg-[#383431]"
-                        title={isLiked(song.id) ? "Remove from Liked Songs" : "Like Song"}
+                        className="p-1 text-[#1ed760] hover:scale-110 transition-transform"
+                        title={isLiked(song.id) ? 'Remove from Liked Songs' : 'Like Song'}
                       >
-                        <Heart className={`w-4 h-4 transition-all ${isLiked(song.id) ? 'fill-current scale-110' : 'text-[#a38c80]'}`} />
+                        <Heart className={`w-4 h-4 ${isLiked(song.id) ? 'fill-[#1ed760]' : 'text-[#b3b3b3]'}`} />
                       </button>
+                      <span className="text-xs text-[#b3b3b3] tabular-nums">{formatTime(song.durationSec)}</span>
                     </div>
                   </div>
                 );
@@ -225,9 +195,7 @@ export const LikedSongsPage: React.FC = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
 };
-

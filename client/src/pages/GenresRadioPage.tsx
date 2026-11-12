@@ -100,22 +100,22 @@ export const GenresRadioPage: React.FC = () => {
     <div className="min-h-screen pb-32 max-w-7xl mx-auto px-4 md:px-8 pt-6 space-y-8">
       
       {/* Page Title */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 glass-panel p-6 rounded-3xl border border-white/10 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-indigo-600/10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-[#1db954]/20 via-[#181818] to-[#181818] p-6 rounded-2xl border border-white/10">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Radio className="w-5 h-5 text-amber-400 animate-pulse" />
-            <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">24/7 Live Vibe Streams</span>
+            <Radio className="w-5 h-5 text-[#1ed760] animate-pulse" />
+            <span className="text-xs uppercase tracking-widest text-[#1ed760] font-bold">24/7 Radio Streams</span>
           </div>
           <h1 className="text-3xl font-extrabold text-white">Mood & Genre Radio Stations</h1>
-          <p className="text-xs md:text-sm text-neutral-300 mt-1">
-            Endless automated sound streams tailored to your current mood & vibe state.
+          <p className="text-xs md:text-sm text-[#b3b3b3] mt-1">
+            Endless automated sound streams tailored to your current mood.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="px-4 py-2 rounded-full text-xs font-semibold bg-white/10 text-neutral-200 border border-white/10 flex items-center gap-1.5">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            <span>AI Mood Selector Active</span>
+          <span className="px-4 py-2 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/10 flex items-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-[#1ed760]" />
+            <span>Smart Mood Radio Active</span>
           </span>
         </div>
       </div>
@@ -154,7 +154,7 @@ export const GenresRadioPage: React.FC = () => {
                       if (isActiveStation) togglePlay();
                       else handleStartStation(station);
                     }}
-                    className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
+                    className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer"
                   >
                     {isStationPlaying ? (
                       <Pause className="w-6 h-6 fill-current" />
@@ -164,21 +164,21 @@ export const GenresRadioPage: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="flex items-center gap-2 mb-1 text-xs text-amber-400 font-semibold">
+                <div className="flex items-center gap-2 mb-1 text-xs text-[#1ed760] font-semibold">
                   <span>{station.mood}</span>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{station.name}</h3>
-                <p className="text-xs text-neutral-300 leading-relaxed font-normal">{station.description}</p>
+                <p className="text-xs text-[#b3b3b3] leading-relaxed font-normal">{station.description}</p>
               </div>
 
               <div className="relative z-10 pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[11px] text-neutral-400 font-mono">
+                <span className="text-[11px] text-[#b3b3b3] font-mono">
                   {station.songs.length || allSongs.length} Tracks in Queue
                 </span>
 
                 <button
                   onClick={() => handleStartStation(station)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-amber-500 hover:text-neutral-950 text-neutral-200 transition-all"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-[#1ed760] hover:text-black text-white transition-all cursor-pointer"
                 >
                   <Radio className="w-3.5 h-3.5" />
                   <span>Launch Radio</span>

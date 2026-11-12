@@ -31,7 +31,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const res = await fetch('/api/auth/me', { headers });
       if (res.ok) {
         const data = await res.json();
-        setUser(data.user);
+        const rawUser = data.user;
+        if (rawUser && (!rawUser.avatarUrl || rawUser.avatarUrl.includes('1534528741775'))) {
+          rawUser.avatarUrl = '/minecraft-avatar.jpg';
+        }
+        setUser(rawUser);
       } else {
         setUser(null);
       }

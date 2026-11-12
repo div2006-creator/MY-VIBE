@@ -60,12 +60,17 @@ router.post('/login', async (req: AuthRequest, res: Response) => {
           name: 'Vibe2006',
           email: 'Vibe2006',
           password: hashedPassword,
-          avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-          bio: 'Official VIBE Account ✨',
+          avatarUrl: '/minecraft-avatar.jpg',
+          bio: 'Official Auralis Account ✨',
           favoriteMood: '🔥 High Energy & Romance',
         },
       });
       console.log('✅ Created master user record for Vibe2006');
+    } else if (!user.avatarUrl || user.avatarUrl.includes('1534528741775')) {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { avatarUrl: '/minecraft-avatar.jpg' },
+      });
     }
 
     const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
@@ -75,7 +80,7 @@ router.post('/login', async (req: AuthRequest, res: Response) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        avatarUrl: user.avatarUrl,
+        avatarUrl: user.avatarUrl || '/minecraft-avatar.jpg',
         bio: user.bio,
         favoriteMood: user.favoriteMood,
         isMaster: true,
@@ -102,7 +107,10 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        avatarUrl: user.avatarUrl,
+        avatarUrl:
+          !user.avatarUrl || user.avatarUrl.includes('1534528741775')
+            ? '/minecraft-avatar.jpg'
+            : user.avatarUrl,
         bio: user.bio,
         favoriteMood: user.favoriteMood,
         isMaster: user.email === MASTER_ID || user.name === MASTER_ID,

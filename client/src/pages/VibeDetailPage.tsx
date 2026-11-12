@@ -79,7 +79,7 @@ export const VibeDetailPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0b0a0e] flex items-center justify-center text-amber-400">
+      <div className="min-h-full bg-[#121212] flex items-center justify-center text-[#1ed760]">
         <Sparkles className="w-8 h-8 animate-spin" />
       </div>
     );
@@ -87,7 +87,7 @@ export const VibeDetailPage: React.FC = () => {
 
   if (!vibe) {
     return (
-      <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 p-8 text-center">
+      <div className="min-h-full bg-[#121212] text-white p-8 text-center">
         <h2 className="text-2xl font-bold font-serif mb-4">Vibe Not Found</h2>
         <button onClick={() => navigate('/my-vibes')} className="px-4 py-2 bg-amber-500 text-black font-bold rounded-full">
           Back to My Vibes
@@ -99,7 +99,7 @@ export const VibeDetailPage: React.FC = () => {
   const vibeSongs = vibe.songs || [];
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 pb-32 px-4 lg:px-8 pt-6">
+    <div className="min-h-full bg-[#121212] text-white pb-28 lg:pb-12 px-4 lg:px-8 pt-6">
       <div className="max-w-5xl mx-auto space-y-10">
         
         {/* Back Navigation */}
@@ -121,7 +121,7 @@ export const VibeDetailPage: React.FC = () => {
               alt=""
               className="w-full h-full object-cover blur-3xl scale-125"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a0e] via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-black/50 to-transparent" />
           </div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">

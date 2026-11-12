@@ -11,9 +11,9 @@ interface ChatMessage {
 }
 
 const SAMPLE_MESSAGES: ChatMessage[] = [
-  { id: '1', user: 'Maya K.', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80', text: 'This lo-fi beat hitting so deep tonight 🔥', time: '21:51' },
+  { id: '1', user: 'Aarav K.', avatar: '/minecraft-avatar.jpg', text: 'This late-night mix hitting so deep tonight 🔥', time: '21:51' },
   { id: '2', user: 'Rohan S.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80', text: 'Anyone else listening while coding at 2 AM? ☕', time: '21:52' },
-  { id: '3', user: 'Elena P.', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80', text: 'Loved the rain piano melody! So cozy ✨', time: '21:53' },
+  { id: '3', user: 'Kabir M.', avatar: '/minecraft-avatar.jpg', text: 'Loving the acoustic melody! Super clean ✨', time: '21:53' },
 ];
 
 export const LiveLoungePage: React.FC = () => {
@@ -44,7 +44,7 @@ export const LiveLoungePage: React.FC = () => {
     const newMsg: ChatMessage = {
       id: Date.now().toString(),
       user: 'You',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80',
+      avatar: '/minecraft-avatar.jpg',
       text: inputMsg,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };

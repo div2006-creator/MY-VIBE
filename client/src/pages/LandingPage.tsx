@@ -17,7 +17,7 @@ export const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0b0a0e] text-neutral-100 selection:bg-amber-500 selection:text-black">
+    <div className="min-h-screen bg-[#121212] text-white selection:bg-[#1ed760] selection:text-black">
       
       {/* Hero Section */}
       <section className="relative pt-20 pb-32 px-4 overflow-hidden">

@@ -79,24 +79,24 @@ export const PlaylistsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pb-32 max-w-7xl mx-auto px-4 md:px-8 pt-6 space-y-8">
+    <div className="min-h-full pb-28 lg:pb-12 max-w-7xl mx-auto px-4 md:px-8 pt-6 space-y-8">
       
       {/* Page Title */}
-      <div className="glass-panel p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-indigo-600/10">
+      <div className="bg-gradient-to-r from-[#1db954]/20 via-[#181818] to-[#181818] p-6 md:p-8 rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <ListMusic className="w-5 h-5 text-amber-400" />
-            <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">Curated Sound Mixes</span>
+            <ListMusic className="w-5 h-5 text-[#1ed760]" />
+            <span className="text-xs uppercase tracking-widest text-[#1ed760] font-bold">Curated Sound Mixes</span>
           </div>
           <h1 className="text-3xl font-extrabold text-white">Your Playlists & Mixes</h1>
-          <p className="text-xs md:text-sm text-neutral-300 mt-1">
+          <p className="text-xs md:text-sm text-[#b3b3b3] mt-1">
             Build custom playlists or listen to curated vibe mixes.
           </p>
         </div>
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-gradient-to-r from-amber-500 to-rose-500 text-neutral-950 shadow-lg hover:scale-105 transition-all"
+          className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[#1ed760] hover:bg-[#3be477] text-black shadow-lg hover:scale-105 transition-all cursor-pointer"
         >
           <Plus className="w-5 h-5" />
           <span>New Playlist</span>
@@ -175,14 +175,14 @@ export const PlaylistsPage: React.FC = () => {
                         if (isPlaylistPlaying) togglePlay();
                         else if (playlist.songs.length > 0) playSong(playlist.songs[0], undefined, playlist.songs);
                       }}
-                      className="w-14 h-14 rounded-full bg-amber-500 text-neutral-950 flex items-center justify-center shadow-xl hover:scale-110 transition-transform font-bold"
+                      className="w-14 h-14 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-xl hover:scale-110 transition-transform font-bold cursor-pointer"
                     >
                       {isPlaylistPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
                     </button>
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-amber-300 transition-colors">
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-[#1ed760] transition-colors">
                   {playlist.title}
                 </h3>
                 <p className="text-xs text-neutral-400 leading-relaxed line-clamp-2">{playlist.description}</p>

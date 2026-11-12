@@ -42,8 +42,8 @@ async function main() {
       email: 'alex@vibe.com',
       password: hashedPassword,
       name: 'Alex Rivera',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-      bio: 'VIBE Curator • Blending Punjabi anthems, soulful Bollywood melodies & midnight synthwave 🎶',
+      avatarUrl: '/minecraft-avatar.jpg',
+      bio: 'Auralis Curator • Blending Punjabi anthems, soulful Bollywood melodies & midnight synthwave 🎶',
       favoriteMood: '⚡ Electric & Soulful',
     },
   });
