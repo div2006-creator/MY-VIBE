@@ -101,7 +101,7 @@ export const VibeDetailPage: React.FC = () => {
   return (
     <div className="min-h-full bg-[#121212] text-white pb-28 lg:pb-12 px-4 lg:px-8 pt-6">
       <div className="max-w-5xl mx-auto space-y-10">
-        
+
         {/* Back Navigation */}
         <button
           onClick={() => navigate(-1)}
@@ -113,7 +113,7 @@ export const VibeDetailPage: React.FC = () => {
 
         {/* Hero Header Stage */}
         <div className="glass-card rounded-3xl p-6 md:p-10 border border-white/10 relative overflow-hidden shadow-2xl">
-          
+
           {/* Ambient Blurred Background Glow */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
             <img
@@ -125,7 +125,7 @@ export const VibeDetailPage: React.FC = () => {
           </div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-            
+
             {/* Cover Image */}
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/15 flex-shrink-0 group relative">
               <img
@@ -145,7 +145,7 @@ export const VibeDetailPage: React.FC = () => {
 
             {/* Vibe Details */}
             <div className="flex-1 space-y-4 text-center md:text-left">
-              
+
               {/* Mood & Location Meta */}
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 text-xs font-semibold">
                 <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-sm">
@@ -235,11 +235,10 @@ export const VibeDetailPage: React.FC = () => {
                 return (
                   <div
                     key={song.id}
-                    className={`flex items-center justify-between p-3.5 rounded-2xl glass-card border transition-all ${
-                      isCurrent
-                        ? 'bg-amber-500/15 border-amber-500/40 text-amber-200'
-                        : 'border-white/10 hover:border-amber-500/20'
-                    }`}
+                    className={`flex items-center justify-between p-3.5 rounded-2xl glass-card border transition-all ${isCurrent
+                      ? 'bg-amber-500/15 border-amber-500/40 text-amber-200'
+                      : 'border-white/10 hover:border-amber-500/20'
+                      }`}
                   >
                     {/* Track Info */}
                     <div className="flex items-center gap-4 min-w-0">

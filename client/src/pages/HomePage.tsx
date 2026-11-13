@@ -488,8 +488,8 @@ export const HomePage: React.FC = () => {
             key={song.id}
             onClick={() => playSong(song, undefined, fullQueue)}
             className={`flex items-center justify-between p-2.5 rounded-lg transition-all group cursor-pointer ${isCurrent
-                ? 'bg-[#282828] ring-1 ring-[#1ed760]/60'
-                : 'bg-[#181818] hover:bg-[#282828]'
+              ? 'bg-[#282828] ring-1 ring-[#1ed760]/60'
+              : 'bg-[#181818] hover:bg-[#282828]'
               }`}
           >
             <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -529,15 +529,15 @@ export const HomePage: React.FC = () => {
                   toggleLike(song.id);
                 }}
                 className={`p-1 transition-all ${isLiked(song.id)
-                    ? 'opacity-100'
-                    : 'opacity-0 group-hover:opacity-100'
+                  ? 'opacity-100'
+                  : 'opacity-0 group-hover:opacity-100'
                   }`}
                 title={isLiked(song.id) ? 'Remove from Liked Songs' : 'Like'}
               >
                 <Heart
                   className={`w-3.5 h-3.5 ${isLiked(song.id)
-                      ? 'text-[#1ed760] fill-[#1ed760]'
-                      : 'text-[#b3b3b3] hover:text-white'
+                    ? 'text-[#1ed760] fill-[#1ed760]'
+                    : 'text-[#b3b3b3] hover:text-white'
                     }`}
                 />
               </button>
@@ -583,8 +583,8 @@ export const HomePage: React.FC = () => {
                   key={pill.id}
                   onClick={() => setMobileCategory(pill.id)}
                   className={`px-3.5 py-1.5 rounded-full font-semibold whitespace-nowrap transition-all ${mobileCategory === pill.id
-                      ? 'bg-[#1ed760] text-black'
-                      : 'bg-white/10 text-white'
+                    ? 'bg-[#1ed760] text-black'
+                    : 'bg-white/10 text-white'
                     }`}
                 >
                   {pill.label}
@@ -717,8 +717,8 @@ export const HomePage: React.FC = () => {
                       >
                         <Heart
                           className={`w-4 h-4 ${isLiked(song.id)
-                              ? 'text-[#1ed760] fill-[#1ed760]'
-                              : 'text-[#b3b3b3]'
+                            ? 'text-[#1ed760] fill-[#1ed760]'
+                            : 'text-[#b3b3b3]'
                             }`}
                         />
                       </button>
@@ -778,8 +778,8 @@ export const HomePage: React.FC = () => {
                   }
                 }}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${activeFilterPill === pill.id
-                    ? 'bg-white text-black'
-                    : 'bg-white/10 hover:bg-white/15 text-white'
+                  ? 'bg-white text-black'
+                  : 'bg-white/10 hover:bg-white/15 text-white'
                   }`}
               >
                 {pill.label}
@@ -1271,8 +1271,8 @@ export const HomePage: React.FC = () => {
                         key={item.id}
                         onClick={() => setSpotlightArtistId(item.id)}
                         className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${spotlightArtistId === item.id
-                            ? 'bg-[#1ed760] text-black font-bold'
-                            : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
+                          ? 'bg-[#1ed760] text-black font-bold'
+                          : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
                           }`}
                       >
                         {item.label}
@@ -1409,8 +1409,8 @@ export const HomePage: React.FC = () => {
               <button
                 onClick={() => setSelectedSingerId('all')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${selectedSingerId === 'all'
-                    ? 'bg-[#1ed760] text-black'
-                    : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
+                  ? 'bg-[#1ed760] text-black'
+                  : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
                   }`}
               >
                 <Disc className="w-3.5 h-3.5" />
@@ -1424,8 +1424,8 @@ export const HomePage: React.FC = () => {
                     key={artist.id}
                     onClick={() => setSelectedSingerId(artist.id)}
                     className={`flex items-center gap-2 pl-1.5 pr-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${isSelected
-                        ? 'bg-[#1ed760] text-black font-bold'
-                        : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
+                      ? 'bg-[#1ed760] text-black font-bold'
+                      : 'bg-[#232323] hover:bg-[#2a2a2a] text-white'
                       }`}
                   >
                     <img
@@ -1554,8 +1554,8 @@ export const HomePage: React.FC = () => {
                     key={tab.id}
                     onClick={() => setDevotionalTab(tab.id as any)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${devotionalTab === tab.id
-                        ? 'bg-white text-black'
-                        : 'bg-white/10 hover:bg-white/15 text-white'
+                      ? 'bg-white text-black'
+                      : 'bg-white/10 hover:bg-white/15 text-white'
                       }`}
                   >
                     {tab.label}
@@ -1947,8 +1947,8 @@ export const HomePage: React.FC = () => {
                     key={pill.id}
                     onClick={() => setLibraryFilter(pill.id)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${libraryFilter === pill.id
-                        ? 'bg-white text-black'
-                        : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
+                      ? 'bg-white text-black'
+                      : 'bg-[#232323] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white'
                       }`}
                   >
                     {pill.label}
@@ -2046,8 +2046,8 @@ export const HomePage: React.FC = () => {
                                 toggleLike(song.id);
                               }}
                               className={`p-1 rounded-full hover:scale-110 active:scale-90 transition-all ${isLiked(song.id)
-                                  ? 'opacity-100'
-                                  : 'opacity-0 group-hover:opacity-100'
+                                ? 'opacity-100'
+                                : 'opacity-0 group-hover:opacity-100'
                                 }`}
                               title={
                                 isLiked(song.id)
@@ -2057,8 +2057,8 @@ export const HomePage: React.FC = () => {
                             >
                               <Heart
                                 className={`w-4 h-4 ${isLiked(song.id)
-                                    ? 'text-[#1ed760] fill-[#1ed760]'
-                                    : 'text-[#b3b3b3] hover:text-white'
+                                  ? 'text-[#1ed760] fill-[#1ed760]'
+                                  : 'text-[#b3b3b3] hover:text-white'
                                   }`}
                               />
                             </button>

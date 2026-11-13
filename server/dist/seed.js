@@ -27,13 +27,13 @@ async function main() {
     await prisma.album.deleteMany();
     await prisma.artist.deleteMany();
     await prisma.user.deleteMany();
-    // 3. Create Demo User
-    const hashedPassword = await bcrypt.hash('password123', 10);
+    // 3. Create Master User
+    const hashedPassword = await bcrypt.hash('ASDFGBNM@%5566', 12);
     const user = await prisma.user.create({
         data: {
-            email: 'alex@vibe.com',
+            email: 'Hacker@#qwert77889',
             password: hashedPassword,
-            name: 'Alex Rivera',
+            name: 'Hacker@#qwert77889',
             avatarUrl: '/minecraft-avatar.jpg',
             bio: 'Auralis Curator • Blending Punjabi anthems, soulful Bollywood melodies & midnight synthwave 🎶',
             favoriteMood: '⚡ Electric & Soulful',

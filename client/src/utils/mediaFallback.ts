@@ -33,3 +33,4 @@ export function handleTrackImgError(e: React.SyntheticEvent<HTMLImageElement>) {
     img.src = TRACK_PLACEHOLDER_SVG;
   }
 }
+
