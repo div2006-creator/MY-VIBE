@@ -9,6 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Immediate Anti-Inspection Shield -->
+    <script>
+      (function() {
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); e.stopPropagation(); return false; }, true);
+        window.addEventListener('keydown', function(e) {
+          if (e.keyCode === 123 || e.key === 'F12') { e.preventDefault(); e.stopPropagation(); return false; }
+          var isMod = e.ctrlKey || e.metaKey;
+          if (isMod) {
+            var k = (e.key || '').toUpperCase();
+            if ((e.shiftKey && (k === 'I' || k === 'J' || k === 'C' || k === 'K')) || k === 'U' || k === 'S' || k === 'P') {
+              e.preventDefault(); e.stopPropagation(); return false;
+            }
+          }
+        }, true);
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }, true);
+      })();
+    </script>
   </head>
   <body class="bg-black text-white">
     <div id="root"></div>

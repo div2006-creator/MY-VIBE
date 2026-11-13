@@ -37,6 +37,23 @@ body {
   color: #ffffff;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 .font-serif {
