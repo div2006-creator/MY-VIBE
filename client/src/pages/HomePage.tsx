@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import type { Artist, Song } from '../types';
 import { useAudio } from '../context/AudioContext';
-import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
+import { getArtistAvatar, handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -287,7 +287,21 @@ export const HomePage: React.FC = () => {
     : activeDevotionalList.slice(0, 12);
 
   const hariharanArtist = artists.find((a) => a.name.includes('Hariharan'));
-  const hansrajArtist = artists.find((a) => a.name.includes('Hansraj'));
+  const foundHansraj = artists.find((a) => a.name.includes('Hansraj'));
+  const hansrajSongs = allSongs.filter((s) => s.artist.toLowerCase().includes('hansraj'));
+  const hansrajArtist: Artist | undefined =
+    foundHansraj ||
+    (hansrajSongs.length > 0
+      ? {
+        id: hansrajSongs[0].artistId || 'hansraj-raghuwanshi',
+        name: 'Hansraj Raghuwanshi',
+        avatarUrl: '/artists/hansraj-raghuwanshi.jpg',
+        genre: 'Devotional Folk & Mahadev Anthems',
+        bio: 'Celebrated devotional sensation affectionately known as Babaji.',
+        songCount: hansrajSongs.length,
+        songs: hansrajSongs,
+      }
+      : undefined);
   const agamArtist = artists.find((a) => a.name.includes('Agam'));
   const shankarArtist = artists.find((a) => a.name.includes('Shankar Mahadevan'));
   const shreyaSong = allSongs.find(
@@ -302,7 +316,7 @@ export const HomePage: React.FC = () => {
       ? {
         id: 'shreya-ghoshal',
         name: 'Shreya Ghoshal',
-        avatarUrl: 'https://c.saavncdn.com/artists/Shreya_Ghoshal_500x500.jpg',
+        avatarUrl: '/artists/shreya-ghoshal.jpg',
         genre: 'Indie Folk Fusion & Pop',
         bio: 'Queen of Melody & Legendary Master Playback Vocalist',
         songCount: 1,
@@ -1108,10 +1122,10 @@ export const HomePage: React.FC = () => {
                     >
                       <div className="relative aspect-square w-full rounded-full overflow-hidden mb-3 bg-[#282828] shadow-[0_8px_24px_rgba(0,0,0,0.5)]">
                         <img
-                          src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
+                          src={getArtistAvatar(artist.name, artist.avatarUrl, artist.songs?.[0]?.coverUrl)}
                           alt={artist.name}
                           onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 text-transparent"
                         />
                         <button
                           onClick={(e) => {
@@ -1286,13 +1300,14 @@ export const HomePage: React.FC = () => {
                 <div className="lg:col-span-7 bg-gradient-to-br from-[#242424] via-[#181818] to-[#121212] p-6 rounded-xl border border-white/5 flex flex-col justify-between gap-6">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                     <img
-                      src={
-                        activeSpotlight.avatarUrl ||
+                      src={getArtistAvatar(
+                        activeSpotlight.name,
+                        activeSpotlight.avatarUrl,
                         activeSpotlight.songs?.[0]?.coverUrl
-                      }
+                      )}
                       alt={activeSpotlight.name}
                       onError={(e) => handleArtistImgError(e, activeSpotlight?.songs?.[0]?.coverUrl)}
-                      className="w-40 h-40 rounded-lg object-cover shadow-2xl shrink-0 bg-[#282828]"
+                      className="w-40 h-40 rounded-lg object-cover shadow-2xl shrink-0 bg-[#282828] text-transparent"
                     />
                     <div className="flex-1 text-center sm:text-left">
                       <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4cb3ff] mb-2">
@@ -1429,10 +1444,10 @@ export const HomePage: React.FC = () => {
                       }`}
                   >
                     <img
-                      src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
+                      src={getArtistAvatar(artist.name, artist.avatarUrl, artist.songs?.[0]?.coverUrl)}
                       alt={artist.name}
                       onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
-                      className="w-6 h-6 rounded-full object-cover bg-[#121212]"
+                      className="w-6 h-6 rounded-full object-cover bg-[#121212] text-transparent"
                     />
                     <span>{artist.name}</span>
                     <span
@@ -1453,13 +1468,14 @@ export const HomePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/10 pb-5">
                 <div className="flex items-center gap-4">
                   <img
-                    src={
-                      selectedSinger.avatarUrl ||
+                    src={getArtistAvatar(
+                      selectedSinger.name,
+                      selectedSinger.avatarUrl,
                       selectedSinger.songs?.[0]?.coverUrl
-                    }
+                    )}
                     alt={selectedSinger.name}
                     onError={(e) => handleArtistImgError(e, selectedSinger.songs?.[0]?.coverUrl)}
-                    className="w-16 h-16 rounded-full object-cover shadow-lg bg-[#282828]"
+                    className="w-16 h-16 rounded-full object-cover shadow-lg bg-[#282828] text-transparent"
                   />
                   <div>
                     <h3 className="text-2xl font-extrabold text-white">

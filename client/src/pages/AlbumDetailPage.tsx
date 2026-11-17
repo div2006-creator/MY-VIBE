@@ -19,14 +19,12 @@ interface AlbumDetailData {
 
 export const AlbumDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { currentSong, isPlaying, playSong, togglePlay } = useAudio();
+  const { currentSong, isPlaying, playSong, togglePlay, isLiked, toggleLike } = useAudio();
   const [album, setAlbum] = useState<AlbumDetailData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [likedSongIds, setLikedSongIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchAlbum();
-    fetchLikedSongs();
   }, [id]);
 
   const fetchAlbum = async () => {
@@ -41,44 +39,6 @@ export const AlbumDetailPage: React.FC = () => {
       console.error('Failed to fetch album:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchLikedSongs = async () => {
-    const token = localStorage.getItem('vibe_token');
-    if (!token) return;
-    try {
-      const res = await fetch('/api/songs/liked', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setLikedSongIds(new Set(data.map((s: Song) => s.id)));
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const toggleLike = async (songId: string) => {
-    const token = localStorage.getItem('vibe_token');
-    if (!token) return;
-    try {
-      const res = await fetch(`/api/songs/${songId}/like`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setLikedSongIds((prev) => {
-          const updated = new Set(prev);
-          if (data.liked) updated.add(songId);
-          else updated.delete(songId);
-          return updated;
-        });
-      }
-    } catch (err) {
-      console.error(err);
     }
   };
 
@@ -165,7 +125,7 @@ export const AlbumDetailPage: React.FC = () => {
           {album.songs.map((song, index) => {
             const isCurrent = currentSong?.id === song.id;
             const isSongPlaying = isCurrent && isPlaying;
-            const liked = likedSongIds.has(song.id);
+            const liked = isLiked(song.id);
 
             return (
               <div

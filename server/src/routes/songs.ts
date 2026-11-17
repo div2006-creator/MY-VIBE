@@ -1,18 +1,12 @@
 import { Router, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { AuthRequest, authenticate } from '../middleware/auth.js';
+import { AuthRequest, authenticate, getUserId } from '../middleware/auth.js';
 
 const router = Router();
 const prisma = new PrismaClient();
 
-async function getUserId(req: AuthRequest) {
-  if (req.user?.id) return req.user.id;
-  const firstUser = await prisma.user.findFirst();
-  return firstUser ? firstUser.id : null;
-}
-
 // GET /api/songs - List all songs
-router.get('/', async (req: AuthRequest, res: Response) => {
+router.get('/', async (_req: AuthRequest, res: Response) => {
   try {
     const songs = await prisma.song.findMany({
       include: {
@@ -57,7 +51,6 @@ router.get('/recently-played', authenticate, async (req: AuthRequest, res: Respo
       },
     });
 
-    // Deduplicate songs by ID while retaining recent played timestamp
     const seen = new Set();
     const result: any[] = [];
     for (const h of history) {
@@ -76,7 +69,6 @@ router.get('/recently-played', authenticate, async (req: AuthRequest, res: Respo
       }
     }
 
-    // If history is empty, return top default tracks as recently played
     if (result.length === 0) {
       const defaultSongs = await prisma.song.findMany({
         take: 4,
@@ -123,7 +115,7 @@ router.post('/listen', authenticate, async (req: AuthRequest, res: Response) => 
   }
 });
 
-// GET /api/songs/liked - Get user liked songs
+// GET /api/songs/liked - Get user liked songs (guaranteed persistent)
 router.get('/liked', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const userId = await getUserId(req);
@@ -139,20 +131,79 @@ router.get('/liked', authenticate, async (req: AuthRequest, res: Response) => {
       orderBy: { likedAt: 'desc' },
     });
 
-    const formatted = liked.map((l) => ({
-      id: l.song.id,
-      title: l.song.title,
-      artist: l.song.artist.name,
-      artistId: l.song.artist.id,
-      album: l.song.album?.title,
-      durationSec: l.song.durationSec,
-      coverUrl: l.song.coverUrl,
-      audioUrl: l.song.audioUrl,
-      likedAt: l.likedAt,
-    }));
+    const formatted = liked
+      .filter((l) => Boolean(l.song))
+      .map((l) => ({
+        id: l.song.id,
+        title: l.song.title,
+        artist: l.song.artist.name,
+        artistId: l.song.artist.id,
+        album: l.song.album?.title,
+        durationSec: l.song.durationSec,
+        coverUrl: l.song.coverUrl,
+        audioUrl: l.song.audioUrl,
+        likedAt: l.likedAt,
+      }));
 
     return res.json(formatted);
   } catch (err: any) {
+    console.error('Fetch liked songs error:', err);
+    return res.status(500).json({ message: err.message || 'Server error' });
+  }
+});
+
+// POST /api/songs/liked/sync - Reconcile and bulk-save liked songs
+router.post('/liked/sync', authenticate, async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = await getUserId(req);
+    if (!userId) return res.status(401).json({ message: 'User resolution failed' });
+
+    const { songIds } = req.body;
+    if (Array.isArray(songIds) && songIds.length > 0) {
+      for (const songId of songIds) {
+        if (!songId || typeof songId !== 'string') continue;
+        const existing = await prisma.likedSong.findUnique({
+          where: { userId_songId: { userId, songId } },
+        });
+        if (!existing) {
+          const songExists = await prisma.song.findUnique({ where: { id: songId } });
+          if (songExists) {
+            await prisma.likedSong.create({ data: { userId, songId } }).catch(() => {});
+          }
+        }
+      }
+    }
+
+    const allLiked = await prisma.likedSong.findMany({
+      where: { userId },
+      include: {
+        song: {
+          include: { artist: { select: { id: true, name: true } }, album: true },
+        },
+      },
+      orderBy: { likedAt: 'desc' },
+    });
+
+    const formatted = allLiked
+      .filter((l) => Boolean(l.song))
+      .map((l) => ({
+        id: l.song.id,
+        title: l.song.title,
+        artist: l.song.artist.name,
+        artistId: l.song.artist.id,
+        album: l.song.album?.title,
+        durationSec: l.song.durationSec,
+        coverUrl: l.song.coverUrl,
+        audioUrl: l.song.audioUrl,
+        likedAt: l.likedAt,
+      }));
+
+    return res.json({
+      likedSongIds: formatted.map((s) => s.id),
+      likedSongs: formatted,
+    });
+  } catch (err: any) {
+    console.error('Sync liked songs error:', err);
     return res.status(500).json({ message: err.message || 'Server error' });
   }
 });
@@ -161,9 +212,12 @@ router.get('/liked', authenticate, async (req: AuthRequest, res: Response) => {
 router.post('/:id/like', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const userId = await getUserId(req);
-    if (!userId) return res.status(401).json({ message: 'Auth required' });
+    if (!userId) return res.status(401).json({ message: 'User resolution failed' });
 
     const songId = req.params.id;
+    const song = await prisma.song.findUnique({ where: { id: songId } });
+    if (!song) return res.status(404).json({ message: 'Song not found' });
+
     const existing = await prisma.likedSong.findUnique({
       where: { userId_songId: { userId, songId } },
     });
@@ -172,14 +226,15 @@ router.post('/:id/like', authenticate, async (req: AuthRequest, res: Response) =
       await prisma.likedSong.delete({
         where: { userId_songId: { userId, songId } },
       });
-      return res.json({ liked: false });
+      return res.json({ liked: false, songId });
     } else {
       await prisma.likedSong.create({
         data: { userId, songId },
       });
-      return res.json({ liked: true });
+      return res.json({ liked: true, songId });
     }
   } catch (err: any) {
+    console.error('Toggle like error:', err);
     return res.status(500).json({ message: err.message || 'Server error' });
   }
 });

@@ -1,12 +1,40 @@
 import type React from 'react';
 
-export const ARTIST_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#282828"/><circle cx="100" cy="78" r="34" fill="#535353"/><path d="M44 176c0-30 25-52 56-52s56 22 56 52" fill="#535353"/></svg>`
-)}`;
+export const ARTIST_PLACEHOLDER_SVG = '/artist-placeholder.svg';
+export const TRACK_PLACEHOLDER_SVG = '/track-placeholder.svg';
 
-export const TRACK_PLACEHOLDER_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#282828"/><path d="M132 48v82a22 22 0 1 1-12-19.6V69l-44 11.5v62.5a22 22 0 1 1-12-19.6V64l68-16z" fill="#6a6a6a"/></svg>`
-)}`;
+export const KNOWN_ARTIST_AVATARS: Record<string, string> = {
+  hansraj: '/artists/hansraj-raghuwanshi.jpg',
+  atif: '/artists/atif-aslam.jpg',
+  shreya: '/artists/shreya-ghoshal.jpg',
+  arijit: '/artists/arijit-singh.jpg',
+  bieber: '/artists/justin-bieber.jpg',
+  masoom: '/artists/masoom-sharma.jpg',
+  dhanda: '/artists/dhanda-nyoliwala.jpg',
+  honey: '/artists/honey-singh.jpg',
+  hariharan: '/artists/hariharan.jpg',
+  shankar: '/artists/shankar-mahadevan.jpg',
+  renuka: '/artists/renuka-panwar.jpg',
+  agam: '/artists/agam.jpg',
+};
+
+export function getArtistAvatar(
+  name?: string,
+  avatarUrl?: string | null,
+  fallbackCover?: string | null
+): string {
+  if (name) {
+    const lower = name.toLowerCase();
+    for (const [key, path] of Object.entries(KNOWN_ARTIST_AVATARS)) {
+      if (lower.includes(key)) {
+        return path;
+      }
+    }
+  }
+  if (avatarUrl && !avatarUrl.includes('placeholder')) return avatarUrl;
+  if (fallbackCover) return fallbackCover;
+  return ARTIST_PLACEHOLDER_SVG;
+}
 
 export function handleArtistImgError(
   e: React.SyntheticEvent<HTMLImageElement>,
@@ -14,7 +42,7 @@ export function handleArtistImgError(
 ) {
   const img = e.currentTarget;
   if (!img.dataset.fallbackStep) {
-    if (secondaryUrl && img.src !== secondaryUrl) {
+    if (secondaryUrl && img.src !== secondaryUrl && !img.src.includes(secondaryUrl)) {
       img.dataset.fallbackStep = 'secondary';
       img.src = secondaryUrl;
       return;
@@ -33,4 +61,3 @@ export function handleTrackImgError(e: React.SyntheticEvent<HTMLImageElement>) {
     img.src = TRACK_PLACEHOLDER_SVG;
   }
 }
-

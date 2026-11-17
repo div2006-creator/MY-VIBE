@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Play, Pause, Heart, UserPlus, Check, Disc, Music, BadgeCheck, Clock } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import type { Song, Album, Artist } from '../types';
-import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
+import { getArtistAvatar, handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 interface ArtistDetailData {
   id: string;
@@ -19,15 +19,13 @@ interface ArtistDetailData {
 
 export const ArtistDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { currentSong, isPlaying, playSong, togglePlay } = useAudio();
+  const { currentSong, isPlaying, playSong, togglePlay, isLiked, toggleLike } = useAudio();
   const [artist, setArtist] = useState<ArtistDetailData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [likedSongIds, setLikedSongIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchArtist();
-    fetchLikedSongs();
   }, [id]);
 
   const fetchArtist = async () => {
@@ -42,44 +40,6 @@ export const ArtistDetailPage: React.FC = () => {
       console.error('Failed to load artist:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchLikedSongs = async () => {
-    const token = localStorage.getItem('vibe_token');
-    if (!token) return;
-    try {
-      const res = await fetch('/api/songs/liked', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setLikedSongIds(new Set(data.map((s: Song) => s.id)));
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const toggleLike = async (songId: string) => {
-    const token = localStorage.getItem('vibe_token');
-    if (!token) return;
-    try {
-      const res = await fetch(`/api/songs/${songId}/like`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setLikedSongIds((prev) => {
-          const updated = new Set(prev);
-          if (data.liked) updated.add(songId);
-          else updated.delete(songId);
-          return updated;
-        });
-      }
-    } catch (err) {
-      console.error(err);
     }
   };
 
@@ -120,20 +80,20 @@ export const ArtistDetailPage: React.FC = () => {
       {/* Hero Banner Header */}
       <div className="relative w-full h-[340px] md:h-[380px] overflow-hidden bg-[#181818]">
         <img
-          src={artist.avatarUrl || artist.songs[0]?.coverUrl}
+          src={getArtistAvatar(artist.name, artist.avatarUrl, artist.songs[0]?.coverUrl)}
           alt={artist.name}
           onError={(e) => handleArtistImgError(e, artist.songs[0]?.coverUrl)}
-          className="w-full h-full object-cover filter brightness-[0.42] scale-105"
+          className="w-full h-full object-cover filter brightness-[0.42] scale-105 text-transparent"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/45 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
           <div className="flex items-center gap-5">
             <img
-              src={artist.avatarUrl || artist.songs[0]?.coverUrl}
+              src={getArtistAvatar(artist.name, artist.avatarUrl, artist.songs[0]?.coverUrl)}
               alt={artist.name}
               onError={(e) => handleArtistImgError(e, artist.songs[0]?.coverUrl)}
-              className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover shadow-2xl bg-[#282828]"
+              className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover shadow-2xl bg-[#282828] text-transparent"
             />
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -209,7 +169,7 @@ export const ArtistDetailPage: React.FC = () => {
             {artist.songs.map((song, index) => {
               const isCurrent = currentSong?.id === song.id;
               const isSongPlaying = isCurrent && isPlaying;
-              const liked = likedSongIds.has(song.id);
+              const liked = isLiked(song.id);
 
               return (
                 <div

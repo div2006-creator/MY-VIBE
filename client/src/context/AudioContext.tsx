@@ -387,25 +387,54 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   useEffect(() => {
-    // Initial fetch of liked songs to sync across devices/sessions
+    // Initial sync of liked songs with backend & local storage
     const token = localStorage.getItem('vibe_token');
-    fetch('/api/songs/liked', {
-      headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+    const localSaved = (() => {
+      try {
+        const s = localStorage.getItem('vibe_liked_song_ids');
+        return s ? JSON.parse(s) : [];
+      } catch {
+        return [];
+      }
+    })();
+
+    fetch('/api/songs/liked/sync', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify({ songIds: localSaved }),
     })
       .then((res) => res.json())
-      .then((data: Song[]) => {
-        if (Array.isArray(data)) {
-          const ids = data.map((s) => s.id);
-          setLikedSongIds((prev) => {
-            const merged = Array.from(new Set([...prev, ...ids]));
-            try {
-              localStorage.setItem('vibe_liked_song_ids', JSON.stringify(merged));
-            } catch {}
-            return merged;
-          });
+      .then((data) => {
+        if (data && Array.isArray(data.likedSongIds)) {
+          setLikedSongIds(data.likedSongIds);
+          try {
+            localStorage.setItem('vibe_liked_song_ids', JSON.stringify(data.likedSongIds));
+          } catch {}
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // Fallback to GET /api/songs/liked if sync fails
+        fetch('/api/songs/liked', {
+          headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+        })
+          .then((r) => r.json())
+          .then((data: Song[]) => {
+            if (Array.isArray(data)) {
+              const ids = data.map((s) => s.id);
+              setLikedSongIds((prev) => {
+                const merged = Array.from(new Set([...prev, ...ids]));
+                try {
+                  localStorage.setItem('vibe_liked_song_ids', JSON.stringify(merged));
+                } catch {}
+                return merged;
+              });
+            }
+          })
+          .catch(() => {});
+      });
   }, []);
 
   const toggleLike = async (songId: string): Promise<boolean> => {

@@ -1,15 +1,9 @@
 import { Router, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { AuthRequest, authenticate } from '../middleware/auth.js';
+import { AuthRequest, authenticate, getUserId } from '../middleware/auth.js';
 
 const router = Router();
 const prisma = new PrismaClient();
-
-async function getUserId(req: AuthRequest) {
-  if (req.user?.id) return req.user.id;
-  const firstUser = await prisma.user.findFirst();
-  return firstUser ? firstUser.id : null;
-}
 
 // GET /api/profile
 router.get('/', authenticate, async (req: AuthRequest, res: Response) => {

@@ -15,32 +15,44 @@ export const LikedSongsPage: React.FC = () => {
 
   const fetchLikedSongs = async () => {
     const token = localStorage.getItem('vibe_token');
+    let backendSongs: Song[] = [];
     try {
       const res = await fetch('/api/songs/liked', {
         headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
       });
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        setLikedSongs(data);
-        setLoading(false);
-        return;
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          backendSongs = data;
+        }
       }
     } catch {
       // ignore
     }
 
+    let allCatalog: Song[] = [];
     try {
       const allRes = await fetch('/api/songs');
-      const all: Song[] = await allRes.json();
-      if (Array.isArray(all)) {
-        const matched = all.filter((s) => likedSongIds.includes(s.id));
-        setLikedSongs(matched);
+      if (allRes.ok) {
+        const all = await allRes.json();
+        if (Array.isArray(all)) {
+          allCatalog = all;
+        }
       }
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
     }
+
+    const songPool = new Map<string, Song>();
+    for (const s of backendSongs) songPool.set(s.id, s);
+    for (const s of allCatalog) if (!songPool.has(s.id)) songPool.set(s.id, s);
+
+    const resolved = likedSongIds
+      .map((id) => songPool.get(id))
+      .filter((s): s is Song => Boolean(s));
+
+    setLikedSongs(resolved);
+    setLoading(false);
   };
 
   const formatTime = (secs: number) => {

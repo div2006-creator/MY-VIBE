@@ -2,6 +2,31 @@ import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
+const ARTIST_LOCAL_AVATARS = {
+    'Hansraj Raghuwanshi': '/artists/hansraj-raghuwanshi.jpg',
+    'Atif Aslam': '/artists/atif-aslam.jpg',
+    'Shreya Ghoshal': '/artists/shreya-ghoshal.jpg',
+    'Arijit Singh': '/artists/arijit-singh.jpg',
+    'Justin Bieber': '/artists/justin-bieber.jpg',
+    'Masoom Sharma': '/artists/masoom-sharma.jpg',
+    'Dhanda Nyoliwala': '/artists/dhanda-nyoliwala.jpg',
+    'Yo Yo Honey Singh': '/artists/honey-singh.jpg',
+    'Honey Singh': '/artists/honey-singh.jpg',
+    'Hariharan': '/artists/hariharan.jpg',
+    'Shankar Mahadevan': '/artists/shankar-mahadevan.jpg',
+    'Renuka Panwar': '/artists/renuka-panwar.jpg',
+    'Agam': '/artists/agam.jpg',
+    'Agam Aggarwal': '/artists/agam.jpg',
+};
+function resolveArtistAvatar(name, currentAvatar, songCover) {
+    if (ARTIST_LOCAL_AVATARS[name])
+        return ARTIST_LOCAL_AVATARS[name];
+    for (const [key, val] of Object.entries(ARTIST_LOCAL_AVATARS)) {
+        if (name.toLowerCase().includes(key.toLowerCase()))
+            return val;
+    }
+    return currentAvatar || songCover || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80';
+}
 // GET /api/artists - List all artists
 router.get('/', async (req, res) => {
     try {
@@ -22,7 +47,7 @@ router.get('/', async (req, res) => {
         const formatted = artists.map((a) => ({
             id: a.id,
             name: a.name,
-            avatarUrl: a.avatarUrl || a.songs[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80',
+            avatarUrl: resolveArtistAvatar(a.name, a.avatarUrl, a.songs[0]?.coverUrl),
             bio: a.bio,
             genre: a.genre || 'Popular',
             songCount: a._count.songs,
@@ -76,7 +101,7 @@ router.get('/:id', async (req, res) => {
         const formattedArtist = {
             id: artist.id,
             name: artist.name,
-            avatarUrl: artist.avatarUrl || artist.songs[0]?.coverUrl || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+            avatarUrl: resolveArtistAvatar(artist.name, artist.avatarUrl, artist.songs[0]?.coverUrl),
             bio: artist.bio || `${artist.name} is an independent artist delivering soulful atmospheres and unforgettable soundscapes.`,
             genre: artist.genre || 'Indie & Ambient',
             monthlyListeners: Math.floor(Math.random() * 400000) + 150000,
@@ -103,7 +128,7 @@ router.get('/:id', async (req, res) => {
             relatedArtists: relatedArtists.map((r) => ({
                 id: r.id,
                 name: r.name,
-                avatarUrl: r.avatarUrl,
+                avatarUrl: resolveArtistAvatar(r.name, r.avatarUrl),
                 genre: r.genre,
             })),
         };

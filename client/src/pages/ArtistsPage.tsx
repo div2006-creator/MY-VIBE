@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Mic2, Play, Pause, Search, ChevronRight, Shuffle, BadgeCheck } from 'lucide-react';
 import type { Artist } from '../types';
 import { useAudio } from '../context/AudioContext';
-import { handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
+import { getArtistAvatar, handleArtistImgError, handleTrackImgError } from '../utils/mediaFallback';
 
 export const ArtistsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -85,10 +85,10 @@ export const ArtistsPage: React.FC = () => {
             <div className="flex flex-col lg:flex-row items-center gap-8 justify-between">
               <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
                 <img
-                  src={featuredArtist.avatarUrl || featuredArtist.songs?.[0]?.coverUrl}
+                  src={getArtistAvatar(featuredArtist.name, featuredArtist.avatarUrl, featuredArtist.songs?.[0]?.coverUrl)}
                   alt={featuredArtist.name}
                   onError={(e) => handleArtistImgError(e, featuredArtist.songs?.[0]?.coverUrl)}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-2xl bg-[#282828] shrink-0"
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-2xl bg-[#282828] shrink-0 text-transparent"
                 />
 
                 <div className="space-y-2">
@@ -194,11 +194,11 @@ export const ArtistsPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/10 pb-5">
                   <div className="flex items-center gap-4 text-center sm:text-left">
                     <img
-                      src={artist.avatarUrl || artist.songs?.[0]?.coverUrl}
+                      src={getArtistAvatar(artist.name, artist.avatarUrl, artist.songs?.[0]?.coverUrl)}
                       alt={artist.name}
                       onError={(e) => handleArtistImgError(e, artist.songs?.[0]?.coverUrl)}
                       onClick={() => navigate(`/artist/${artist.id}`)}
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-lg cursor-pointer hover:scale-105 transition-transform shrink-0 bg-[#282828]"
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-lg cursor-pointer hover:scale-105 transition-transform shrink-0 bg-[#282828] text-transparent"
                     />
                     <div>
                       <h3

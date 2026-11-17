@@ -1,14 +1,8 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { authenticate } from '../middleware/auth.js';
+import { authenticate, getUserId } from '../middleware/auth.js';
 const router = Router();
 const prisma = new PrismaClient();
-async function getUserId(req) {
-    if (req.user?.id)
-        return req.user.id;
-    const firstUser = await prisma.user.findFirst();
-    return firstUser ? firstUser.id : null;
-}
 // GET /api/analytics - User Listening & Mood Insights
 router.get('/', authenticate, async (req, res) => {
     try {
